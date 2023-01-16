@@ -37,7 +37,7 @@ const posts = [];
 for (let i = 0; i < NUM_SEED_POSTS; i++) {
   posts.push(
     new Post ({
-      text: faker.hacker.phrase(),
+      body: faker.hacker.phrase(),
       author: users[Math.floor(Math.random() * NUM_SEED_USERS)]._id
     })
   )
