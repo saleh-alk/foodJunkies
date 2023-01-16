@@ -21,7 +21,7 @@ async function jwtFetch(url, options = {}) {
 
     const res = await fetch(url, options);
 
-    if (res.status >= 400) throw err;
+    if (res.status >= 400) throw res;
 
 
     return res

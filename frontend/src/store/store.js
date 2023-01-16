@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleWare, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session';
 import errors from './errors'
@@ -12,12 +12,12 @@ const rootReducer = combineReducers({
 let enhancer;
 
 if (process.env.NODE_ENV === "production") {
-    enhancer = applyMiddleWare(thunk);
+    enhancer = applyMiddleware(thunk);
 } else {
     const logger = require('redux-logger').default;
     const composeEnhancers =
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-    enhancer = composeEnhancers(applyMiddleWare(thunk, logger))
+    enhancer = composeEnhancers(applyMiddleware(thunk, logger))
 }
 
 const configureStore = (preloadedState) => {

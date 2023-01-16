@@ -9,12 +9,14 @@ import NavBar from './components/NavBar/NavBar'
 
 function App() {
   return (
+    <>
+    <NavBar />
     <Switch>
-      <NavBar />
       <AuthRoute exact path="/" component={MainPage} />
       <AuthRoute exact path="/login" component={LoginForm} />
       <AuthRoute exact path="/signup" component={SignupForm} />
     </Switch>
+    </>
   );
 }
 

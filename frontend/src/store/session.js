@@ -51,7 +51,7 @@ const startSession = (userInfo, route) => async (dispatch) => {
     }
 }
 
-const logout = () => dispatch => {
+export const logout = () => dispatch => {
     localStorage.removeItem('jwtToken');
     dispatch(logoutUser())
 
