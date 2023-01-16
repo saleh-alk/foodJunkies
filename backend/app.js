@@ -7,6 +7,7 @@ const { isProduction } = require("./config/keys")
 const csurf = require("csurf")
 const debug = require("debug");
 require('./models/User.js')
+require('./models/Post.js');
 
 require("./config/passport")
 
