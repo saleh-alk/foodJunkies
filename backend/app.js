@@ -13,7 +13,7 @@ require("./config/passport")
 
 const passport = require("passport")
 const usersRouter = require('./routes/api/users');
-
+const postsRouter = require('./routes/api/posts')
 const csrfRouter = require("./routes/api/csrf")
 
 const app = express();
@@ -41,8 +41,9 @@ app.use(csurf({
         httpOnly: true
     }
 }))
-app.use('/api/users', usersRouter);
 
+app.use('/api/users', usersRouter);
+app.use('/api/post', postsRouter)
 app.use('/api/csrf', csrfRouter)
 
 
