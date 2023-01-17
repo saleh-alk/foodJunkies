@@ -2,6 +2,7 @@ const { validationResult } = require("express-validator")
 
 
 const handleValidationErrors = (req, res, next) => {
+    debugger
     const validationErrors = validationResult(req);
 
 

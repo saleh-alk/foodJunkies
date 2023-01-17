@@ -3,6 +3,7 @@ const handleValidationErrors = require("./handleValidationErrors")
 
 
 const validateRegisterInput = [
+    
     check("email")
         .exists({ checkFalsy: true })
         .isEmail()

@@ -65,7 +65,7 @@ router.post('/', requireUser, validatePostInput, async (req, res, next) => {
 
       const user = await User.findById(req.user.id).select("-hashedPassword")
       const newPost = new Post({
-        body: req.body.text,
+        body: req.body.body,
         author: req.user._id
       });
 
