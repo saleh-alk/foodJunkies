@@ -1,6 +1,7 @@
 #navbarOuter{
     display: flex;
     justify-content: space-between;
+    background-color: #fafafa;
 }
 
 .links-auth{
@@ -14,8 +15,12 @@
 .rightNav{
     margin-top: 100px;
     margin-left: 10px;
+    margin-right: 10px;
+    color: black;
+    
 }
 
 #title{
     font-family: cursive;
+    margin: 25px;
 }
