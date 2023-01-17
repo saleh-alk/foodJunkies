@@ -1,0 +1,14 @@
+#navbarOuter{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .links-auth{
+    display: flex;
+    justify-content: space-between;
+} */
+
+.rightNav{
+    margin-top: 100px;
+    margin-left: 10px;
+}

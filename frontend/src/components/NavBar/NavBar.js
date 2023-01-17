@@ -29,16 +29,18 @@ function NavBar() {
          } else {
             navbar=(
                 <div className='links-auth'>
-                    <Link to={'/login'}>login</Link>
-                    <Link to={'/signup'}>Signup</Link>
+                    <Link to={'/login'} className="rightNav">login</Link>
+                    <Link to={'/signup'} className="rightNav">Signup</Link>
                 </div>
             )
          }
     
     return (
         <>
+        <div id="navbarOuter">
             <h1>FoodJunkies</h1>
             {navbar}
+        </div>
         </>
     )
 }
