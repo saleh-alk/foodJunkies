@@ -21,6 +21,23 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.patch('/id', requireUser, async(req, res, next)=>{
+  try{
+    const posts = await Post.findById(req.params.id)
+      if (posts.post.id.toString() !== req.user.id.toString()) {
+          res.status().json({ notowned: 'Current user does not own this posts' })
+  } else {
+      posts.body = req.body.body;
+      let newPost = await posts.save();
+      return res.json(newPost);
+  }}
+  catch(err){
+    const error = new Error('Post not found');
+    error.statusCode = 404;
+    error.errors = {message: "Something went wrong saving"};
+  }
+})
+
 router.get('/user/:userId', async (req, res, next) => {
     let user;
     try {
@@ -46,7 +63,7 @@ router.get('/user/:userId', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
     try {
     const post = await Post.findById(req.params.id)
-                                // .populate("author", "id, username");
+      // .populate("author", "id, username");
       .populate("author", "_id username profileImageUrl")
       return res.json(post);
     }
