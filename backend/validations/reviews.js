@@ -21,13 +21,6 @@ const validateReviewInput = [
     .isFloat({ min: 0, max: 5 })
     .withMessage('Rating must be between 0 and 5'),
 
-    check('reviewerId')
-    .exists({ checkFalsy: true })
-    .withMessage('Reviewer must exist'),
-
-    check('postId')
-    .exists({ checkFalsy: true })
-    .withMessage('Post must exist'),
     handleValidationErrors
 ]
 

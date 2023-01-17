@@ -65,6 +65,7 @@ router.post('/', requireUser, validatePostInput, async (req, res, next) => {
 
       let post = await newPost.save();
       post = await post.populate('author', '_id, username');
+      
       return res.json(post);
     }
     catch(err) {

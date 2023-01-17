@@ -1,21 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const Review = require('../../models/Review');
-const User = require('../../models/User');
 const mongoose = require("mongoose");
 const passport = require('passport');
 const { requireUser } = require('../../config/passport');
 const validateReviewInput = require('../../validations/reviews');
 
+const Review = require('../../models/Review');
+const User = require('../../models/User');
 
 function formatReview(review) {
     return {
         title: review.title,
         postedAt: review.createdAt,
         rating: review.rating,
-        reviewerId: review.reviewerId._id,
-        postId: review.postId,
-        username: review.reviewerId.username,
+        reviewer: review.reviewer._id,
+        post: review.post,
+        username: review.reviewer.username,
         id: review.id
     }
 }
@@ -28,10 +28,10 @@ function formatReviews(reviews) {
     return returnData;
 }
 
-router.get('/:userId', (req, res) => {
+router.get('/user/:userId', (req, res) => {
     User.findById(req.params.userId)
     .then(user => {
-        Review.find({ userId: user.id}).populate("reviewerId")
+        Review.find({ reviewer: user.id})
         .then(reviews => {
             res.json(formatReviews(reviews));
         });
@@ -41,16 +41,21 @@ router.get('/:userId', (req, res) => {
 
 
 //create review
-router.post('/', requireUser, validateReviewInput, async (req, res, next)=> {
+router.post('/:postId', requireUser, validateReviewInput, async (req, res, next)=> {
+    
     try {
         const newReview = new Review({
-            reviewerId: req.user._id,
-            postId: req.body.postId,
+            reviewer: req.user.id,
+            post: req.params.postId,
             title: req.body.title,
             body: req.body.body,
             rating: req.body.rating
         });
+
         let review = await newReview.save();
+        review = await review.populate("reviewer", "_id username")
+        review = await review.populate("post", "_id body")
+        
         return res.json(review)
     }
     catch (err) {
@@ -82,17 +87,17 @@ router.patch('/:id', requireUser, async(req, res, next)=>{
 router.delete('/:id', requireUser, async(req, res, next)=>{
     try{            
         // const posts = await Post.findById(req.params.id);
-        const reviews = await Review.findById(req.params.id);
+        const review = await Review.findById(req.params.id);
         // const user = await User.findById(req.params.id);
-        let review = reviews.delete()
-        let deletedReview = await review.save()
-        return res.json(deletedReview)
+        review.remove()
+        
+        res.json({ msg: 'Review removed' });
     }
     catch (err){
         const error = new Error("Something went wrong");
         error.statusCode = 404;
         error.errors = {message: "Something went wrong saving"};
-        return res.status(400).json(errors);
+        return res.status(400).json(error);
 }})
 
 module.exports = router; 
