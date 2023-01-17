@@ -38,7 +38,7 @@ function NavBar() {
     return (
         <>
         <div id="navbarOuter">
-            <h1>FoodJunkies</h1>
+            <h1 id="title">FoodJunkies</h1>
             {navbar}
         </div>
         </>

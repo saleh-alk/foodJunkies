@@ -59,7 +59,7 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', requireUser, validatePostInput, async (req, res, next) => {
     try {
       const newPost = new Post({
-        text: req.body.text,
+        text: req.body.body,
         author: req.user._id
       });
 
