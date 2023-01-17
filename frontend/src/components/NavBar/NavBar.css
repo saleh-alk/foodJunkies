@@ -1,7 +1,8 @@
 #navbarOuter{
     display: flex;
     justify-content: space-between;
-    background-color: #fafafa;
+    background-color: #ffbe79;
+    border-bottom: 2px solid #ba3b0a;
 }
 
 .links-auth{
@@ -16,11 +17,15 @@
     margin-top: 100px;
     margin-left: 10px;
     margin-right: 10px;
-    color: black;
+    color: #ba3b0a;
     
 }
 
 #title{
     font-family: cursive;
     margin: 25px;
+}
+
+#logo{
+    max-width: 120px;
 }

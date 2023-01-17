@@ -1,0 +1,18 @@
+.outerBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    /* background: #ffbe79; */
+}
+
+.session-form{
+    background: #ffbe79;
+    padding: 30px;
+    border: 3px solid #ba3b0a;
+    border-radius: 30px;
+}
+
+.formTitle{
+    font-family: DejaVu Sans Mono, monospace;
+}
