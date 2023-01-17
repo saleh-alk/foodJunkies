@@ -1,0 +1,21 @@
+#navbarOuter{
+    display: flex;
+    justify-content: space-between;
+}
+
+.links-auth{
+    margin-top: 28px;
+}
+
+.links-nav{
+    margin-top: 28px;
+}
+
+.rightNav{
+    margin-top: 100px;
+    margin-left: 10px;
+}
+
+#title{
+    font-family: cursive;
+}

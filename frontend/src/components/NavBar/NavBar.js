@@ -13,26 +13,34 @@ function NavBar() {
         dispatch(logout())
     }
 
-    const getLinks = () => {
-        loggedIn ? (
-            <div className='links-nav'>
+    let navbar;
+
+    if(loggedIn) {
+        navbar=(
+            <>
+                <div className='links-nav'>
                 <Link to={'/posts'} >All Posts</Link>
                 <Link to={'/profile'} >Profile</Link>
                 <Link to={'posts/new'}>Write a Post</Link>
                 <button onClick={logoutUser}>Logout</button>
-
-            </div>
-        ) : (
-            <div className='links-auth'>
-                <Link to={'/login'}>login</Link>
-                <Link to={'/signup'}>Signup</Link>
-            </div>
-        )
-    }
+                </div>
+            </>
+            )
+         } else {
+            navbar=(
+                <div className='links-auth'>
+                    <Link to={'/login'} className="rightNav">login</Link>
+                    <Link to={'/signup'} className="rightNav">Signup</Link>
+                </div>
+            )
+         }
+    
     return (
         <>
-            <h1>FoodJunkies</h1>
-            {getLinks()}
+        <div id="navbarOuter">
+            <h1 id="title">FoodJunkies</h1>
+            {navbar}
+        </div>
         </>
     )
 }
