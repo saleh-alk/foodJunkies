@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
-const Post = mongoose.model('Post');
+// const User = mongoose.model('User');
+// const Post = mongoose.model('Post');
+const Post = require('../../models/Post')
+const User = require('../../models/User')
 const { requireUser } = require('../../config/passport');
 const validatePostInput = require('../../validations/posts');
 
@@ -10,7 +12,7 @@ router.get('/', async (req, res) => {
     try {
       const posts = await Post.find()
                                 // .populate("author", "_id, body")
-                                .populate("author", "_id username")
+                                // .populate("author", "_id username")
                                 .sort({ createdAt: -1 });
       return res.json(posts);
     }
@@ -70,18 +72,19 @@ router.post('/', requireUser, validatePostInput, async (req, res, next) => {
     }
   });
 
-router.delete('/posts/:id', async (req, res)=>{
-  const postId = Number(req.params.id);
-  const newPosts = posts.filter((post)=> post.id != postId);
-  
+router.delete('/:id', requireUser, async (req, res)=>{
   try {
-    const posts = await Post.findById(req.params.id);
-    const user = await User.findById(post.author);
-    if (user === req.user._id) {
-      // const newPost = posts.filter(post => post.id !== req.params.id);
+    const post = await Post.findById(req.params.id);
+    if (post.author.id !== req.user.id){
+      return res.status(401).json({msg: 'User not authorized'});
     }
+
+    await post.remove();
+
+    res.json({msg: 'Post removed' });
   }catch(err){
-    return res.json([]);
+    console.error(err.message)
+    res.status(500).send('Server Error');
   };
 })
 
