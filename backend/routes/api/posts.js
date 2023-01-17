@@ -8,14 +8,14 @@ const validatePostInput = require('../../validations/posts');
 
 router.get('/', async (req, res) => {
     try {
-    const posts = await Post.find()
+      const posts = await Post.find()
                                 // .populate("author", "_id, body")
                                 .populate("author", "_id username")
                                 .sort({ createdAt: -1 });
-    return res.json(posts);
+      return res.json(posts);
     }
     catch(err) {
-    return res.json([]);
+      return res.json([]);
     }
 });
 
@@ -69,5 +69,34 @@ router.post('/', requireUser, validatePostInput, async (req, res, next) => {
       next(err);
     }
   });
+
+router.delete('/posts/:id', (req, res)=>{
+  const postId = Number(req.params.id);
+  const newPosts = posts.filter((post)=> post.id != postId);
+  
+  try {
+    const posts = await Post.findById(req.params.id);
+    const user = await User.findById(post.author);
+    if (user === req.user._id) {
+      // const newPost = posts.filter(post => post.id !== req.params.id);
+    }
+  }catch(err){
+    return res.json([]);
+  };
+})
+
+// app.delete('/user', function (req, res) {
+//   res.send('Got a DELETE request at /user')
+// })
+
+// router.delete('/:id', (req, res) => {
+//   const found = todos.some(todo => todo.id === req.params.id);
+
+//   if (!found) {
+//     res.status(400).json({ msg: `No meber whit id of ${req.params.id}` });
+//   } else {
+//     res.json(todos);
+//   }
+// });
 
 module.exports = router;
