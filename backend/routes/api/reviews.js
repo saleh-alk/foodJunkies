@@ -89,6 +89,7 @@ router.delete('/:id', requireUser, async(req, res, next)=>{
         // const posts = await Post.findById(req.params.id);
         const review = await Review.findById(req.params.id);
         // const user = await User.findById(req.params.id);
+        //sf
         review.remove()
         
         res.json({ msg: 'Review removed' });
