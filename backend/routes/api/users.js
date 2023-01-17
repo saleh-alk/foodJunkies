@@ -5,6 +5,7 @@ const User = mongoose.model('User')
 const passport = require("passport")
 const { loginUser, restoreUser } = require("../../config/passport")
 const { isProduction } = require("../../config/keys")
+const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
 
 const validateRegisterInput = require("../../validations/register")
 const validateLoginInput = require("../../validations/login")
@@ -14,12 +15,13 @@ const router = express.Router();
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.json({
-    message: "GET /api/users"
+    message: "GET /api/users",
+    profileImageUrl: req.user.profileImageUrl
   })
 });
 
 
-router.post('/register', validateRegisterInput, async (req, res, next) => {
+router.post('/register',  singleMulterUpload("image"), validateRegisterInput, async (req, res, next) => {
   // Check to make sure no one has already registered with the proposed email or
   // username.
   const user = await User.findOne({
