@@ -59,7 +59,7 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', requireUser, validatePostInput, async (req, res, next) => {
     try {
       const newPost = new Post({
-        text: req.body.body,
+        body: req.body.body,
         author: req.user._id
       });
 
@@ -75,7 +75,8 @@ router.post('/', requireUser, validatePostInput, async (req, res, next) => {
 router.delete('/:id', requireUser, async (req, res)=>{
   try {
     const post = await Post.findById(req.params.id);
-    if (post.author.id !== req.user.id){
+    if (post.author._id.toString() !== req.user._id.toString()){
+     
       return res.status(401).json({msg: 'User not authorized'});
     }
 
@@ -88,18 +89,6 @@ router.delete('/:id', requireUser, async (req, res)=>{
   };
 })
 
-// app.delete('/user', function (req, res) {
-//   res.send('Got a DELETE request at /user')
-// })
 
-// router.delete('/:id', (req, res) => {
-//   const found = todos.some(todo => todo.id === req.params.id);
-
-//   if (!found) {
-//     res.status(400).json({ msg: `No meber whit id of ${req.params.id}` });
-//   } else {
-//     res.json(todos);
-//   }
-// });
 
 module.exports = router;

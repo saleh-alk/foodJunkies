@@ -5,7 +5,7 @@ const handleValidationErrors = require('./handleValidationErrors');
 // middleware to validate the keys in the body of a request to create/edit
 // a tweet
 const validatePostInput = [
-  check('text')
+  check('body')
     .exists({ checkFalsy: true })
     .isLength({ max: 140 })
     .withMessage('Post must be equal or less than 140 characters'),
