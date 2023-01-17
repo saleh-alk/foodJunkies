@@ -70,7 +70,7 @@ router.post('/', requireUser, validatePostInput, async (req, res, next) => {
     }
   });
 
-router.delete('/posts/:id', (req, res)=>{
+router.delete('/posts/:id', async (req, res)=>{
   const postId = Number(req.params.id);
   const newPosts = posts.filter((post)=> post.id != postId);
   
