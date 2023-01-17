@@ -13,7 +13,7 @@ require("./config/passport")
 
 const passport = require("passport")
 const usersRouter = require('./routes/api/users');
-
+const postsRouter = require('./routes/api/posts')
 const csrfRouter = require("./routes/api/csrf")
 
 const app = express();
@@ -23,6 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(passport.initialize())
+app.use(express.json({extended: false}))
 
 if (!isProduction) {
     // Enable cors only in development b/c React will only be on React development server
@@ -42,7 +43,7 @@ app.use(csurf({
     }
 }))
 app.use('/api/users', usersRouter);
-
+app.use('/api/posts', postsRouter)
 app.use('/api/csrf', csrfRouter)
 
 

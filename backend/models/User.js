@@ -4,11 +4,13 @@ const Schema = mongoose.Schema;
 const userSchema = Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     hashedPassword: {
         type: String,
@@ -20,4 +22,4 @@ const userSchema = Schema({
         timestamps: true
     })
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = User = mongoose.model('User', userSchema)
