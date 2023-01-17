@@ -52,7 +52,16 @@ const startSession = (userInfo, route) => async (dispatch) => {
         }
     }
 }
-export const signup = (user) => startSession(user, 'api/users/register')
+
+export const getCurrentUser = () => async dispatch => {
+    const res = await jwtFetch('/api/users/current')
+
+    if(res.ok){
+        const data = await res.json()
+        dispatch(receiveCurrentUser(data))
+    }
+}
+export const signup = user => startSession(user, 'api/users/register')
 export const login = user => startSession(user, 'api/users/login')
 
 
@@ -63,13 +72,18 @@ export const logout = () => dispatch => {
 }
 
 const initialState = {
-    user: undefined
+    user: null
 }
 
 const sessionReducer = (state = initialState, action) => {
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
-            return { user: action.currentUser }
+        
+            if(action.currentUser){
+                return { user: action.currentUser }
+            } else {
+                return state
+            }
             break;
         case RECEIVE_USER_LOGOUT:
             return initialState
