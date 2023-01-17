@@ -70,4 +70,5 @@ router.post('/', requireUser, validatePostInput, async (req, res, next) => {
     }
   });
 
+
 module.exports = router;
