@@ -6,12 +6,12 @@ const ReviewSchema = new Schema({
         type: String,
         required: true,
     },
-    // reviewerId:{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User',
-    //     index: true
-    // },
-    postId:{
+    reviewer:{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        index: true
+    },
+    post:{
         type: Schema.Types.ObjectId,
         ref: 'Post',
         index: true
