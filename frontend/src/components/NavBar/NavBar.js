@@ -1,8 +1,9 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { logout } from '../../store/session'
-import './NavBar.css'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
+import { logout } from '../../store/session';
+import './NavBar.css';
 
 function NavBar() {
     const loggedIn = useSelector(state => !!state.session.user)
@@ -29,8 +30,12 @@ function NavBar() {
          } else {
             navbar=(
                 <div className='links-auth'>
-                    <Link to={'/login'} className="rightNav">login</Link>
-                    <Link to={'/signup'} className="rightNav">Signup</Link>
+                    <Link to={'/login'} className="rightNav">
+                        <i className="fas fa-regular fa-right-to-bracket"></i>
+                    </Link>
+                    <Link to={'/signup'} className="rightNav">
+                        <i className="fas fa-regular fa-user-plus"></i>
+                    </Link>
                 </div>
             )
          }
@@ -38,7 +43,11 @@ function NavBar() {
     return (
         <>
         <div id="navbarOuter">
-            <h1 id="title">FoodJunkies</h1>
+            <NavLink exact to="/" id="title">
+                {/* <img src={logo} alt="logo" id="logo"></img> */}
+                FoodJunkies
+            </NavLink>
+            {/* <h1 id="title">FoodJunkies</h1> */}
             {navbar}
         </div>
         </>
