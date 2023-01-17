@@ -13,6 +13,7 @@ require("./config/passport")
 
 const passport = require("passport")
 const usersRouter = require('./routes/api/users');
+const postsRouter = require('./routes/api/posts');
 
 const csrfRouter = require("./routes/api/csrf")
 
@@ -30,9 +31,6 @@ if (!isProduction) {
     app.use(cors());
 }
 
-
-
-
 //setup csrf token
 app.use(csurf({
     cookie: {
@@ -42,7 +40,7 @@ app.use(csurf({
     }
 }))
 app.use('/api/users', usersRouter);
-
+app.use('/api/posts', postsRouter)
 app.use('/api/csrf', csrfRouter)
 
 
