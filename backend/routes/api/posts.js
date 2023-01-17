@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const Post = require('../../models/Post')
 const User = require('../../models/User')
 const { requireUser } = require('../../config/passport');
-const validatePostInput = require('../../validations/posts');
+const validatePostInput = require('../../validations/post');
 
 router.get('/', async (req, res) => {
     try {
