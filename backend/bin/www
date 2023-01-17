@@ -9,7 +9,7 @@ var app = require('../app');
 const mongoose = require("mongoose");
 
 const { mongoURI: db } = require("../config/keys.js")
-
+mongoose.set('strictQuery', true);
 
 const debug = require("debug");
 const serverLogger = debug("backend:server");
