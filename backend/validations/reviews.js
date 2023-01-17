@@ -30,3 +30,6 @@ const validateReviewInput = [
     .withMessage('Post must exist'),
     handleValidationErrors
 ]
+
+
+module.exports =  validateReviewInput;

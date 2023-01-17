@@ -13,7 +13,7 @@ require("./config/passport")
 
 const passport = require("passport")
 const usersRouter = require('./routes/api/users');
-
+const reviewsRouter = require("./routes/api/reviews");
 const csrfRouter = require("./routes/api/csrf")
 
 const app = express();
@@ -44,7 +44,7 @@ app.use(csurf({
 app.use('/api/users', usersRouter);
 
 app.use('/api/csrf', csrfRouter)
-
+app.use("/api/reviews", reviewsRouter);
 
 app.use((req, res, next) => {
     const err = new Error("not found")
