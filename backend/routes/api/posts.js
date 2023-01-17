@@ -74,7 +74,7 @@ router.post('/', multipleMulterUpload("images"), requireUser, validatePostInput,
     catch(err) {
       next(err);
     }
-  });
+});
 
 
 module.exports = router;
