@@ -1,4 +1,4 @@
-import { Switch } from 'react-router-dom'
+import { Router, Switch } from 'react-router-dom'
 import { AuthRoute, ProtectedRoute } from './components/Routes/routes';
 
 import MainPage from './components/MainPage/MainPage'
@@ -11,11 +11,11 @@ function App() {
   return (
     <>
     <NavBar />
-    <Switch>
-      <AuthRoute exact path="/" component={MainPage} />
-      <AuthRoute exact path="/login" component={LoginForm} />
-      <AuthRoute exact path="/signup" component={SignupForm} />
-    </Switch>
+      <Switch>
+        <AuthRoute exact path="/" component={MainPage} />
+        <AuthRoute exact path="/login" component={LoginForm} />
+        <AuthRoute exact path="/signup" component={SignupForm} />
+      </Switch>
     </>
   );
 }

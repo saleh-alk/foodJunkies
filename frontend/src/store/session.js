@@ -4,7 +4,7 @@ import jwtFetch from './jwt'
 const RECEIVE_CURRENT_USER = 'session/RECEIVE_CURRENT_USER'
 const RECEIVE_SESSION_ERRORS = 'session/RECEIVE_SESSION_ERRORS'
 const CLEAR_SESSION_ERRORS = 'session/CLEAR_SESSION_ERRORS'
-const RECEIVE_USER_LOGOUT = 'session/RECEIVE_USER_LOGOUT'
+export const RECEIVE_USER_LOGOUT = 'session/RECEIVE_USER_LOGOUT'
 
 
 //dispatch receiveCurrentUser when a user logs in
@@ -31,25 +31,30 @@ export const clearSessionErrors = () => ({
 })
 
 
-export const signup = user => startSession(user, 'api/users/register')
-export const login = user => startSession(user, 'api/users/login')
-
 const startSession = (userInfo, route) => async (dispatch) => {
+    
     try {
+        
         const res = await jwtFetch(route, {
             method: "POST",
             body: JSON.stringify(userInfo)
         })
+        console.log(res)
         const { user, token } = await res.json();
+        
         localStorage.setItem('jwtToken', token);
         return dispatch(receiveCurrentUser(user))
     } catch (err) {
+        console.log(err)
         const res = await err.json()
         if (res.statusCode === 400) {
             return dispatch(receiveErrors(res.errors))
         }
     }
 }
+export const signup = (user) => startSession(user, 'api/users/register')
+export const login = user => startSession(user, 'api/users/login')
+
 
 export const logout = () => dispatch => {
     localStorage.removeItem('jwtToken');
