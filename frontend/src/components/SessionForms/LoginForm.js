@@ -31,26 +31,30 @@ function LoginForm () {
       <form className="session-form" onSubmit={handleSubmit}>
         <h2 className="formTitle">Sign in</h2>
         <div className="errors">{errors?.email}</div>
-        <label>
-          
-          <input type="text"
+
+        <label className="custom-field">
+          <input type="email"
             value={email}
             onChange={update('email')}
             placeholder="Email"
             className="custom-field"
-            />
+            required/>
+            
         </label>
+
         <div className="errors">{errors?.password}</div>
-        <label>
-          
+
+        <label className="custom-field">
           <input type="password"
             value={password}
             onChange={update('password')}
             placeholder="Password"
             className="custom-field"
-            />
+            required/>
+      
         </label>
         <input
+          className="formButton"
           type="submit"
           value="Log In"
           disabled={!email || !password}
