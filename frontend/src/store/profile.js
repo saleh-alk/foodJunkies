@@ -9,7 +9,7 @@ const receiveUserProfile = (payload) => ({
 })
 
 export const getProfile = (userId) => (store) => {
-    if (store.users[userId]) return store.users[userId];
+    if ( store?.users[userId]) return store.users[userId];
     return null
 }
 
@@ -27,8 +27,6 @@ const profileReducer = (state = {}, action) => {
         case RECEIVE_USER_PROFILE:
             return { profile: action.payload }
             break;
-
-
         default:
             return state
             break;

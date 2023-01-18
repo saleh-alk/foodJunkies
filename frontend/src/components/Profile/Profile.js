@@ -12,11 +12,12 @@ function Profile() {
         dispatch(fetchUserProfile(userId))
     }, [])
 
-    const currentProfileUser = useSelector(getProfile(userId));
+    // const currentProfileUser = useSelector(getProfile(userId));
 
   return (
     <div>
-        <h1>{currentProfileUser.username}</h1>
+        {/* <h1>{currentProfileUser.username}</h1> */}
+    
 
         
     </div>
