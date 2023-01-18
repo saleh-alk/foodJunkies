@@ -1,6 +1,5 @@
 
 function getCookie(cookieName) {
- 
   const cookies = document.cookie.split(";");
  
     for (let cookie of cookies) {
@@ -13,10 +12,13 @@ function getCookie(cookieName) {
 
 async function jwtFetch(url, options = {}) {
     
-    options.method = options.method || "GET";
-    options.headers = options.headers || {};
-    options.headers["Authorization"] = "Bearer" + localStorage.getItem("jwtToken");
-
+  options.method = options.method || "GET";
+  options.headers = options.headers || {};
+  options.headers["Authorization"] = "Bearer" + localStorage.getItem("jwtToken");
+  
+  if (!options.headers["Content-Type"] && !(options.body instanceof FormData)) {
+    options.headers["Content-Type"] = "application/json";
+  }
 
     if (options.method.toUpperCase() !== "GET") {
         options.headers["Content-Type"] =

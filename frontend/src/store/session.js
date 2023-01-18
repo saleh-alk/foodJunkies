@@ -6,6 +6,20 @@ const RECEIVE_SESSION_ERRORS = 'session/RECEIVE_SESSION_ERRORS'
 const CLEAR_SESSION_ERRORS = 'session/CLEAR_SESSION_ERRORS'
 const RECEIVE_USER_LOGOUT = 'session/RECEIVE_USER_LOGOUT'
 
+const startSession = (userInfo, route) => async dispatch => {
+    const { image, username, password, email } = userInfo;
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("password", password);
+    formData.append("email", email);
+  
+    if (image) formData.append("image", image);
+    try {  
+        const res = await jwtFetch(route, {
+          method: "POST",
+          body: formData  // <-- CHANGE THIS LINE
+    });
+};
 
 //dispatch receiveCurrentUser when a user logs in
 const receiveCurrentUser = (currentUser) => ({
