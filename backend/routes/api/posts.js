@@ -75,7 +75,9 @@ router.post('/', requireUser, validatePostInput, async (req, res, next) => {
 
 router.delete('/:id', requireUser, async (req, res)=>{
   try {
+    
     const post = await Post.findById(req.params.id);
+   
     if (post.author._id.toString() !== req.user._id.toString()){
      
       return res.status(401).json({msg: 'User not authorized'});
