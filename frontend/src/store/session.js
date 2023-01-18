@@ -40,14 +40,27 @@ const startSession = (userInfo, route) => async (dispatch) => {
             method: "POST",
             body: JSON.stringify(userInfo)
         })
+        console.log(res);
         const { user, token } = await res.json();
         localStorage.setItem('jwtToken', token);
-        return dispatch(receiveCurrentUser(user))
+        return dispatch(receiveCurrentUser(user));
     } catch (err) {
+        
         const res = await err.json()
         if (res.statusCode === 400) {
             return dispatch(receiveErrors(res.errors))
         }
+       
+    }
+}
+
+export const fetchCurrentUser = () => async dispatch => {
+    const res = await jwtFetch("/api/users/current")
+
+    if(res.ok){
+        const data = await res.json()
+        return dispatch(receiveCurrentUser(data))
+
     }
 }
 
@@ -86,7 +99,6 @@ export const sessionErrorReducer = (state = nullErrors, action) => {
             return action.errors
             break;
         case RECEIVE_CURRENT_USER:
-            break;
         case CLEAR_SESSION_ERRORS:
             return nullErrors
             break;

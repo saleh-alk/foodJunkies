@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
-const Post = mongoose.model('Post');
+// const User = mongoose.model('User');
+// const Post = mongoose.model('Post');
+const Post = require('../../models/Post')
+const User = require('../../models/User')
 const { requireUser } = require('../../config/passport');
 const validatePostInput = require('../../validations/post');
+
 const { multipleFilesUpload, multipleMulterUpload } = require("../../awsS3");
 
 router.get('/', async (req, res) => {
@@ -17,7 +20,7 @@ router.get('/', async (req, res) => {
     return res.json(posts);
     }
     catch(err) {
-    return res.json([]);
+      return res.json([]);
     }
 });
 
@@ -78,20 +81,42 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', multipleMulterUpload("images"), requireUser, validatePostInput, async (req, res, next) => {
     try {
       const newPost = new Post({
-        text: req.body.text,
+
+        body: req.body.body,
         imageUrls,
         author: req.user._id
       });
 
       let post = await newPost.save();
+
       // post = await post.populate('author', '_id, username');
       post = await post.populate("author", "_id username profileImageUrl")
+
       return res.json(post);
     }
     catch(err) {
       next(err);
     }
 });
+
+
+router.delete('/:id', requireUser, async (req, res)=>{
+  try {
+    const post = await Post.findById(req.params.id);
+    if (post.author._id.toString() !== req.user._id.toString()){
+     
+      return res.status(401).json({msg: 'User not authorized'});
+    }
+
+    await post.remove();
+
+    res.json({msg: 'Post removed' });
+  }catch(err){
+    console.error(err.message)
+    res.status(500).send('Server Error');
+  };
+})
+
 
 
 module.exports = router;

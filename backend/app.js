@@ -6,14 +6,17 @@ const cors = require("cors")
 const { isProduction } = require("./config/keys")
 const csurf = require("csurf")
 const debug = require("debug");
-require('./models/User.js')
-require('./models/Post.js');
 
+require('./models/User.js')
+require('./models/Review.js')
+require('./models/Post.js');
 require("./config/passport")
 
 const passport = require("passport")
 const usersRouter = require('./routes/api/users');
-const postsRouter = require('./routes/api/posts');
+
+const reviewsRouter = require("./routes/api/reviews");
+const postsRouter = require('./routes/api/posts')
 
 const csrfRouter = require("./routes/api/csrf")
 
@@ -39,10 +42,13 @@ app.use(csurf({
         httpOnly: true
     }
 }))
-app.use('/api/users', usersRouter);
-app.use('/api/posts', postsRouter)
-app.use('/api/csrf', csrfRouter)
 
+
+app.use('/api/users', usersRouter);
+app.use('/api/post', postsRouter)
+
+app.use('/api/csrf', csrfRouter)
+app.use("/api/reviews", reviewsRouter);
 
 app.use((req, res, next) => {
     const err = new Error("not found")
