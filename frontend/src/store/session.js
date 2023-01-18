@@ -54,6 +54,16 @@ const startSession = (userInfo, route) => async (dispatch) => {
     }
 }
 
+export const fetchCurrentUser = () => async dispatch => {
+    const res = await jwtFetch("/api/users/current")
+
+    if(res.ok){
+        const data = await res.json()
+        return dispatch(receiveCurrentUser(data))
+
+    }
+}
+
 export const logout = () => dispatch => {
     localStorage.removeItem('jwtToken');
     dispatch(logoutUser())
