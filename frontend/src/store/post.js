@@ -10,26 +10,27 @@ const recievePosts = (posts) => ({
 });
 
 export const fetchPosts = () => async (dispatch) => {
-    
+    try {
         const res = await jwtFetch('/api/post');
-        console.log(res);
         const posts = await res.json();
-        console.log(posts);
         dispatch(recievePosts(posts));
-    
+    } catch (err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            // dispatch(receiveErrors(resBody.errors)); todo
+        }
+    }
 }
 
 const initialState = {}
 const postReducer = (state = initialState, action) => {
     switch (action.type) {
         case RECEIVE_POSTS:
-            return {...action.posts}
-            break;
+            return {...action.posts};
         case REMOVE_POST:
         case UPDATE_POST:
         default:
             return state
-            break;
     }
 }
 
