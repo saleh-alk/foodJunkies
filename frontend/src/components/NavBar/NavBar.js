@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
 import { logout } from '../../store/session';
+import logo from "../../Assets/Images/foodjunkies-high.png";
 import './NavBar.css';
 
 function NavBar() {
@@ -44,8 +45,7 @@ function NavBar() {
         <>
         <div id="navbarOuter">
             <NavLink exact to="/" id="title">
-                {/* <img src={logo} alt="logo" id="logo"></img> */}
-                FoodJunkies
+                <img src={logo} alt="logo" id="logo"></img>
             </NavLink>
             {/* <h1 id="title">FoodJunkies</h1> */}
             {navbar}
