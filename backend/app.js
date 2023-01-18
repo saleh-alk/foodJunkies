@@ -6,22 +6,16 @@ const cors = require("cors")
 const { isProduction } = require("./config/keys")
 const csurf = require("csurf")
 const debug = require("debug");
+
 require('./models/User.js')
-
 require('./models/Review.js')
-
 require('./models/Post.js');
-
-
 require("./config/passport")
 
 const passport = require("passport")
 const usersRouter = require('./routes/api/users');
-
 const reviewsRouter = require("./routes/api/reviews");
-
 const postsRouter = require('./routes/api/posts')
-
 const csrfRouter = require("./routes/api/csrf")
 
 const app = express();
