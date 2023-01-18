@@ -45,11 +45,12 @@ const startSession = (userInfo, route) => async (dispatch) => {
         localStorage.setItem('jwtToken', token);
         return dispatch(receiveCurrentUser(user));
     } catch (err) {
-        // const res = await err.json()
-        // if (res.statusCode === 400) {
-        //     return dispatch(receiveErrors(res.errors))
-        // }
-        console.log("h")
+        
+        const res = await err.json()
+        if (res.statusCode === 400) {
+            return dispatch(receiveErrors(res.errors))
+        }
+       
     }
 }
 
@@ -88,7 +89,6 @@ export const sessionErrorReducer = (state = nullErrors, action) => {
             return action.errors
             break;
         case RECEIVE_CURRENT_USER:
-            break;
         case CLEAR_SESSION_ERRORS:
             return nullErrors
             break;
