@@ -1,7 +1,6 @@
-import Collapsible from '../Collapsible/Collapsible';
 import './PostIndexItem.css';
 
-const PostIndexItem = ({ post, toggleSidebar }) => {
+const PostIndexItem = ({ post, updateSidebarContent }) => {
 
 
     const convertDate = (date) => {
@@ -12,11 +11,11 @@ const PostIndexItem = ({ post, toggleSidebar }) => {
     return (
         <li className='post-container'>
             <div className='post-main-content'>
-                <span className='post-info-span'>{post.author} - Posted {convertDate(post.createdAt)}</span>
+                <span className='post-info-span'>{post.author} - {convertDate(post.createdAt)}</span>
                 {/* img goes here */}
                 <p className='post-body-text'>{post.body}</p>
             </div>
-            <div className='sidebar-toggle' onClick={()=>toggleSidebar(post.body)}>
+            <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
                 Toggle Sidebar
             </div>
         </li>

@@ -14,24 +14,25 @@ const PostIndex = () => {
         dispatch(fetchPosts());
     },[])
 
-    const toggleSidebar = (content) => {
-        setSidebarContent(content);
+    const toggleSidebar = () => {
         setSideBarActive(!sidebarActive);
     }
 
     const updateSidebarContent = (content) => {
         setSidebarContent(content);
+        if (!sidebarActive) setSideBarActive(true)
     }
 
     return (
         <div id='post-index-page'>
             <div id='post-index-container'>
                 <ul id='post-item-list'>
-                    {posts.map((post,i)=><PostIndexItem key={i} post={post} toggleSidebar={toggleSidebar}/>)}
+                    {posts.map((post,i)=><PostIndexItem key={i} post={post} updateSidebarContent={updateSidebarContent}/>)}
                 </ul>
             </div>
             <div id={sidebarActive ? 'post-index-sidebar-active' : 'post-index-sidebar'}>
                 <div id='sidebar-content'>
+                    <i onClick={()=>toggleSidebar()} id='x-icon'>x</i>
                     <h1 id='sidebar-title'>sidebar</h1>
                     <p>
                         {sidebarContent}
