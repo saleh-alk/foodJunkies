@@ -1,6 +1,6 @@
 import jwtFetch from './jwt'
 
-const RECEIVE_USER_PROFILE = 'RECEIVE_USER_PROFILE'
+export const RECEIVE_USER_PROFILE = 'RECEIVE_USER_PROFILE'
 
 
 const receiveUserProfile = (payload) => ({
@@ -8,7 +8,10 @@ const receiveUserProfile = (payload) => ({
     payload
 })
 
-
+export const getProfile = (userId) => (store) => {
+    if (store.users[userId]) return store.users[userId];
+    return null
+}
 
 export const fetchUserProfile = (userId) => async dispatch => {
     const res = await jwtFetch(`/api/users/${userId}`)

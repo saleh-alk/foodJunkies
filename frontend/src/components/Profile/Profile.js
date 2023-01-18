@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { fetchUserProfile } from '../../store/profile'
+import { fetchUserProfile, getProfile } from '../../store/profile'
 
 function Profile() {
     // const currentUser = useSelector(state => state.session)
@@ -12,13 +12,17 @@ function Profile() {
         dispatch(fetchUserProfile(userId))
     }, [])
 
+    const currentProfileUser = useSelector(getProfile(userId));
+
   return (
     <div>
-        hi
+        <h1>{currentProfileUser.username}</h1>
+
+        
     </div>
   )
 }
 
-export default Profile
+export default Profile;
 
 
