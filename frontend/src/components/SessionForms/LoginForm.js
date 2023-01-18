@@ -30,8 +30,8 @@ function LoginForm () {
     <div className="outerBox">
       <form className="session-form" onSubmit={handleSubmit}>
         <h2 className="formTitle">Sign in</h2>
-        <div className="errors">{errors?.email}</div>
 
+        <div className="errors">{errors?.email}</div>
         <label className="custom-field">
           <input type="email"
             value={email}
