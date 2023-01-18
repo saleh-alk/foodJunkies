@@ -18,6 +18,11 @@ router.get('/', function (req, res, next) {
   })
 });
 
+router.get('/:userId', async (req, res) => {
+    const user = await User.findById(req.params.userId).select("-hashedPassword")
+    return res.json(user)
+})
+
 
 router.post('/register', validateRegisterInput, async (req, res, next) => {
   // Check to make sure no one has already registered with the proposed email or

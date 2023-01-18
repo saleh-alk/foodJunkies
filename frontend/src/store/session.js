@@ -40,7 +40,7 @@ const startSession = (userInfo, route) => async (dispatch) => {
             method: "POST",
             body: JSON.stringify(userInfo)
         })
-        console.log(res);
+
         const { user, token } = await res.json();
         localStorage.setItem('jwtToken', token);
         return dispatch(receiveCurrentUser(user));
@@ -52,6 +52,14 @@ const startSession = (userInfo, route) => async (dispatch) => {
         }
        
     }
+}
+
+export const restoreSession = () => async dispatch =>{
+    const res = await jwtFetch("api/users/login")
+    const { user, token } = await res.json()
+    localStorage.setItem('jwtToken', token);
+    return dispatch(receiveCurrentUser(user))
+
 }
 
 export const fetchCurrentUser = () => async dispatch => {
@@ -69,6 +77,8 @@ export const logout = () => dispatch => {
     dispatch(logoutUser())
 
 }
+
+
 
 const initialState = {
     user: undefined

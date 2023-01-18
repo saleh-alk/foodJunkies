@@ -6,7 +6,8 @@ import configureStore from './store/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
-let store = configureStore({})
+
+let store = configureStore()
 
 
 function Root() {
@@ -25,3 +26,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+
