@@ -22,6 +22,19 @@ export const fetchPosts = () => async (dispatch) => {
     }
 }
 
+export const fetchUserPosts = (userId) => async (dispatch) => {
+    try {
+        const res = await jwtFetch(`/api/post/user/${userId}`);
+        const posts = await res.json();
+        dispatch(recievePosts(posts));
+    } catch (err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            // dispatch(receiveErrors(resBody.errors)); todo
+        }
+    }
+}
+
 const initialState = {}
 const postReducer = (state = initialState, action) => {
     switch (action.type) {

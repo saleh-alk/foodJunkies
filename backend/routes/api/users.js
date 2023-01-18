@@ -19,6 +19,20 @@ router.get('/', function (req, res) {
     profileImageUrl: req.user.profileImageUrl
   })
 });
+router.get('/current', restoreUser, (req, res) => {
+  if (!isProduction) {
+    
+    const csrfToken = req.csrfToken()
+    res.cookie("CSRF-Token", csrfToken)
+  }
+  if (!req.user) return res.json(null)
+  res.json({
+    _id: req.user._id,
+    username: req.user.username,
+    email: req.user.password
+    
+  }) 
+})
 
 
 router.post('/register',  singleMulterUpload("image"), validateRegisterInput, async (req, res, next) => {
@@ -80,20 +94,6 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
   })(req, res, next)
 })
 
-router.get('/current', restoreUser, (req, res) => {
-  if (!isProduction) {
-    
-    const csrfToken = req.csrfToken()
-    res.cookie("CSRF-Token", csrfToken)
-  }
-  if (!req.user) return res.json(null)
-  res.json({
-    _id: req.user._id,
-    username: req.user.username,
-    email: req.user.password
-    
-  })
-})
 router.get('/:userId', async (req, res) => {
   const user = await User.findById(req.params.userId).select("-hashedPassword")
   return res.json(user)
