@@ -13,7 +13,11 @@ const userSchema = Schema({
     hashedPassword: {
         type: String,
         required: true
-    }
+    },
+    profileImageUrl: {
+        type: String,
+        required: true
+      }
 
 },
     {

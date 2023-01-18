@@ -6,6 +6,7 @@ const { secretOrKey } = require('./keys');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
+
 const User = mongoose.model('User');
 
 // LocalStrategy is a Passport extension that will allow your application to use
@@ -25,26 +26,25 @@ passport.use(new LocalStrategy({
     done(null, false);
 }));
 
-// loginUser is an Express middleware that will log in a user by generating a
-// JWT token for that user - the JWT token should be sent to the frontend
-// and stored on the frontend - the JWT token should be sent to the server in
-// a request as an Authorization Bearer header to authenticate the user again
-exports.loginUser = async function(user) {
-  const userInfo = {
-    _id: user._id,
-    username: user.username,
-    email: user.email
-  };
-  const token = await jwt.sign(
-    userInfo, // Payload
-    secretOrKey, // Sign with secret key
-    { expiresIn: 3600 } // Tell the key to expire in one hour
-  );
-  return {
-    user: userInfo,
-    token
-  };
-};
+
+exports.loginUser = async function (user) {
+    const userInfo = {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        profileImageUrl: user.profileImageUrl
+    }
+    const token = await jwt.sign(
+        userInfo,
+        secretOrKey,
+        { expiresIn: 3600 }
+    );
+    return {
+        user: userInfo,
+        token
+        };
+  }
+
 
 // JwtStrategy is a Passport extension that will allow your application to use
 // JWT as an authentication method after initial log in/sign up
@@ -58,6 +58,7 @@ passport.use(new JwtStrategy(options, async (jwtPayload, done) => {
     if (user) {
       // return the user to the frontend
       return done(null, user);
+
     }
     // return false since there is no user
     return done(null, false);
@@ -77,8 +78,11 @@ exports.requireUser = passport.authenticate('jwt', { session: false });
 // on req.user, but will NOT return an error response if there is no current
 // user
 exports.restoreUser = (req, res, next) => {
+
+
   return passport.authenticate('jwt', { session: false }, function(err, user) {
     if (user) req.user = user;
     next();
   })(req, res, next);
 };
+
