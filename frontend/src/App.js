@@ -1,5 +1,11 @@
 import { Switch } from 'react-router-dom'
-import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
+
+import { AuthRoute, ProtectedRoute } from './components/Routes/routes';
+
+
+
+
+
 import PostIndex from './components/PostIndex/PostIndex';
 import MainPage from './components/MainPage/MainPage'
 import LoginForm from './components/SessionForms/LoginForm'
