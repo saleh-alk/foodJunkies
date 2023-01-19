@@ -14,13 +14,22 @@
 }
 
 .rightNav{
-    margin-top: 100px;
+    margin-top: 10px;
     margin-left: 10px;
     margin-right: 25px;
     color: #ba3b0a;
     font-size: 30px;
     
 }
+
+/* .rightNav {
+    margin-top: 100px;
+    margin-left: 10px;
+    margin-right: 25px;
+    color: #ba3b0a;
+    font-size: 30px;
+    
+} */
 
 #title{
     font-family: cursive;

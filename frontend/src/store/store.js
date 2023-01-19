@@ -4,13 +4,16 @@ import session from './session';
 import errors from './errors'
 import post from './post';
 import profile from './profile';
+import { cartReducer } from './cart';
 
 
 const rootReducer = combineReducers({
     session,
     errors,
     post,
-    profile
+    profile,
+    cart: cartReducer,
+
 })
 
 let enhancer;

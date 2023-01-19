@@ -5,25 +5,40 @@ import { NavLink } from "react-router-dom";
 import { logout } from '../../store/session';
 import logo from "../../Assets/Images/foodjunkies-high.png";
 import './NavBar.css';
+import { Badge } from 'antd';
 
 function NavBar() {
     const loggedIn = useSelector(state => !!state.session.user)
+    //
+    const {cart} = useSelector(state => ({...state}))
+    
+    //
     const dispatch = useDispatch()
 
     const logoutUser = (e) => {
         e.preventDefault()
         dispatch(logout())
     }
-
+{/* <i class="fa-solid fa-cart-shopping"></i> */}
     let navbar;
 
     if(loggedIn) {
         navbar=(
             <>
                 <div className='links-nav'>
-                <Link to={'/posts'} className="rightNav"><i className="fa-solid fa-images"></i></Link>
-                <Link to={'/profile'} className="rightNav"><i className="fa-sharp fa-solid fa-user"></i></Link>
-                <Link to={'posts/new'} className="rightNav"><i className="fa-solid fa-camera-retro"></i></Link>
+
+                <Link to={'/posts'} className="rightNav"><i class="fa-solid fa-images"></i></Link>
+                <Link to={'/profile'} className="rightNav"><i class="fa-sharp fa-solid fa-user"></i></Link>
+                <Link to={'posts/new'} className="rightNav"><i class="fa-solid fa-camera-retro"></i></Link>
+                {/*  */}
+                <Link to="/cart" className="rightNav">
+                    <Badge count={cart.length} offset={[9, 0]} className="rightNav">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    </Badge>
+                
+                </Link>
+                {/*  */}
+
                 <button onClick={logoutUser} id="logoutButton">Logout</button>
                 </div>
             </>
