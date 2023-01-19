@@ -14,10 +14,17 @@ const userSchema = Schema({
         type: String,
         required: true
     },
+
+    cart: {
+        type: Array,
+        default: [],
+      },
+
     profileImageUrl: {
         type: String,
         required: true
       }
+
 
 },
     {
