@@ -10,6 +10,8 @@ const PostIndex = () => {
     const [sidebarActive,setSideBarActive] = useState(false);
     const [sidebarContent,setSidebarContent] = useState("");
 
+
+
     useEffect(()=>{
         dispatch(fetchPosts());
     },[])
@@ -22,6 +24,8 @@ const PostIndex = () => {
         setSidebarContent(content);
         if (!sidebarActive) setSideBarActive(true)
     }
+
+
 
     return (
         <div id='post-index-page'>

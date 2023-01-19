@@ -11,6 +11,11 @@ const recievePosts = (posts) => ({
     posts
 });
 
+const removePost = (postId) => ({
+    type: REMOVE_POST,
+    postId
+});
+
 
 const receiveErrors = errors => ({
     type: RECEIVE_POST_ERRORS,
@@ -21,6 +26,16 @@ const receiveNewPost = post => ({
     type: RECEIVE_NEW_POST,
     post
 });
+
+export const deleteReview = (postId) => async (dispatch) => {
+    const response = await jwtFetch(`/api/post/${postId}`, {
+        method: "DELETE"
+    });
+    if (response.ok) {
+        dispatch(removePost(postId));
+    }
+}
+
 
 
 export const fetchPosts = () => async (dispatch) => {
@@ -63,6 +78,8 @@ export const composePost = (body, images) => async dispatch => {
        }
    }
 }
+
+
 export const fetchUserPosts = (userId) => async (dispatch) => {
     try {
         const res = await jwtFetch(`/api/post/user/${userId}`);
