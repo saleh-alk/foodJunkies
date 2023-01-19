@@ -65,12 +65,12 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
             <div className='post-main-content'>
                 
                 <span className='post-info-span'>
-                    <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> 
-                    - {convertDate(post.createdAt)}</span>
-                {/* img goes here */}
+                    <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> - {convertDate(post.createdAt)}</span>
                 <p className='post-body-text'>{post.body}</p>
 
-                
+                <br/>
+                <img className='images' src={post.imageUrls[0]}></img>
+
             </div>
             <button onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
                 {post.likes.map(user => user.user).includes(userId.toString()) ? <i class="fa-regular fa-thumbs-down"></i> : <i class="fa-regular fa-thumbs-up"></i> }

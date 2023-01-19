@@ -14,7 +14,7 @@
 }
 
 .post-info-span {
-   
+
 }
 
 .post-body-text {
@@ -57,6 +57,13 @@
     background-color: #F5A563;
 }
 
+
+.images{
+    margin-left: 300px;
+    border-radius: 20px;
+    width: 550px;
+    height: 550px;
+
 .Add-to-cart{
     cursor: pointer;
     /* color: white */
@@ -66,4 +73,5 @@
 .Add-to-cart1{
     cursor: pointer;
     /* color: black */
+
 }
