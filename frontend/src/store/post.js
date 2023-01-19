@@ -3,13 +3,25 @@ import jwtFetch from './jwt'
 export const RECEIVE_POSTS = 'post/RECEIVE_POSTS';
 export const REMOVE_POST = 'post/REMOVE_POST';
 export const UPDATE_POST = 'post/UPDATE_POST';
+const RECEIVE_NEW_POST = "post/RECEIVE_NEW_POST"
+const RECEIVE_POST_ERRORS = "post/RECEIVE_POST_ERRORS"
 
 const recievePosts = (posts) => ({
     type: RECEIVE_POSTS,
     posts
 });
 
-export const fetchPosts = () => async (dispatch) => {
+const receiveErrors = errors => ({
+    type: RECEIVE_POST_ERRORS,
+    errors
+});
+
+const receiveNewPost = post => ({
+    type: RECEIVE_NEW_POST,
+    post
+});
+
+export const fetchPosts = () => async dispatch => {
     try {
         const res = await jwtFetch('/api/post');
         const posts = await res.json();
@@ -17,9 +29,31 @@ export const fetchPosts = () => async (dispatch) => {
     } catch (err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
-            // dispatch(receiveErrors(resBody.errors)); todo
+            dispatch(receiveErrors(resBody.errors)); 
         }
     }
+}
+
+
+export const composePost = (body, images) => async dispatch => {
+
+    const formData = new FormData();
+    formData.append("body", body);
+    Array.from(images).forEach(image => formData.append("images", image))
+
+   try{
+       const res = await jwtFetch('/api/post/', {
+           method: 'POST',
+           body: formData
+       });
+       const post = await res.json();
+       dispatch(receiveNewPost(post));
+   } catch(err){
+       const resBody = await err.json();
+       if (resBody.statusCode === 400) {
+           return dispatch(receiveErrors(resBody.errors));
+       }
+   }
 }
 
 const initialState = {}
