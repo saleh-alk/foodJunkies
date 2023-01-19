@@ -23,7 +23,7 @@ import { useEffect } from 'react';
 
 const PostIndexItem = ({ post, updateSidebarContent }) => {
 
-    const dispatch = useDispatch()
+   
     const userId = useSelector(state => state.session.user._id)
     
     
