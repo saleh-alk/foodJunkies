@@ -26,7 +26,7 @@ const DEFAULT_PROFILE_IMAGE_URL = "https://nestors-demo-seed.s3.us-west-1.amazon
 router.get('/', function (req, res) {
   res.json({
     message: "GET /api/users",
-    profileImageUrl: req.user.profileImageUrl
+    //profileImageUrl: req.user.profileImageUrl
   })
 });
 router.get('/current', restoreUser, (req, res) => {

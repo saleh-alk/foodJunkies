@@ -1,10 +1,10 @@
 import './PostIndexItem.css';
 
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 const PostIndexItem = ({ post, updateSidebarContent }) => {
-
 
     const convertDate = (date) => {
         const d = new Date(date);
@@ -18,7 +18,7 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
                 <span className='post-info-span'>
                     <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> 
                     - {convertDate(post.createdAt)}</span>
-                {/* img goes here */}
+                {post.imageUrls[0] && <img src={post.imageUrls[0]}></img>}
                 <p className='post-body-text'>{post.body}</p>
 
 

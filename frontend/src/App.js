@@ -15,7 +15,7 @@ import SignupForm from './components/SessionForms/SignupForm'
 import CreatePost from './components/CreatePost/CreatePost';
 import NavBar from './components/NavBar/NavBar'
 import Profile from './components/Profile/Profile';
-import { fetchCurrentUser } from './store/session';
+import { getCurrentUser } from './store/session';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -27,7 +27,7 @@ function App() {
    
 
   useEffect(() => {
-    dispatch(fetchCurrentUser()).then(() => setLoaded(true))
+    dispatch(getCurrentUser()).then(() => setLoaded(true))
   }, [dispatch])
 
   return loaded && (

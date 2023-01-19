@@ -10,6 +10,8 @@ const PostIndex = () => {
     const [sidebarActive,setSideBarActive] = useState(false);
     const [sidebarContent,setSidebarContent] = useState("");
 
+    
+
     useEffect(()=>{
         dispatch(fetchPosts());
     },[])
