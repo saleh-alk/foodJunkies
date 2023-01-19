@@ -6,6 +6,9 @@ author: {
     type: Schema.Types.ObjectId,
     ref: 'User'
 },
+reciepeName: {
+    type: String,
+},
 body: {
     type: String,
     required: true

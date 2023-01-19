@@ -87,6 +87,7 @@ router.post('/', multipleMulterUpload("images"), requireUser, validatePostInput,
 
         body: req.body.body,
         imageUrls,
+        reciepeName,
         author: req.user._id
       });
 

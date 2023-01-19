@@ -9,6 +9,9 @@ function CreatePost() {
     const author = useSelector(state => state.session.user)
     const [images, setImages] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
+    //
+    const [reciepeName, setReciepeName] = useState();
+    //
     const dispatch = useDispatch()
 
     const updateFiles = async e => {
@@ -34,6 +37,9 @@ function CreatePost() {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(composePost(body, images)); //
+        //
+        setReciepeName('')
+        //
         setImages([]);                        
         setImageUrls([]);                    
         setBody('');
@@ -50,7 +56,12 @@ function CreatePost() {
             value= {body}
             placeholder="Body"
             onChange={(e) => setBody(e.target.value)} />
-
+        {/*  */}
+        <input
+            value= {reciepeName}
+            placeholder="Reciepe Name"
+            onChange={(e) => setReciepeName(e.target.value)} />
+        {/*  */}
               <label>
                   Images to Upload
                   <input
