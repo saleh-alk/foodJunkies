@@ -23,7 +23,7 @@ function Profile() {
 
   return (
     <div>
-        <h1>{currentProfileUser.username}</h1>
+        <h1>{currentProfileUser?.username}</h1>
 
 
         <div>
