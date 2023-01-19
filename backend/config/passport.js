@@ -6,6 +6,7 @@ const { secretOrKey } = require('./keys');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
+
 const User = mongoose.model('User');
 
 // LocalStrategy is a Passport extension that will allow your application to use
@@ -16,10 +17,18 @@ passport.use(new LocalStrategy({
   passwordField: 'password',
 }, async function (email, password, done) {
   const user = await User.findOne({ email });
+  
   if (user) {
     bcrypt.compare(password, user.hashedPassword, (err, isMatch) => {
-      if (err || !isMatch) done(null, false);
-      else done(null, user);
+      if (err || !isMatch) {
+      
+        done(null, false)
+      }
+      else {
+        
+        done(null, user)
+        
+      }
     });
   } else
     done(null, false);
@@ -27,11 +36,13 @@ passport.use(new LocalStrategy({
 
 
 exports.loginUser = async function (user) {
+
     const userInfo = {
         _id: user._id,
         username: user.username,
         email: user.email,
         profileImageUrl: user.profileImageUrl
+
     }
     const token = await jwt.sign(
         userInfo,
