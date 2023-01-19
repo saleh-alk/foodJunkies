@@ -30,7 +30,7 @@ for (let i = 1; i < NUM_SEED_USERS; i++) {
       username: faker.internet.userName(firstName, lastName),
       email: faker.internet.email(firstName, lastName),
       hashedPassword: bcrypt.hashSync(faker.internet.password(), 10),
-      
+
 
     })
   )
@@ -51,7 +51,6 @@ for (let i = 0; i < NUM_SEED_POSTS; i++) {
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => {
-    console.log('Connected to MongoDB successfully');
     insertSeeds();
   })
   .catch(err => {
@@ -60,14 +59,12 @@ mongoose
   });
 
   const insertSeeds = () => {
-    console.log("Resetting db and seeding users and posts...");
 
     User.collection.drop()
                    .then(() => Post.collection.drop())
                    .then(() => User.insertMany(users))
                    .then(() => Post.insertMany(posts))
                    .then(() => {
-                     console.log("Done!");
                      mongoose.disconnect();
                    })
                    .catch(err => {
