@@ -5,6 +5,8 @@ const Post = require('../models/Post');
 const bcrypt = require('bcryptjs');
 const { faker } = require('@faker-js/faker');
 
+const DEFAULT_PROFILE_IMAGE_URL = "https://nestors-demo-seed.s3.us-west-1.amazonaws.com/bridge.jpeg"
+
 const NUM_SEED_USERS = 10;
 const NUM_SEED_POSTS = 30;
 
@@ -15,7 +17,8 @@ users.push(
   new User ({
     username: 'demo-user',
     email: 'demo-user@appacademy.io',
-    hashedPassword: bcrypt.hashSync('starwars', 10)
+    hashedPassword: bcrypt.hashSync('starwars', 10),
+    profileImageUrl: DEFAULT_PROFILE_IMAGE_URL
   })
 )
 
@@ -26,7 +29,9 @@ for (let i = 1; i < NUM_SEED_USERS; i++) {
     new User ({
       username: faker.internet.userName(firstName, lastName),
       email: faker.internet.email(firstName, lastName),
-      hashedPassword: bcrypt.hashSync(faker.internet.password(), 10)
+      hashedPassword: bcrypt.hashSync(faker.internet.password(), 10),
+      
+
     })
   )
 }

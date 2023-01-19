@@ -20,6 +20,7 @@ const userSchema = Schema({
         default: [],
       },
 
+
     profileImageUrl: {
         type: String,
         required: true

@@ -7,15 +7,20 @@ const { loginUser, restoreUser } = require("../../config/passport")
 const { isProduction } = require("../../config/keys")
 const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
 
+
 //
 const { requireUser } = require('../../config/passport');
 const Cart = mongoose.model('Cart')
 //
 
+
 const validateRegisterInput = require("../../validations/register")
 const validateLoginInput = require("../../validations/login")
 
 const router = express.Router();
+
+
+const DEFAULT_PROFILE_IMAGE_URL = "https://nestors-demo-seed.s3.us-west-1.amazonaws.com/bridge.jpeg"
 
 /* GET users listing. */
 router.get('/', function (req, res) {
@@ -63,9 +68,16 @@ router.post('/register',  singleMulterUpload("image"), validateRegisterInput, as
   }
   
   // Otherwise create a new user
+
+  const profileImageUrl = req.file ?
+    await singleFileUpload({ file: req.file, public: true }) :
+    DEFAULT_PROFILE_IMAGE_URL;
+
+
   const newUser = new User({
     username: req.body.username,
-    email: req.body.email
+    email: req.body.email,
+    profileImageUrl,
   });
   
   bcrypt.genSalt(10, (err, salt) => {
@@ -94,6 +106,7 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
       return next(err)
       
     }
+    
     return res.json(await loginUser(user))
     
   })(req, res, next)
@@ -160,7 +173,17 @@ router.post('/cart', requireUser, async (req, res, next) => {
   } catch (error) {
     throw new Error(error);
   }
+
+  
+  if (!req.user) return res.json(null)
+  res.json({
+    _id: req.user._id,
+    username: req.user.username,
+    email: req.user.password,
+    profileImageUrl: req.user.profileImageUrl
+
 });
+
 
 router.get('/cart', requireUser, async (req, res, next) => {
   const { _id } = req.user
