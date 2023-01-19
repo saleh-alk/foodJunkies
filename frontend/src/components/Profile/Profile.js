@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import { fetchUserPosts } from '../../store/post'
 import { fetchUserProfile, getProfile } from '../../store/profile'
 import ProfilePostIndex from '../Profile/ProfilePostIndex';
+import './Profile.css';
+
 
 function Profile() {
     const dispatch = useDispatch()
@@ -23,11 +25,9 @@ function Profile() {
 
   return (
     <div>
-        <h1>{currentProfileUser?.username}</h1>
-
-
+        <h1 id="ProfileUsername">{currentProfileUser?.username}</h1>
         <div>
-            <h1>{posts? "Posts:" : "This user does not have any posts."}</h1>
+            <h1 id="ProfilePostsTitle">{posts? "Posts:" : "This user does not have any posts."}</h1>
             <ul>
                 {posts?.map((post, i)=> <ProfilePostIndex key={i} post= {post} />)}
             </ul>

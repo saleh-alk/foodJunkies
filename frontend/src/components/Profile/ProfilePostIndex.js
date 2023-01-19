@@ -9,7 +9,11 @@ const ProfilePostIndex = ({post}) => {
         <>
             <li className='post-container'>
                 <div className='post-main-content'>
-                    <span className='post-info-span'>{post.author.username} - {convertDate(post.createdAt)}</span>
+                    <span className='post-info-span' >
+                        <span id="profileLink">
+                            {post.author.username} 
+                        </span>
+                        - {convertDate(post.createdAt)}</span>
                     {/* picture here */}
                     <p className='post-body-text'>{post.body}</p>
                 </div>

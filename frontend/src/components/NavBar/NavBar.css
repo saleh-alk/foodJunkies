@@ -42,3 +42,7 @@
     color: #ba3b0a;
     font-size: 25px;
 }
+
+#logoutButton:hover {
+    background-color: #F5A563;
+}

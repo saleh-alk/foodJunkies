@@ -13,7 +13,7 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
         <li className='post-container'>
             <div className='post-main-content'>
                 <span className='post-info-span'>
-                    <Link to={`/profile/${post.author._id}`}>{post.author.username}</Link> 
+                    <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> 
                     - {convertDate(post.createdAt)}</span>
                 {/* img goes here */}
                 <p className='post-body-text'>{post.body}</p>
