@@ -18,6 +18,9 @@ import Profile from './components/Profile/Profile';
 import { fetchCurrentUser } from './store/session';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Cart from './components/Cart/Cartitem';
+
+
 
 function App() {
 
@@ -43,6 +46,7 @@ function App() {
       <ProtectedRoute exact path='/posts/new' component={CreatePost} />
 
       <ProtectedRoute exact path="/profile/:userId" component={Profile} />
+      <ProtectedRoute exact path='/cart' component={Cart} />
       
 
     </Switch>

@@ -215,5 +215,37 @@ router.delete("/empty-cart", async (req, res, next) => {
 })
 
 
+// router.delete("/:id", requireUser, async (req, res) => {
+//   const { _id } = req.user
+//   try {
+//     const user = await User.findOne({ _id });
+//     let cart = await Cart.findOneAndRemove({ orderBy: user._id })
+//     res.json(cart)
+
+//   } catch (error) {
+//     throw new Error();
+//   }
+// })
+
+// router.delete('/:id', requireUser, async (req, res)=>{
+//   try {
+    
+//     const post = await Post.findById(req.params.id);
+   
+//     if (post.author._id.toString() !== req.user._id.toString()){
+     
+//       return res.status(401).json({msg: 'User not authorized'});
+//     }
+
+//     await post.remove();
+
+//     res.json({msg: 'Post removed' });
+//   }catch(err){
+//     console.error(err.message)
+//     res.status(500).send('Server Error');
+//   };
+// })
+
+
 
 module.exports = router;
