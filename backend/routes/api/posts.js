@@ -79,6 +79,9 @@ router.get('/:id', async (req, res, next) => {
 });
 
 router.post('/', multipleMulterUpload("images"), requireUser, validatePostInput, async (req, res, next) => {
+
+  const imageUrls = await multipleFilesUpload({ files: req.files, public: true });
+
     try {
       const newPost = new Post({
 
@@ -102,7 +105,9 @@ router.post('/', multipleMulterUpload("images"), requireUser, validatePostInput,
 
 router.delete('/:id', requireUser, async (req, res)=>{
   try {
+    
     const post = await Post.findById(req.params.id);
+   
     if (post.author._id.toString() !== req.user._id.toString()){
      
       return res.status(401).json({msg: 'User not authorized'});

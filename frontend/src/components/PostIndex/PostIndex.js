@@ -27,7 +27,9 @@ const PostIndex = () => {
         <div id='post-index-page'>
             <div id='post-index-container'>
                 <ul id='post-item-list'>
-                    {posts.map((post,i)=><PostIndexItem key={i} post={post} updateSidebarContent={updateSidebarContent}/>)}
+
+                    {posts && posts.map((post,i)=><PostIndexItem key={i} post={post} updateSidebarContent={updateSidebarContent}/>)}
+
                 </ul>
             </div>
             <div id={sidebarActive ? 'post-index-sidebar-active' : 'post-index-sidebar'}>

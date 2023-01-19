@@ -7,10 +7,11 @@ const { isProduction } = require("./config/keys")
 const csurf = require("csurf")
 const debug = require("debug");
 
-require('./models/User.js')
-require('./models/Review.js')
+require('./models/User.js');
+require('./models/Review.js');
 require('./models/Post.js');
-require("./config/passport")
+require("./config/passport");
+require('./models/Cart.js');
 
 const passport = require("passport")
 const usersRouter = require('./routes/api/users');
