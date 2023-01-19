@@ -47,7 +47,6 @@ app.use(csurf({
 
 app.use('/api/users', usersRouter);
 app.use('/api/post', postsRouter)
-
 app.use('/api/csrf', csrfRouter)
 app.use("/api/reviews", reviewsRouter);
 

@@ -7,11 +7,12 @@
     "dev": "dotenv nodemon ./bin/www --inspect",
     "seed": "dotenv node seeders/seed.js"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
-
     "aws-sdk": "^2.1296.0",
-
     "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",

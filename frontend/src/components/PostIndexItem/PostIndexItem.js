@@ -33,9 +33,8 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
         const d = new Date(date);
         return d.toDateString();
     }
-//
+
     const {cart} = useSelector((state) => ({...state}));
-    console.log(cart)
     const dispatch = useDispatch();
 
     const handleAddToCart = () => {

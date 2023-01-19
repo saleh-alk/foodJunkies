@@ -9,7 +9,6 @@ const DEFAULT_PROFILE_IMAGE_URL = 'https://nestors-demo-seed.s3.us-west-1.amazon
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => {
-    console.log('Connected to MongoDB successfully');
     initializeImages();
   })
   .catch(err => {
@@ -18,12 +17,8 @@ mongoose
   });
 
 const initializeImages = async () => {
-  console.log("Initializing profile avatars...");
   await User.updateMany({}, { profileImageUrl: DEFAULT_PROFILE_IMAGE_URL });
-
-  console.log("Initializing {Post} image URLs...");
   await Post.updateMany({}, { imageUrls: [] });
 
-  console.log("Done!");
   mongoose.disconnect();
 }

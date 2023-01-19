@@ -1,13 +1,5 @@
 import { Switch } from 'react-router-dom'
-
-
 import { AuthRoute, ProtectedRoute } from './components/Routes/routes';
-
-
-
-
-
-
 import PostIndex from './components/PostIndex/PostIndex';
 import MainPage from './components/MainPage/MainPage'
 import LoginForm from './components/SessionForms/LoginForm'
@@ -20,14 +12,12 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Cart from './components/Cart/Cartitem';
 
-
-
 function App() {
 
   const [loaded, setLoaded] = useState(false)
 
   const dispatch = useDispatch();
-   
+
 
   useEffect(() => {
     dispatch(fetchCurrentUser()).then(() => setLoaded(true))
@@ -47,7 +37,7 @@ function App() {
 
       <ProtectedRoute exact path="/profile/:userId" component={Profile} />
       <ProtectedRoute exact path='/cart' component={Cart} />
-      
+
 
     </Switch>
     </>
