@@ -1,5 +1,19 @@
 import './PostIndexItem.css';
 
+//
+import {ShoppingCartOutlined} from "@ant-design/icons"
+import _ from "lodash"
+
+import {Badge} from "antd"
+//
+
+
+
+
+
+    
+
+
 import { Link, useHistory } from 'react-router-dom';
 import { addLike, removeLike } from '../../store/post';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,10 +28,36 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
     
     
    
+
     const convertDate = (date) => {
         const d = new Date(date);
         return d.toDateString();
     }
+//
+    const {cart} = useSelector((state) => ({...state}));
+    console.log(cart)
+    const dispatch = useDispatch();
+
+    const handleAddToCart = () => {
+        let cart = []
+        if (typeof window !== 'undefined') {
+            if (localStorage.getItem('cart')){
+                cart = JSON.parse(localStorage.getItem('cart'))
+            }
+            cart.push({
+                post,
+                quantity: 1
+            });
+            // let unique = _.uniqWith(cart, _.isEqual)
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            dispatch({
+                type: "ADD_TO_CART",
+                payload: cart,
+            })
+        }
+    }
+//
 
 
     return (
@@ -30,7 +70,7 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
                 {/* img goes here */}
                 <p className='post-body-text'>{post.body}</p>
 
-
+                
             </div>
             <button onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
                 {post.likes.map(user => user.user).includes(userId.toString()) ? <i class="fa-regular fa-thumbs-down"></i> : <i class="fa-regular fa-thumbs-up"></i> }
@@ -40,6 +80,12 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
             <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
                 Toggle Sidebar
             </div>
+    {/* // */}
+            <a onClick={handleAddToCart} className='Add-to-cart'>
+            <ShoppingCartOutlined className='Add-to-cart1'/>Add to Cart
+            </a>
+    {/* // */}
+            
         </li>
     )
 }

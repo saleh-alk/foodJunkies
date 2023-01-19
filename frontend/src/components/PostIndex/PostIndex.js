@@ -29,7 +29,7 @@ const PostIndex = () => {
                 <ul id='post-item-list'>
 
                     {posts && posts.map((post,i)=><PostIndexItem key={i} post={post} updateSidebarContent={updateSidebarContent}/>)}
-
+                    
                 </ul>
             </div>
             <div id={sidebarActive ? 'post-index-sidebar-active' : 'post-index-sidebar'}>
