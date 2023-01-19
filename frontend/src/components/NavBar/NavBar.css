@@ -1,7 +1,8 @@
 #navbarOuter{
     display: flex;
     justify-content: space-between;
-    background-color: #fafafa;
+    background-color: #ffbe79;
+    border-bottom: 2px solid #ba3b0a;
 }
 
 .links-auth{
@@ -15,12 +16,29 @@
 .rightNav{
     margin-top: 100px;
     margin-left: 10px;
-    margin-right: 10px;
-    color: black;
+    margin-right: 25px;
+    color: #ba3b0a;
+    font-size: 30px;
     
 }
 
 #title{
     font-family: cursive;
     margin: 25px;
+}
+
+#logo{
+    max-width: 200px;
+    
+}
+
+#logoutButton {
+    margin-right: 15px;
+    margin-left: 15px;
+    font-family: DejaVu Sans Mono, monospace;
+    border-radius: 10px;
+    border: 3px solid #ba3b0a;
+    background-color: #FFEAD9;
+    color: #ba3b0a;
+    font-size: 25px;
 }

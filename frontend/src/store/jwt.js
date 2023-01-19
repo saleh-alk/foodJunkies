@@ -1,6 +1,8 @@
 
 function getCookie(cookieName) {
-    const cookies = document.cookieName.split(";");
+ 
+  const cookies = document.cookie.split(";");
+ 
     for (let cookie of cookies) {
         const [name, value] = cookie.split("=")
         if (name.trim() === cookieName) return value
@@ -19,7 +21,7 @@ async function jwtFetch(url, options = {}) {
     if (options.method.toUpperCase() !== "GET") {
         options.headers["Content-Type"] =
           options.headers["Content-Type"] || "application/json";
-        options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
+        options.headers["CSRF-Token"] = getCookie("CSRF-Token");
       }
 
     const res = await fetch(url, options);

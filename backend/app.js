@@ -15,8 +15,10 @@ require('./models/Cart.js');
 
 const passport = require("passport")
 const usersRouter = require('./routes/api/users');
+
 const reviewsRouter = require("./routes/api/reviews");
 const postsRouter = require('./routes/api/posts')
+
 const csrfRouter = require("./routes/api/csrf")
 
 const app = express();
@@ -33,9 +35,6 @@ if (!isProduction) {
     app.use(cors());
 }
 
-
-
-
 //setup csrf token
 app.use(csurf({
     cookie: {
@@ -45,8 +44,10 @@ app.use(csurf({
     }
 }))
 
+
 app.use('/api/users', usersRouter);
 app.use('/api/post', postsRouter)
+
 app.use('/api/csrf', csrfRouter)
 app.use("/api/reviews", reviewsRouter);
 

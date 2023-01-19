@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
 import { logout } from '../../store/session';
+import logo from "../../Assets/Images/foodjunkies-high.png";
 import './NavBar.css';
 
 function NavBar() {
@@ -20,10 +21,10 @@ function NavBar() {
         navbar=(
             <>
                 <div className='links-nav'>
-                <Link to={'/posts'} >All Posts</Link>
-                <Link to={'/profile'} >Profile</Link>
-                <Link to={'posts/new'}>Write a Post</Link>
-                <button onClick={logoutUser}>Logout</button>
+                <Link to={'/posts'} className="rightNav"><i class="fa-solid fa-images"></i></Link>
+                <Link to={'/profile'} className="rightNav"><i class="fa-sharp fa-solid fa-user"></i></Link>
+                <Link to={'posts/new'} className="rightNav"><i class="fa-solid fa-camera-retro"></i></Link>
+                <button onClick={logoutUser} id="logoutButton">Logout</button>
                 </div>
             </>
             )
@@ -44,8 +45,7 @@ function NavBar() {
         <>
         <div id="navbarOuter">
             <NavLink exact to="/" id="title">
-                {/* <img src={logo} alt="logo" id="logo"></img> */}
-                FoodJunkies
+                <img src={logo} alt="logo" id="logo"></img>
             </NavLink>
             {/* <h1 id="title">FoodJunkies</h1> */}
             {navbar}

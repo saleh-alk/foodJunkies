@@ -5,6 +5,7 @@ const User = mongoose.model('User')
 const passport = require("passport")
 const { loginUser, restoreUser } = require("../../config/passport")
 const { isProduction } = require("../../config/keys")
+const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
 
 //
 const { requireUser } = require('../../config/passport');
@@ -17,20 +18,35 @@ const validateLoginInput = require("../../validations/login")
 const router = express.Router();
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
   res.json({
-    message: "GET /api/users"
+    message: "GET /api/users",
+    profileImageUrl: req.user.profileImageUrl
   })
 });
+router.get('/current', restoreUser, (req, res) => {
+  if (!isProduction) {
+    
+    const csrfToken = req.csrfToken()
+    res.cookie("CSRF-Token", csrfToken)
+  }
+  if (!req.user) return res.json(null)
+  res.json({
+    _id: req.user._id,
+    username: req.user.username,
+    email: req.user.password
+    
+  }) 
+})
 
 
-router.post('/register', validateRegisterInput, async (req, res, next) => {
+router.post('/register',  singleMulterUpload("image"), validateRegisterInput, async (req, res, next) => {
   // Check to make sure no one has already registered with the proposed email or
   // username.
   const user = await User.findOne({
     $or: [{ email: req.body.email }, { username: req.body.username }]
   });
-
+  
   if (user) {
     // Throw a 400 error if the email address and/or email already exists
     const err = new Error("Validation Error");
@@ -45,13 +61,13 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
     err.errors = errors;
     return next(err);
   }
-
+  
   // Otherwise create a new user
   const newUser = new User({
     username: req.body.username,
     email: req.body.email
   });
-
+  
   bcrypt.genSalt(10, (err, salt) => {
     if (err) throw err;
     bcrypt.hash(req.body.password, salt, async (err, hashedPassword) => {
@@ -76,28 +92,19 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
       err.statusCode = 400;
       err.errors = { email: "Invalid credentials" }
       return next(err)
-
+      
     }
     return res.json(await loginUser(user))
-
+    
   })(req, res, next)
 })
 
 
-router.get('/current', restoreUser, (req, res) => {
-  if (!isProduction) {
+router.get('/:userId', async (req, res) => {
+  const user = await User.findById(req.params.userId).select("-hashedPassword")
+  return res.json(user)
 
 
-    const csrfToken = req.csrfToken()
-    res.cookie("CSRF-Token", csrfToken)
-  }
-  if (!req.user) return res.json(null)
-  res.json({
-    _id: req.user._id,
-    username: req.user.username,
-    email: req.user.password
-
-  })
 })
 
 // router.post('/login', validateLoginInput, async (req, res, next) => {

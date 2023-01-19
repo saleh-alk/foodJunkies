@@ -1,0 +1,41 @@
+.post-container {
+    padding-bottom: 10px;
+    margin: 40px;
+    border: 2px solid #ba3b0a;
+    background-color: #ffbe79;
+    border-radius: 10px;
+    font-family: DejaVu Sans Mono, monospace;
+}
+
+.post-main-content {
+    padding: 10px;
+}
+
+.post-info-span {
+
+}
+
+.post-body-text {
+
+}
+
+.post-recipie-dropdown {
+
+}
+
+
+.sidebar-toggle {
+    text-align: center;
+    padding: 5px 0px;
+    border-top: 2px solid #ba3b0a;
+    border-bottom: 2px solid #ba3b0a;
+    width: 100%;
+    background-color: #ffbe79;
+    cursor: pointer;
+    color: black;
+}
+
+.sidebar-toggle:hover {
+    background-color: #ba3b0a;
+}
+

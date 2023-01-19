@@ -27,32 +27,40 @@ function LoginForm () {
   }
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Sign in</h2>
-      <div className="errors">{errors?.email}</div>
-      <label>
-        <span>Email</span>
-        <input type="text"
-          value={email}
-          onChange={update('email')}
-          placeholder="Email"
-        />
-      </label>
-      <div className="errors">{errors?.password}</div>
-      <label>
-        <span>Password</span>
-        <input type="password"
-          value={password}
-          onChange={update('password')}
-          placeholder="Password"
-        />
-      </label>
-      <input
-        type="submit"
-        value="Log In"
-        disabled={!email || !password}
-      />
-    </form>
+    <div className="outerBox">
+      <form className="session-form" onSubmit={handleSubmit}>
+        <h2 className="formTitle">Sign in</h2>
+
+        <div className="errors">{errors?.email}</div>
+        <label className="custom-field">
+          <input type="email"
+            value={email}
+            onChange={update('email')}
+            placeholder="Email"
+            className="custom-field"
+            required/>
+            
+        </label>
+
+        <div className="errors">{errors?.password}</div>
+
+        <label className="custom-field">
+          <input type="password"
+            value={password}
+            onChange={update('password')}
+            placeholder="Password"
+            className="custom-field"
+            required/>
+      
+        </label>
+        <input
+          className="formButton"
+          type="submit"
+          value="Log In"
+          disabled={!email || !password}
+          />
+      </form>
+    </div>
   );
 }
 
