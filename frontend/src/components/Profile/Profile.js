@@ -25,7 +25,9 @@ function Profile() {
 
   return (
     <div>
+
         <h1 id="ProfileUsername">{currentProfileUser?.username}</h1>
+
         <div>
             <h1 id="ProfilePostsTitle">{posts? "Posts:" : "This user does not have any posts."}</h1>
             <ul>
