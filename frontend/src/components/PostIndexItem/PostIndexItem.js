@@ -1,10 +1,11 @@
 import './PostIndexItem.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteReview } from '../../store/post';
+import { deletePost} from '../../store/post';
+import { NavLink } from "react-router-dom";
 
 
-const PostIndexItem = ({ post, updateSidebarContent }) => {
+const PostIndexItem = ({ post, key, updateSidebarContent }) => {
 const currentUser = useSelector(state => state.session.user);
 const dispatch = useDispatch();
 
@@ -14,27 +15,31 @@ const dispatch = useDispatch();
     }
 
     const handleClick = (post) => {
-        dispatch(deleteReview(post._id))
+        
+        dispatch(deletePost(post._id, key))
     }
 
     const editDeleteButton = (post) => {
         if (currentUser._id === post.author._id){
             return(
                 <>
-                    <button>Edit</button>
-                    <button onClick={()=> handleClick(post)}>Delete</button>
+                    <NavLink to ={{pathname: `/${post._id}/edit`}}><button className="EditDeleteButton">Edit</button></NavLink>
+                    <button onClick={()=> handleClick(post)} className="EditDeleteButton">Delete</button>
                 </>
             )
         }
     }
 
+   
 
     return (
         <li className='post-container'>
             <div className='post-main-content'>
 
                 <span className='post-info-span'>
-                    <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> 
+                    {console.log(post)}
+                  
+                    <Link to={`/profile/${post?.author._id}`} id="profileLink">{post.author.username}</Link> 
                     - {convertDate(post.createdAt)}</span>
 
                 {editDeleteButton(post)}

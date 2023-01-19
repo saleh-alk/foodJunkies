@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom';
-import { composePost } from '../../store/post';
+import { useParams } from 'react-router-dom';
+import { updatePost } from '../../store/post';
 
-function CreatePost() {
+function EditForm() {
 
-
+    const { postId } = useParams();
     const [body, setBody] = useState("")
     const author = useSelector(state => state.session.user)
     const [images, setImages] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
     const dispatch = useDispatch()
-    const history = useHistory()
+  
+   
 
     const updateFiles = async e => {
         const files = e.target.files;
@@ -35,11 +36,11 @@ function CreatePost() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(composePost(body, images)); //
+       
+        dispatch(updatePost(body, images, postId)); //
         setImages([]);                        
         setImageUrls([]);                    
         setBody('');
-        history.push('/posts')
     };
 
    
@@ -77,4 +78,4 @@ function CreatePost() {
   )
 }
 
-export default CreatePost
+export default EditForm;

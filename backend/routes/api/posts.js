@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.patch('/id', requireUser, async(req, res, next)=>{
+router.patch('/:id', requireUser, async(req, res, next)=>{
   try{
     const posts = await Post.findById(req.params.id)
       if (posts.post.id.toString() !== req.user.id.toString()) {

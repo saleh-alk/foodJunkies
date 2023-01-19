@@ -11,9 +11,10 @@ const recievePosts = (posts) => ({
     posts
 });
 
-const removePost = (postId) => ({
+const removePost = (postId, key) => ({
     type: REMOVE_POST,
-    postId
+    postId,
+    key
 });
 
 
@@ -27,13 +28,55 @@ const receiveNewPost = post => ({
     post
 });
 
-export const deleteReview = (postId) => async (dispatch) => {
+
+
+export const getPost = (postId) => (store) => {
+    if(store.post && store.post[postId]) return store.post[postId];
+    return null;
+}
+
+export const deletePost = (postId, key) => async (dispatch) => {
     const response = await jwtFetch(`/api/post/${postId}`, {
         method: "DELETE"
     });
     if (response.ok) {
-        dispatch(removePost(postId));
+        dispatch(removePost(postId, key));
     }
+}
+
+export const updatePost = (body, images, postId) => async (dispatch) => {
+    const formData = new FormData();
+    formData.append("body", body);
+    Array.from(images).forEach(image => formData.append("images", image));
+    
+    // const response = await jwtFetch(`/api/post/${postId}`, {
+    //     method: "PATCH",
+    //     body: formData,
+    // });
+    
+    // if (response.ok){
+    //     let data = await response.json();
+    //     // console.log(response)
+    //     dispatch(receiveNewPost(data));
+    // }
+    
+    try{
+        const res = await jwtFetch(`/api/post/${postId}`, {
+            method: 'PATCH',
+            body: formData
+        });
+        const post = await res.json();
+       
+        dispatch(receiveNewPost(post));
+        
+    } catch(err){
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            return dispatch(receiveErrors(resBody.errors));
+        }
+        console.log("hi")
+    }
+
 }
 
 
@@ -63,6 +106,7 @@ export const composePost = (body, images) => async dispatch => {
     const formData = new FormData();
     formData.append("body", body);
     Array.from(images).forEach(image => formData.append("images", image))
+   
 
    try{
        const res = await jwtFetch('/api/post/', {
@@ -70,6 +114,7 @@ export const composePost = (body, images) => async dispatch => {
            body: formData
        });
        const post = await res.json();
+      
        dispatch(receiveNewPost(post));
    } catch(err){
        const resBody = await err.json();
@@ -97,11 +142,17 @@ export const fetchUserPosts = (userId) => async (dispatch) => {
 
 const initialState = {}
 const postReducer = (state = initialState, action) => {
+    let newState = {...state};
     switch (action.type) {
         case RECEIVE_POSTS:
-            return {...action.posts};
+            return { ...action.posts};
         case REMOVE_POST:
+            delete newState[action.key];
+            return newState;
         case UPDATE_POST:
+        case RECEIVE_NEW_POST:
+            return {...newState, [newState.length+1]: {...action.post}}
+       
         default:
             return state
     }
