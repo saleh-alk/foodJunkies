@@ -14,7 +14,7 @@
 }
 
 .post-info-span {
-   
+
 }
 
 .post-body-text {
@@ -57,3 +57,9 @@
     background-color: #F5A563;
 }
 
+.images{
+    margin-left: 18px;
+    border-radius: 20px;
+    width: 550px;
+    height: 550px;
+}

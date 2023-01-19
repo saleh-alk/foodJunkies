@@ -17,8 +17,9 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
 
                 <span className='post-info-span'>
                     <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> - {convertDate(post.createdAt)}</span>
-                <img src={post.imageUrls[0]}></img>
                 <p className='post-body-text'>{post.body}</p>
+                <br/>
+                <img className='images' src={post.imageUrls[0]}></img>
             </div>
             <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
                 Toggle Sidebar
