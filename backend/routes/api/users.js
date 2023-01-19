@@ -182,8 +182,8 @@ router.post('/cart', requireUser, async (req, res, next) => {
     email: req.user.password,
     profileImageUrl: req.user.profileImageUrl
 
+})
 });
-
 
 router.get('/cart', requireUser, async (req, res, next) => {
   const { _id } = req.user

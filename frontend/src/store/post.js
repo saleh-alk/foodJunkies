@@ -62,7 +62,7 @@ export const composePost = (body, images) => async dispatch => {
            return dispatch(receiveErrors(resBody.errors));
        }
    }
-
+}
 export const fetchUserPosts = (userId) => async (dispatch) => {
     try {
         const res = await jwtFetch(`/api/post/user/${userId}`);
@@ -76,6 +76,7 @@ export const fetchUserPosts = (userId) => async (dispatch) => {
     }
 
 }
+
 
 const initialState = {}
 const postReducer = (state = initialState, action) => {
