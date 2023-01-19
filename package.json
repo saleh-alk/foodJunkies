@@ -1,4 +1,7 @@
 {
+    "name": "foodjunkies",
+    "version": "0.0.0",
+    "private": true,
     "scripts": {
         "backend-install": "npm install --prefix backend",
         "backend": "npm run dev --prefix backend",
