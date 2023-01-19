@@ -18,6 +18,9 @@
 }
 
 #sidebar-title {
+
+    font-family: DejaVu Sans Mono, monospace;
+
     font-size: 24px;
 }
 
@@ -26,6 +29,9 @@
     top: 10px;
     text-align: center;
     position: sticky;
+
+    font-family: DejaVu Sans Mono, monospace;
+
 }
 
 #x-icon {

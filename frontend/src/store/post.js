@@ -11,6 +11,7 @@ const recievePosts = (posts) => ({
     posts
 });
 
+
 const receiveErrors = errors => ({
     type: RECEIVE_POST_ERRORS,
     errors
@@ -21,7 +22,9 @@ const receiveNewPost = post => ({
     post
 });
 
-export const fetchPosts = () => async dispatch => {
+
+export const fetchPosts = () => async (dispatch) => {
+
     try {
         const res = await jwtFetch('/api/post');
         const posts = await res.json();
@@ -29,10 +32,15 @@ export const fetchPosts = () => async dispatch => {
     } catch (err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
-            dispatch(receiveErrors(resBody.errors)); 
+
+        
+
+            // dispatch(receiveErrors(resBody.errors)); todo
+
         }
     }
 }
+
 
 
 export const composePost = (body, images) => async dispatch => {
@@ -54,6 +62,19 @@ export const composePost = (body, images) => async dispatch => {
            return dispatch(receiveErrors(resBody.errors));
        }
    }
+
+export const fetchUserPosts = (userId) => async (dispatch) => {
+    try {
+        const res = await jwtFetch(`/api/post/user/${userId}`);
+        const posts = await res.json();
+        dispatch(recievePosts(posts));
+    } catch (err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            // dispatch(receiveErrors(resBody.errors)); todo
+        }
+    }
+
 }
 
 const initialState = {}

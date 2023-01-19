@@ -36,11 +36,13 @@ passport.use(new LocalStrategy({
 
 
 exports.loginUser = async function (user) {
-   
+
     const userInfo = {
         _id: user._id,
         username: user.username,
-        email: user.email
+        email: user.email,
+        profileImageUrl: user.profileImageUrl
+
     }
     const token = await jwt.sign(
         userInfo,
@@ -86,6 +88,7 @@ exports.requireUser = passport.authenticate('jwt', { session: false });
 // on req.user, but will NOT return an error response if there is no current
 // user
 exports.restoreUser = (req, res, next) => {
+
 
   return passport.authenticate('jwt', { session: false }, function(err, user) {
     if (user) req.user = user;

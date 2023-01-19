@@ -79,7 +79,9 @@ router.get('/:id', async (req, res, next) => {
 });
 
 router.post('/', multipleMulterUpload("images"), requireUser, validatePostInput, async (req, res, next) => {
+
   const imageUrls = await multipleFilesUpload({ files: req.files, public: true });
+
     try {
       const newPost = new Post({
 
