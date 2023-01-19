@@ -81,7 +81,7 @@ router.patch('/:id', requireUser, async(req, res, next)=>{
         const error = new Error("Something went wrong");
         error.statusCode = 404;
         error.errors = {message: "Something went wrong saving"};
-        return res.status(400).json(errors);
+        return res.status(400).json(error);
 }})
 
 router.delete('/:id', requireUser, async(req, res, next)=>{

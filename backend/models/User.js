@@ -13,8 +13,11 @@ const userSchema = Schema({
     hashedPassword: {
         type: String,
         required: true
-    }
-
+    },
+    cart: {
+        type: Array,
+        default: [],
+      },
 },
     {
         timestamps: true
