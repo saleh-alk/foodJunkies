@@ -7,13 +7,6 @@ import _ from "lodash"
 import {Badge} from "antd"
 //
 
-
-
-
-
-    
-
-
 import { Link, useHistory } from 'react-router-dom';
 import { addLike, removeLike } from '../../store/post';
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,15 +20,12 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
     const userId = useSelector(state => state.session.user._id)
     
     
-   
-
     const convertDate = (date) => {
         const d = new Date(date);
         return d.toDateString();
     }
-//
+
     const {cart} = useSelector((state) => ({...state}));
-    console.log(cart)
     const dispatch = useDispatch();
 
     const handleAddToCart = () => {
@@ -77,9 +67,7 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
                 </button>
             <p>{post.likes.length}</p>
            
-            <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
-                Toggle Sidebar
-            </div>
+            {updateSidebarContent && <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>Toggle Sidebar</div>}
     {/* // */}
             <a onClick={handleAddToCart} className='Add-to-cart'>
             <ShoppingCartOutlined className='Add-to-cart1'/>Add to Cart
