@@ -5,11 +5,13 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "dotenv nodemon ./bin/www --inspect",
-    "seed": "dotenv node seeders/seed.js"
+    "seed": "dotenv node seeders/seeds.js"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
+
     "antd": "^5.1.5",
+
     "aws-sdk": "^2.1296.0",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",

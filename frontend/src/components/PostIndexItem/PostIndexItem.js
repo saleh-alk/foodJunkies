@@ -20,9 +20,9 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.user._id)
     const history = useHistory()
-    
-    
-   
+
+
+
 
 
     const convertDate = (date) => {
@@ -31,7 +31,7 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
     }
 
     const handleClick = (post) => {
-        
+
         dispatch(deletePost(post._id, key1))
     }
 
@@ -48,12 +48,12 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
         }
     }
 
-   
+
 
 
     const {cart} = useSelector((state) => ({...state}));
-
-
+    
+    
 
     // console.log(cart)
     const handleAddToCart = () => {
@@ -82,28 +82,28 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 
 
     return (
-    
+
         <li className='post-container'>
             <div className='post-main-content'>
 
 
             <div id="titleandEdit">
                 <span className='post-info-span'>
-                    <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> 
+                    <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link>
                     - {convertDate(post.createdAt)}</span>
 
 
-                <p id ="receiptTitle">Recipe Name: {post.reciepeName}</p>
+                <p id ="receiptTitle">{post.reciepeName}</p>
                 {editDeleteButton(post)}
              </div>
                 <p className='post-body-text'>{post.body}</p>
                     <img className='images' src={post.imageUrls[0]}></img>
 
-              
 
-                
-               
-                
+
+
+
+
 
 
             </div>
@@ -111,13 +111,13 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 
 
             <div id="thumbAndText">
-               
+
                     <button onClick={e => history.push(`review/new/${post._id}`)} id="reviewButton">Review</button>
                     <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
                         {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i> : <i className="fa-regular fa-thumbs-up"></i> }
                     </button>
-                
-         
+
+
 
                 <div id="likesNumandText">
                     <p className='likesNum' >{post.likes.length} </p>
@@ -129,6 +129,7 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
             <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
                 Toggle Sidebar
             </div>
+
    
             {/* <a onClick={handleAddToCart} className='Add-to-cart'>
             <ShoppingCartOutlined className='Add-to-cart1'/>Add to Cart
@@ -142,11 +143,11 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
     
 
 
+
         </li>
-        
+
     )
 }
 
 
 export default PostIndexItem;
-
