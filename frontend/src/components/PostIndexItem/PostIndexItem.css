@@ -1,24 +1,50 @@
 .post-container {
     padding-bottom: 10px;
     margin: 40px;
+    
     border: 2px solid #ba3b0a;
     background-color: #ffbe79;
     border-radius: 10px;
     font-family: DejaVu Sans Mono, monospace;
     box-shadow: 4px 4px 10px .2px #BD3101;
-
 }
 
 .post-main-content {
     padding: 10px;
 }
+#reviewButton{
+    background-color: #F5CDAC;
+    color: #ba3b0a;
+    padding: 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border:#ba3b0a;
+    border: 1px solid;
+    border-color: #F57114;
+    border-radius: 5px;
+    display: inline-block;
+    height: 10%;
+    margin-top: 15px;
+    margin-left: 20px;
+    font-size: 18px;
+}
 
-.post-info-span {
+#reviewButton:hover{
+    background-color: #F5A563;
+}
+
+
+
+#dateButtons {
+    display: flex;
+   justify-content: space-between;
 
 }
 
 .post-body-text {
-    padding-top: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+
 }
 
 .post-recipie-dropdown {
@@ -58,11 +84,29 @@
 }
 
 
+.EditDeleteButton{
+    background-color: #F5CDAC;
+    color: #ba3b0a;
+    padding: 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border:#ba3b0a;
+    border: 1px solid;
+    border-color: #F57114;
+    border-radius: 5px;
+}
+
+.EditDeleteButton:hover{
+    background-color: #F5A563;
+}
+
+
 .images{
-    margin-left: 300px;
-    border-radius: 20px;
-    width: 550px;
-    height: 550px;
+    border-radius: 10px;
+    height: auto;
+    width: 100%;
+    margin-top: 15px;
+    
 }
 
 .Add-to-cart{
@@ -72,15 +116,67 @@
 }
 
 .Add-to-cart1{
+    margin-top: 10px;
+    margin-left: 10px;
     cursor: pointer;
     /* color: black */
 
+}
+
+#titleandEdit{
+    display: flex;
+    justify-content: space-between;
+}
+
+.likesButton {
+    font-size: 44px;
+    padding-left: 18%;
+    border: none;
+    background: none;
+    box-shadow: none;
+    color: #ba3b09;
+    margin-bottom: 13px;
+    
+  }
+  #receiptTitle{
+    font-size: 30px;
+  }
+
+  .likesButton:hover{
+    color:#e8772f
+  }
+
+  .likesButton:checked{
+    color:red
+  }
+
+
+
+.likesNum{
+    margin-left: 115px;
+    width: 50px;
+    text-decoration: underline;
+    font-size: 25px;
+   
 }
 
 .price-Addtocart {
     display: flex;
     justify-content: space-between;
     padding: 5px;
+
+}
+
+#likesNumandText{
+    display: flex;
+    justify-content: left;
+   
+}
+
+#thumbAndText{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
 }
 
 
