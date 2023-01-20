@@ -1,6 +1,11 @@
 import './PostIndexItem.css';
 
 
+import { deletePost} from '../../store/post';
+import { NavLink } from "react-router-dom";
+
+
+
 
 
 
@@ -22,8 +27,9 @@ import { useEffect } from 'react';
 
 
 
-const PostIndexItem = ({ post, updateSidebarContent }) => {
-
+const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
+const currentUser = useSelector(state => state.session.user);
+const dispatch = useDispatch();
 
    
     const userId = useSelector(state => state.session.user._id)
@@ -34,6 +40,26 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
         const d = new Date(date);
         return d.toDateString();
     }
+
+    const handleClick = (post) => {
+        
+        dispatch(deletePost(post._id, key1))
+    }
+    const editDeleteButton = (post) => {
+        if (currentUser._id === post.author._id){
+            return(
+                <>
+                <div>
+                    <NavLink to ={{pathname: `/${post._id}/edit`}}><button className="EditDeleteButton">Edit</button></NavLink>
+                    <button onClick={()=> handleClick(post)} className="EditDeleteButton">Delete</button>
+                </div>
+                </>
+            )
+        }
+    }
+
+   
+
 
     const {cart} = useSelector((state) => ({...state}));
 
@@ -64,17 +90,27 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
 //
 
         let p = post.price
+
     return (
         <li className='post-container'>
             <div className='post-main-content'>
 
+                <div id="dateButtons">
                 <span className='post-info-span'>
-                    <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> 
+                    <Link to={`/profile/${post?.author._id}`} id="profileLink">{post.author.username}</Link> 
                     - {convertDate(post.createdAt)}</span>
+
+
+                {editDeleteButton(post)}
+                </div>
+                
+                {/* img goes here */}
+
                 {/* image goes here */}
                 {/*  */}
                 {/*  */}
                 <p>Reciepe Name: {post.reciepeName}</p>
+
                 <p className='post-body-text'>{post.body}</p>
                 
 
