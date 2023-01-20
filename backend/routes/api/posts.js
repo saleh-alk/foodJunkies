@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
           .populate("author", "_id username profileImageUrl")
           .sort({ createdAt: -1 });
       } else {
-        posts = await Post.find( { body: {$regex: req.query.search }})
+        posts = await Post.find( { body: {$regex: new RegExp(req.query.search, "i") }})
           .populate("author", "_id username profileImageUrl")
           .sort({ createdAt: -1 });
       }
