@@ -12,11 +12,13 @@ const recievePosts = (posts) => ({
     posts
 });
 
+
 const removePost = (postId, key) => ({
     type: REMOVE_POST,
     postId,
     key
 });
+
 
 
 const receiveErrors = errors => ({
@@ -28,6 +30,7 @@ const receiveNewPost = post => ({
     type: RECEIVE_NEW_POST,
     post
 });
+
 
 
 
@@ -92,25 +95,33 @@ export const updatePost = (body, images, postId) => async (dispatch) => {
 
 
 
-export const fetchPosts = () => async (dispatch) => {
+// export const fetchPosts = () => async (dispatch) => {
 
+
+export const fetchPosts = ({query}) => async (dispatch) => {
+
+    query ||= ''
     try {
-        const res = await jwtFetch('/api/post');
+        const res = await jwtFetch(`/api/post` + query);
         const posts = await res.json();
         dispatch(recievePosts(posts));
     } catch (err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
-
-        
-
             // dispatch(receiveErrors(resBody.errors)); todo
-
         }
     }
 }
 
-
+export const searchPosts = () => async (dispatch) => {
+    try {
+        const res = await jwtFetch(`/api/post/search`);
+        const results = await res.json();
+        console.log(results);
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 export const composePost = (body, images, reciepeName, price) => async dispatch => {
 

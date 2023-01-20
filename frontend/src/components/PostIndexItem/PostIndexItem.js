@@ -52,8 +52,10 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 
 
     const {cart} = useSelector((state) => ({...state}));
+
     
     
+
 
     // console.log(cart)
     const handleAddToCart = () => {

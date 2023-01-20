@@ -1,6 +1,7 @@
 #navbarOuter{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: #ffbe79;
     border-bottom: 2px solid #ba3b0a;
     width: 100%;
@@ -13,11 +14,13 @@
 
 
 .links-auth{
-    margin-top: 28px;
+    /* margin-top: 28px; */
+    margin: 0;
 }
 
 .links-nav{
-    margin-top: 28px;
+    /* margin-top: 28px; */
+    margin: 0;
 }
 
 .rightNav{

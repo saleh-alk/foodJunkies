@@ -44,7 +44,6 @@ router.get('/current', restoreUser, (req, res) => {
   }) 
 })
 
-
 router.post('/register',  singleMulterUpload("image"), validateRegisterInput, async (req, res, next) => {
   // Check to make sure no one has already registered with the proposed email or
   // username.
