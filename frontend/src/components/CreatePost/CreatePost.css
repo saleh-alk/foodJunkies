@@ -39,3 +39,8 @@
     margin-top: 4%;
     font-family: DejaVu Sans Mono, monospace;
 }
+
+.recipeInput{
+    max-width: 50%;
+    margin-top: 20px;
+}
