@@ -44,10 +44,12 @@ export const fetchPosts = () => async (dispatch) => {
 
 
 
-export const composePost = (body, images) => async dispatch => {
+export const composePost = (body, images, reciepeName, price) => async dispatch => {
 
     const formData = new FormData();
     formData.append("body", body);
+    formData.append("reciepeName", reciepeName);
+    formData.append("price", price);
     Array.from(images).forEach(image => formData.append("images", image))
 
    try{
