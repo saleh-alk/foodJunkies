@@ -1,15 +1,18 @@
 import './PostIndexItem.css';
 
-//
+
+import { deletePost} from '../../store/post';
+import { NavLink } from "react-router-dom";
+
+
+
+
+
+
 import {ShoppingCartOutlined} from "@ant-design/icons"
 import _ from "lodash"
 
 import {Badge} from "antd"
-//
-
-
-
-
 
 
 
@@ -21,22 +24,45 @@ import { useEffect } from 'react';
 
 
 
-const PostIndexItem = ({ post, updateSidebarContent }) => {
+
+const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
+const currentUser = useSelector(state => state.session.user);
+const dispatch = useDispatch();
 
 
     const userId = useSelector(state => state.session.user._id)
-
-
 
 
     const convertDate = (date) => {
         const d = new Date(date);
         return d.toDateString();
     }
-//
-    const {cart} = useSelector((state) => ({...state}));
-    const dispatch = useDispatch();
 
+    const handleClick = (post) => {
+        
+        dispatch(deletePost(post._id, key1))
+    }
+    const editDeleteButton = (post) => {
+        if (currentUser._id === post.author._id){
+            return(
+                <>
+                <div>
+                    <NavLink to ={{pathname: `/${post._id}/edit`}}><button className="EditDeleteButton">Edit</button></NavLink>
+                    <button onClick={()=> handleClick(post)} className="EditDeleteButton">Delete</button>
+                </div>
+                </>
+            )
+        }
+    }
+
+   
+
+
+    const {cart} = useSelector((state) => ({...state}));
+
+
+
+    // console.log(cart)
     const handleAddToCart = () => {
         let cart = []
         if (typeof window !== 'undefined') {
@@ -58,10 +84,12 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
     }
 //
 
+        let p = post.price
 
     return (
         <li className='post-container'>
             <div className='post-main-content'>
+
 
                 <span className='post-info-span'>
                     <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> - {convertDate(post.createdAt)}</span>
@@ -89,8 +117,11 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
             </a>
     {/* // */}
 
+
         </li>
     )
 }
 
+
 export default PostIndexItem;
+
