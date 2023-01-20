@@ -1,6 +1,7 @@
 import './PostIndexItem.css';
 import { deletePost} from '../../store/post';
 import { NavLink } from "react-router-dom";
+
 import {ShoppingCartOutlined} from "@ant-design/icons"
 import _ from "lodash"
 import {Badge} from "antd"
@@ -14,12 +15,10 @@ import { useEffect } from 'react';
 
 
 const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
-const currentUser = useSelector(state => state.session.user);
-const dispatch = useDispatch();
 
-
+    const currentUser = useSelector(state => state.session.user);
+    const dispatch = useDispatch();
     const userId = useSelector(state => state.session.user._id)
-
     const history = useHistory()
     
     
@@ -110,6 +109,7 @@ const dispatch = useDispatch();
             </div>
 
 
+
             <div id="thumbAndText">
                
                     <button onClick={e => history.push(`review/new/${post._id}`)} id="reviewButton">Review</button>
@@ -117,7 +117,7 @@ const dispatch = useDispatch();
                         {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i> : <i className="fa-regular fa-thumbs-up"></i> }
                     </button>
                 
-           
+         
 
                 <div id="likesNumandText">
                     <p className='likesNum' >{post.likes.length} </p>

@@ -2,12 +2,22 @@ import jwtFetch from './jwt'
 
 const RECEIVE_NEW_REVIEW = "review/RECEIVE_NEW_REVIEW"
 
+const RECEIVE_USERS_REVIEW = "RECEIVE_USERS_REVIEW"
 
 
 
-const receiveNewReview = review => ({
+export const getUserReviews = (reviews) => ({
+    type: RECEIVE_USERS_REVIEW,
+    reviews
+
+})
+
+
+
+
+const receiveNewReview = (reviews) => ({
     type: RECEIVE_NEW_REVIEW,
-    review
+    reviews
 });
 
 
@@ -30,11 +40,24 @@ export const composeReview = (title, body, rating, postId) => async dispatch => 
                 rating: rating
             })
         });
-        const review = await res.json();
-        dispatch(receiveNewReview(review));
+        const reviews = await res.json();
+        dispatch(receiveNewReview(reviews));
     } catch (err) {
         
     }
+}
+
+
+export const fetchUsersReview = (userId) => async (dispatch) =>  {
+
+    const res = await jwtFetch(`/api/reviews/user/${userId}`)
+
+
+    if(res.ok){
+        const reviews = await res.json()
+        return dispatch(receiveNewReview(reviews))
+    }
+
 }
 
 
@@ -43,7 +66,9 @@ const initialState = {}
 const reviewReducer = (state = initialState, action) => {
     switch (action.type) {
         case RECEIVE_NEW_REVIEW:
-            return {...action.posts };
+            return {...state, ...action.reviews };
+        case RECEIVE_USERS_REVIEW:
+            return {...state, ...action.reviews}
         default:
             return state;
        
