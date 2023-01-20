@@ -20,6 +20,11 @@ const dispatch = useDispatch();
 
     const userId = useSelector(state => state.session.user._id)
 
+    const history = useHistory()
+    
+    
+   
+
 
     const convertDate = (date) => {
         const d = new Date(date);
@@ -73,7 +78,9 @@ const dispatch = useDispatch();
     }
 
 
+
         let p = post.price
+
 
     return (
         <li className='post-container'>
@@ -95,8 +102,10 @@ const dispatch = useDispatch();
 
             </div>
 
-            <div id="thumbAndText">
 
+            <div id="thumbAndText">
+                
+                <button onClick={e => history.push(`review/new/${post._id}`)}>Review</button>
                 <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
                     {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i> : <i className="fa-regular fa-thumbs-up"></i> }
                 </button>
@@ -108,6 +117,7 @@ const dispatch = useDispatch();
                 </div>
 
             </div>
+
             <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
                 Toggle Sidebar
             </div>
