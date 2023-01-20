@@ -7,9 +7,6 @@
     "dev": "dotenv nodemon ./bin/www --inspect",
     "seed": "dotenv node seeders/seeds.js"
   },
-  "engines": {
-    "node": "16.x"
-  },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
     "aws-sdk": "^2.1296.0",
