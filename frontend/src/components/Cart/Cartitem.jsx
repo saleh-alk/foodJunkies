@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
+import "./cart.css"
 import "./Cartitem.css";
 import CartInCheckout from "./CartInCheckout";
 import { useHistory } from "react-router-dom";
@@ -20,7 +20,7 @@ const Cart = () => {
 
 
     return (
-            <div id ="outer">
+          <div id ="outerforcar">
         <div>
             <h1>Cart</h1>
         </div>

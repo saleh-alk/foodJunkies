@@ -93,7 +93,7 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
                     - {convertDate(post.createdAt)}</span>
 
 
-                <p id ="receiptTitle">Recipe Name: {post.reciepeName}</p>
+                <p id ="receiptTitle">{post.reciepeName}</p>
                 {editDeleteButton(post)}
              </div>
                 <p className='post-body-text'>{post.body}</p>
