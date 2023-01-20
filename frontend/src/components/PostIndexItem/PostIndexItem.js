@@ -130,9 +130,17 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
                 Toggle Sidebar
             </div>
 
-            <a onClick={handleAddToCart} className='Add-to-cart'>
+   
+            {/* <a onClick={handleAddToCart} className='Add-to-cart'>
             <ShoppingCartOutlined className='Add-to-cart1'/>Add to Cart
-            </a>
+            </a> */}
+             <div className='price-Addtocart'>
+                <p>Price: {p === "undefined" ? "N/A" : `$${post.price}`}</p>
+
+                {post.price === "undefined" ? "": <a onClick={handleAddToCart} className='Add-to-cart'>
+                <ShoppingCartOutlined className='Add-to-cart1'/>Add to Cart</a>}
+            </div> 
+    
 
 
 
