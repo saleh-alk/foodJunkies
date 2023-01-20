@@ -42,6 +42,7 @@ const dispatch = useDispatch();
         
         dispatch(deletePost(post._id, key1))
     }
+
     const editDeleteButton = (post) => {
         if (currentUser._id === post.author._id){
             return(
@@ -92,10 +93,13 @@ const dispatch = useDispatch();
 
 
                 <span className='post-info-span'>
-                    <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> - {convertDate(post.createdAt)}</span>
-                    
+                    <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> - {convertDate(post.createdAt)}
+                    </span>
+                
+                {editDeleteButton(post)}
+                
                 <p className='post-body-text'>{post.body}
-               
+
                 </p>
                 <img className='images' src={post.imageUrls[0]}></img>
 
