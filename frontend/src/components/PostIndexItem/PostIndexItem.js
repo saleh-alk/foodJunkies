@@ -63,7 +63,7 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
             </div>
 
             <div className='price-Addtocart'>
-                <p>price: {p === "undefined" ? "N/A" : `${post.price}`}</p>
+                <p>price: {p === "undefined" ? "N/A" : `$${post.price}`}</p>
 
                 {post.price === "undefined" ? "": <a onClick={handleAddToCart} className='Add-to-cart'>
                 <ShoppingCartOutlined className='Add-to-cart1'/>Add to Cart</a>}
