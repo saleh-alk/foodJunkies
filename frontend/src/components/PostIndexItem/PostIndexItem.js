@@ -25,6 +25,7 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
 
    
     const userId = useSelector(state => state.session.user._id)
+    const history = useHistory()
     
     
    
@@ -59,6 +60,7 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
     }
 //
 
+///review/new/:postId
 
     return (
         <li className='post-container'>
@@ -72,6 +74,8 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
                 <img className='images' src={post.imageUrls[0]}></img>
 
             </div>
+
+            <button onClick={e => history.push(`review/new/${post._id}`)}>Review</button>
             <button onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
                 {post.likes.map(user => user.user).includes(userId.toString()) ? <i class="fa-regular fa-thumbs-down"></i> : <i class="fa-regular fa-thumbs-up"></i> }
                 </button>

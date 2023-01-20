@@ -4,6 +4,7 @@ import session from './session';
 import errors from './errors'
 import post from './post';
 import profile from './profile';
+import review from './review';
 import { cartReducer } from './cart';
 
 
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     errors,
     post,
     profile,
-    cart: cartReducer,
+    review,
+    cart: cartReducer
 
 })
 
