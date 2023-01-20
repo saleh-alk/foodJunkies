@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { fetchPosts } from '../../store/post';
 import PostIndexItem from '../PostIndexItem/PostIndexItem';
 import './PostIndex.css';
@@ -9,10 +10,13 @@ const PostIndex = () => {
     const posts = Object.values(useSelector(store => store.post));
     const [sidebarActive,setSideBarActive] = useState(false);
     const [sidebarContent,setSidebarContent] = useState("");
+    const location = useLocation();
+    const query = location.search;
+    console.log(query);
 
     useEffect(()=>{
-        dispatch(fetchPosts());
-    },[])
+        dispatch(fetchPosts({query}));
+    },[query])
 
     const toggleSidebar = () => {
         setSideBarActive(!sidebarActive);
@@ -27,9 +31,7 @@ const PostIndex = () => {
         <div id='post-index-page'>
             <div id='post-index-container'>
                 <ul id='post-item-list'>
-
                     {posts && posts.map((post,i)=><PostIndexItem key={i} post={post} updateSidebarContent={updateSidebarContent}/>)}
-                    
                 </ul>
             </div>
             <div id={sidebarActive ? 'post-index-sidebar-active' : 'post-index-sidebar'}>

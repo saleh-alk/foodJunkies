@@ -1,0 +1,11 @@
+#searchbar-wrapper {
+    width: 20%;
+}
+
+#searchbar {
+    height: 30px;
+    width: 100%;
+    border-radius: 15px;
+    border: 2px solid #ba3b0a;
+    box-sizing: border-box;
+}  

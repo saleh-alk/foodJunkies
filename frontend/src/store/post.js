@@ -12,7 +12,6 @@ const recievePosts = (posts) => ({
     posts
 });
 
-
 const receiveErrors = errors => ({
     type: RECEIVE_POST_ERRORS,
     errors
@@ -24,25 +23,30 @@ const receiveNewPost = post => ({
 });
 
 
-export const fetchPosts = () => async (dispatch) => {
+export const fetchPosts = ({query}) => async (dispatch) => {
 
+    query ||= ''
     try {
-        const res = await jwtFetch('/api/post');
+        const res = await jwtFetch(`/api/post` + query);
         const posts = await res.json();
         dispatch(recievePosts(posts));
     } catch (err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
-
-        
-
             // dispatch(receiveErrors(resBody.errors)); todo
-
         }
     }
 }
 
-
+export const searchPosts = () => async (dispatch) => {
+    try {
+        const res = await jwtFetch(`/api/post/search`);
+        const results = await res.json();
+        console.log(results);
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 export const composePost = (body, images) => async dispatch => {
 

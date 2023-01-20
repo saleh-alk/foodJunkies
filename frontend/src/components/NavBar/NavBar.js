@@ -6,6 +6,7 @@ import { logout } from '../../store/session';
 import logo from "../../Assets/Images/foodjunkies-high.png";
 import './NavBar.css';
 import { Badge } from 'antd';
+import SearchBar from '../SearchBar/SearchBar';
 
 function NavBar() {
     const loggedIn = useSelector(state => !!state.session.user)
@@ -26,7 +27,6 @@ function NavBar() {
         navbar=(
             <>
                 <div className='links-nav'>
-
                 <Link to={'/posts'} className="rightNav"><i class="fa-solid fa-images"></i></Link>
                 <Link to={'/profile'} className="rightNav"><i class="fa-sharp fa-solid fa-user"></i></Link>
                 <Link to={'posts/new'} className="rightNav"><i class="fa-solid fa-camera-retro"></i></Link>
@@ -62,6 +62,7 @@ function NavBar() {
             <NavLink exact to="/" id="title">
                 <img src={logo} alt="logo" id="logo"></img>
             </NavLink>
+            <SearchBar/>
             {/* <h1 id="title">FoodJunkies</h1> */}
             {navbar}
         </div>

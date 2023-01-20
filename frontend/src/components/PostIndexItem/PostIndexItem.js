@@ -35,7 +35,6 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
     }
 //
     const {cart} = useSelector((state) => ({...state}));
-    console.log(cart)
     const dispatch = useDispatch();
 
     const handleAddToCart = () => {

@@ -13,7 +13,6 @@ const rootReducer = combineReducers({
     post,
     profile,
     cart: cartReducer,
-
 })
 
 let enhancer;
