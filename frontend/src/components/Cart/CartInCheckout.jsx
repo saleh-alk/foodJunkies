@@ -54,22 +54,25 @@ const CartInCheckout = ({ p }) => {
 
 
   return (
-    <>
-      <img className="images" src={p.post.imageUrls[0]}></img>
-      <h1>{p.post.reciepeName.toUpperCase()}</h1>
-      <p>Price: ${p.post.price}</p>
+    <div className="cart3">
+      <img className="image1" src={p.post.imageUrls[0]}></img>
+      <div className="cart4">
+
+      <h1 className="cart5">Recipe Name: {p.post.reciepeName.toUpperCase()}</h1>
+      <p className="cart6">Price: ${p.post.price * p.quantity}</p>
       {/* <p>
         {p.post.price} x {p.quantity} = {p.post.price * p.quantity}
         </p> */}
-        <p>Quantity:<input
+        <p className="cart7">Quantity:<input className="cart9"
           type="number"
           value={p.quantity}
           onChange={handleQuantityChange}
         /></p>
+      </div>
         
      
-      <p><CloseOutlined onClick={handleRemove}/></p>
-    </>
+      <p className="cart8"><CloseOutlined onClick={handleRemove}/></p>
+    </div>
   );
 };
 

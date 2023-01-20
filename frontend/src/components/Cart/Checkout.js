@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import './Checkout.css'
 
 
 const Checkout = ({ setShowModal }) => {
@@ -17,19 +18,20 @@ const emptyCart = () => {
 }
 
     return (
-        <div >
-            <i className="fa-solid fa-xmark" onClick={emptyCart}></i>
-            <div className="checkout_modal_contents">
+        <div className="checkout23">
+            <i className="fa-solid fa-xmark" onClick={emptyCart} id="xmark23"></i>
+            
                 <br /><br />
                 <h1>Thank you!</h1>
-                <p className="checkout">
+                <br /><br />
+                <p>
                     {"for checking out our website!".toUpperCase()}
                 </p>
-                    <br /><br />
-                    <button className="go_main" onClick={emptyCart}>
+                    <br />
+                    <button  onClick={emptyCart}>
                         HOME PAGE
                     </button>
-            </div>
+          
         </div>
     );
 }
