@@ -3,10 +3,13 @@
     justify-content: space-between;
     background-color: #ffbe79;
     border-bottom: 2px solid #ba3b0a;
-    position: fixed;
     width: 100%;
+    z-index: 1;
+    position: fixed;
     
 }
+
+
 
 .links-auth{
     margin-top: 28px;

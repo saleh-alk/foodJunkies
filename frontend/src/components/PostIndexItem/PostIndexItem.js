@@ -91,12 +91,13 @@ const dispatch = useDispatch();
         <li className='post-container'>
             <div className='post-main-content'>
 
-
-                <span className='post-info-span'>
-                    <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> - {convertDate(post.createdAt)}
+                <div id="titleandEdit">
+                    <span className='post-info-span'>
+                        <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> - {convertDate(post.createdAt)}
                     </span>
                 
-                {editDeleteButton(post)}
+                    {editDeleteButton(post)}
+                </div>
                 
                 <p className='post-body-text'>{post.body}
 
@@ -106,7 +107,7 @@ const dispatch = useDispatch();
 
             </div>
             <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
-                {post.likes.map(user => user.user).includes(userId.toString()) ? <i class="fa-regular fa-thumbs-down"></i> : <i class="fa-regular fa-thumbs-up"></i> }
+                {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i> : <i className="fa-regular fa-thumbs-up"></i> }
             </button>
             <br/>
             <p className='likesNum' >{post.likes.length}</p>

@@ -57,12 +57,14 @@ function NavBar() {
     
     return (
         <>
-        <div id="navbarOuter">
-            <NavLink exact to="/" id="title">
-                <img src={logo} alt="logo" id="logo"></img>
-            </NavLink>
-    
-            {navbar}
+        <div id="outernavbarouter">
+            <div id="navbarOuter">
+                <NavLink exact to="/" id="title">
+                    <img src={logo} alt="logo" id="logo"></img>
+                </NavLink>
+        
+                {navbar}
+            </div>
         </div>
         </>
     )
