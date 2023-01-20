@@ -79,12 +79,14 @@ function CreatePost() {
                <input
                   value= {reciepeName}
                   placeholder="Reciepe Name"
-                  onChange={(e) => setReciepeName(e.target.value)} />
+                  onChange={(e) => setReciepeName(e.target.value)} 
+                  className="recipeInput"/>
                 
                 <input
                   value= {price}
                   placeholder="Price"
-                  onChange={(e) => setPrice(e.target.value)} />
+                  onChange={(e) => setPrice(e.target.value)} 
+                  className="recipeInput"/>
               
               
               <input type='submit'
