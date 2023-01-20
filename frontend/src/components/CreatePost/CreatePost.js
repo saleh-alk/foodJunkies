@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { composePost } from '../../store/post';
+import './CreatePost.css';
 
 function CreatePost() {
 
@@ -48,25 +49,30 @@ function CreatePost() {
   return (
     <div>
     
-        <form onSubmit={handleSubmit}>
-            <input
+        <form onSubmit={handleSubmit} className="form">
+            <textarea
             value= {body}
             placeholder="Body"
-            onChange={(e) => setBody(e.target.value)} />
+            onChange={(e) => setBody(e.target.value)} 
+            rows="5" 
+            cols="33"
+            className="textinput"/>
 
-              <label>
-                  Images to Upload
+              <label className="entireUpload">
+                  Images to Upload &nbsp;
                   <input
                       type="file"
                       accept=".jpg, .jpeg, .png"
                       multiple
                       onChange={updateFiles}
+                      className="photoUpload"
                       />
               </label>
 
               <input type='submit'
                     value="Post"
                     disabled={!body}
+                    className="submitButton"
                 />
         
         </form>

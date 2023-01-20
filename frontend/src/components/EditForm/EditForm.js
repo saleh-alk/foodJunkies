@@ -10,7 +10,8 @@ function EditForm() {
     const author = useSelector(state => state.session.user)
     const [images, setImages] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
   
    
 
@@ -36,7 +37,6 @@ function EditForm() {
 
     const handleSubmit = e => {
         e.preventDefault();
-       
         dispatch(updatePost(body, images, postId)); //
         setImages([]);                        
         setImageUrls([]);                    
@@ -49,25 +49,30 @@ function EditForm() {
   return (
     <div>
     
-        <form onSubmit={handleSubmit}>
-            <input
+        <form onSubmit={handleSubmit} className="form">
+            <textarea
             value= {body}
             placeholder="Body"
-            onChange={(e) => setBody(e.target.value)} />
+            onChange={(e) => setBody(e.target.value)} 
+            rows="5" 
+            cols="33"
+            className="textinput"/>
 
-              <label>
-                  Images to Upload
+              <label className="entireUpload">
+                  Images to Upload &nbsp;
                   <input
                       type="file"
                       accept=".jpg, .jpeg, .png"
                       multiple
                       onChange={updateFiles}
+                      className="photoUpload"
                       />
               </label>
 
               <input type='submit'
                     value="Post"
                     disabled={!body}
+                    className="submitButton"
                 />
         
         </form>

@@ -5,7 +5,7 @@ import { deletePost} from '../../store/post';
 import { NavLink } from "react-router-dom";
 
 
-const PostIndexItem = ({ post, key, updateSidebarContent }) => {
+const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 const currentUser = useSelector(state => state.session.user);
 const dispatch = useDispatch();
 
@@ -16,15 +16,16 @@ const dispatch = useDispatch();
 
     const handleClick = (post) => {
         
-        dispatch(deletePost(post._id, key))
+        dispatch(deletePost(post._id, key1))
     }
-
     const editDeleteButton = (post) => {
         if (currentUser._id === post.author._id){
             return(
                 <>
+                <div>
                     <NavLink to ={{pathname: `/${post._id}/edit`}}><button className="EditDeleteButton">Edit</button></NavLink>
                     <button onClick={()=> handleClick(post)} className="EditDeleteButton">Delete</button>
+                </div>
                 </>
             )
         }
@@ -36,13 +37,13 @@ const dispatch = useDispatch();
         <li className='post-container'>
             <div className='post-main-content'>
 
+                <div id="dateButtons">
                 <span className='post-info-span'>
-                    {console.log(post)}
-                  
                     <Link to={`/profile/${post?.author._id}`} id="profileLink">{post.author.username}</Link> 
                     - {convertDate(post.createdAt)}</span>
 
                 {editDeleteButton(post)}
+                </div>
                 
                 {/* img goes here */}
                 <p className='post-body-text'>{post.body}</p>

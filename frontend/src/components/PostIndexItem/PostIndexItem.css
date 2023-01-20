@@ -13,8 +13,9 @@
     padding: 10px;
 }
 
-.post-info-span {
-   
+#dateButtons {
+    display: flex;
+   justify-content: space-between;
 }
 
 .post-body-text {
@@ -57,3 +58,18 @@
     background-color: #F5A563;
 }
 
+.EditDeleteButton{
+    background-color: #F5CDAC;
+    color: #ba3b0a;
+    padding: 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border:#ba3b0a;
+    border: 1px solid;
+    border-color: #F57114;
+    border-radius: 5px;
+}
+
+.EditDeleteButton:hover{
+    background-color: #F5A563;
+}

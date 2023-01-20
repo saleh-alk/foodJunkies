@@ -47,7 +47,34 @@ export const deletePost = (postId, key) => async (dispatch) => {
 export const updatePost = (body, images, postId) => async (dispatch) => {
     const formData = new FormData();
     formData.append("body", body);
+    
     Array.from(images).forEach(image => formData.append("images", image));
+
+    console.log("1st log");
+    
+   console.log(body);
+   console.log(postId);
+    const res = await jwtFetch(`/api/post/${postId}`, {
+        method: 'PATCH',
+        body: formData
+    });
+ 
+        if(res.ok){
+            console.log("works")
+        } else{
+            console.log("not working")
+        }
+    
+        
+        const post = await res.json();
+        console.log(post)
+        dispatch(receiveNewPost(post));
+    // } catch(err){
+    //     const resBody = await err.json();
+    //     if (resBody.statusCode === 400) {
+    //         return dispatch(receiveErrors(resBody.errors));
+    //     }
+    // }
     
     // const response = await jwtFetch(`/api/post/${postId}`, {
     //     method: "PATCH",
@@ -60,23 +87,6 @@ export const updatePost = (body, images, postId) => async (dispatch) => {
     //     dispatch(receiveNewPost(data));
     // }
     
-    try{
-        const res = await jwtFetch(`/api/post/${postId}`, {
-            method: 'PATCH',
-            body: formData
-        });
-        const post = await res.json();
-       
-        dispatch(receiveNewPost(post));
-        
-    } catch(err){
-        const resBody = await err.json();
-        if (resBody.statusCode === 400) {
-            return dispatch(receiveErrors(resBody.errors));
-        }
-        console.log("hi")
-    }
-
 }
 
 
