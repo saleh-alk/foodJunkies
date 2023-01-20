@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     const posts = await Post.find()
       // .populate("author", "_id, body")
       // .populate("author", "_id username")
-      .populate("author", "_id username profileImageUrl")
+      .populate("author", "_id username profileImageUrl ")
       .sort({ createdAt: -1 });
     return res.json(posts);
     }
@@ -87,9 +87,11 @@ router.post('/', multipleMulterUpload("images"), requireUser, validatePostInput,
 
         body: req.body.body,
         imageUrls,
+        reciepeName: req.body.reciepeName,
+        price: req.body.price,
         author: req.user._id
       });
-
+    
       let post = await newPost.save();
 
       // post = await post.populate('author', '_id, username');
