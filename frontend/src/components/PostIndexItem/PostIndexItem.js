@@ -5,10 +5,6 @@ import { deletePost} from '../../store/post';
 import { NavLink } from "react-router-dom";
 
 
-
-
-
-
 import {ShoppingCartOutlined} from "@ant-design/icons"
 import _ from "lodash"
 
@@ -26,12 +22,10 @@ import { useEffect } from 'react';
 
 
 const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
-const currentUser = useSelector(state => state.session.user);
-const dispatch = useDispatch();
 
-
+    const currentUser = useSelector(state => state.session.user);
+    const dispatch = useDispatch();
     const userId = useSelector(state => state.session.user._id)
-
     const history = useHistory()
     
     
@@ -113,7 +107,7 @@ const dispatch = useDispatch();
 
 
             <button onClick={e => history.push(`review/new/${post._id}`)}>Review</button>
-            <button onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
+            
 
             <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
 
