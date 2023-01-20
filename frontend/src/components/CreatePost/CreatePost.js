@@ -54,7 +54,7 @@ function CreatePost() {
     
 
   return (
-    <div>
+    <div id="outer">
     
         <form onSubmit={handleSubmit} className="form">
             <textarea

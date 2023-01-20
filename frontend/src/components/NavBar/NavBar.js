@@ -12,7 +12,7 @@ function NavBar() {
     const {cart} = useSelector(state => ({...state}))
     const dispatch = useDispatch()
 
-    const currentUserId = useSelector(state=> state.session.user._id)
+    const currentUserId = useSelector(state=> state.session.user?._id)
 
     const logoutUser = (e) => {
         e.preventDefault()

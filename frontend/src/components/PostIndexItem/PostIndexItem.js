@@ -1,19 +1,9 @@
 import './PostIndexItem.css';
-
-
 import { deletePost} from '../../store/post';
 import { NavLink } from "react-router-dom";
-
-
-
-
-
-
 import {ShoppingCartOutlined} from "@ant-design/icons"
 import _ from "lodash"
-
 import {Badge} from "antd"
-
 
 
 
@@ -21,8 +11,6 @@ import { Link, useHistory } from 'react-router-dom';
 import { addLike, removeLike } from '../../store/post';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-
-
 
 
 const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
