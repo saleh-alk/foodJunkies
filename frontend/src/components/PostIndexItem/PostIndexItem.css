@@ -170,10 +170,11 @@
     text-decoration: underline;
     position: relative;
     top: -35px;
+}
 
-.price-Addtocart {
+/* .price-Addtocart {
     display: flex;
     justify-content: space-between;
     padding: 5px;
 
-}
+} */
