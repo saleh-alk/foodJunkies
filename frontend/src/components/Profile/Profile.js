@@ -3,23 +3,30 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchUserPosts } from '../../store/post'
 import { fetchUserProfile, getProfile } from '../../store/profile'
-// import { getUserReviews } from '../../store/review';
+import { fetchUsersReview, getUserReviews } from '../../store/review';
 import ProfilePostIndex from '../Profile/ProfilePostIndex';
 import PostIndexItem from '../PostIndexItem/PostIndexItem';
 import './Profile.css';
+import ReviewIndexItem from '../ReviewIndexItem/ReviewIndexItem'
+
+
 
 function Profile() {
     const dispatch = useDispatch()
     const { userId } = useParams()
     let currentProfileUser = useSelector(state => state?.profile.profile);
     const posts = Object.values(useSelector(state => state?.post));
-    // const reviews = Object.values(useSelector(state => state?.reviews));
+    const reviews = Object.values(useSelector(state => state?.review))
     const [contentState,setContentState] = useState('posts');
+
+    console.log(reviews)
+
+    
     
     useEffect(()=> {
         dispatch(fetchUserProfile(userId));
         dispatch(fetchUserPosts(userId));
-        // dispatch(getUserReviews(userId));
+        dispatch(fetchUsersReview(userId));
     }, [])
 
     let profileContent;
@@ -33,13 +40,14 @@ function Profile() {
             </div>
         )
     } 
-    // else if (contentState === 'reviews') {
-    //     profileContent = (
-    //         <div>
-    //             <h1 id="ProfilePostsTitle">{reviews ? "Reviews:" : "This user does not have any reviews."}</h1>
-    //         </div>
-    //     )
-    // } 
+    else if (contentState === 'reviews') {
+        profileContent = (
+            <div>
+                <h1 id="ProfilePostsTitle">{reviews ? "Reviews:" : "This user does not have any reviews."}</h1>
+                {reviews?.map((review, i) => <ReviewIndexItem key={i} review={review} />)}
+            </div>
+        )
+    } 
     else {
         profileContent = (
             <div>
