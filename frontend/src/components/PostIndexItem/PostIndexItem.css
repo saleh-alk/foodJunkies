@@ -171,6 +171,8 @@
     position: relative;
     top: -35px;
 
+}
+
 .price-Addtocart {
     display: flex;
     justify-content: space-between;

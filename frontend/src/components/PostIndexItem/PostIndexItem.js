@@ -82,7 +82,7 @@ const dispatch = useDispatch();
             })
         }
     }
-//
+
 
         let p = post.price
 
@@ -93,11 +93,9 @@ const dispatch = useDispatch();
 
                 <span className='post-info-span'>
                     <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> - {convertDate(post.createdAt)}</span>
-                    <br/>
+                    
                 <p className='post-body-text'>{post.body}
-                    <br/>
-                    <br/>
-                    <br/>
+               
                 </p>
                 <img className='images' src={post.imageUrls[0]}></img>
 
@@ -111,11 +109,11 @@ const dispatch = useDispatch();
             <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
                 Toggle Sidebar
             </div>
-    {/* // */}
+   
             <a onClick={handleAddToCart} className='Add-to-cart'>
             <ShoppingCartOutlined className='Add-to-cart1'/>Add to Cart
             </a>
-    {/* // */}
+    
 
 
         </li>
