@@ -11,6 +11,7 @@ function CreatePost() {
     const [imageUrls, setImageUrls] = useState([]);
     //
     const [reciepeName, setReciepeName] = useState();
+    const [price, setPrice] = useState();
     //
     const dispatch = useDispatch()
 
@@ -33,12 +34,12 @@ function CreatePost() {
         else setImageUrls([]);
     }
 
-
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(composePost(body, images)); //
+        dispatch(composePost(body, images, reciepeName, price)); //
         //
         setReciepeName('')
+        setPrice('')
         //
         setImages([]);                        
         setImageUrls([]);                    
@@ -61,6 +62,10 @@ function CreatePost() {
             value= {reciepeName}
             placeholder="Reciepe Name"
             onChange={(e) => setReciepeName(e.target.value)} />
+         <input
+            value= {price}
+            placeholder="Price"
+            onChange={(e) => setPrice(e.target.value)} />
         {/*  */}
               <label>
                   Images to Upload

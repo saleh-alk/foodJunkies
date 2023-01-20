@@ -17,7 +17,7 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
     }
 //
     const {cart} = useSelector((state) => ({...state}));
-    console.log(cart)
+    // console.log(cart)
     const dispatch = useDispatch();
 
     const handleAddToCart = () => {
@@ -40,7 +40,7 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
         }
     }
 //
-
+        let p = post.price
     return (
         <li className='post-container'>
             <div className='post-main-content'>
@@ -48,19 +48,28 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
                 <span className='post-info-span'>
                     <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> 
                     - {convertDate(post.createdAt)}</span>
-                {/* img goes here */}
+                {/* image goes here */}
+                {/*  */}
+                {/*  */}
+                <p>Reciepe Name: {post.reciepeName}</p>
                 <p className='post-body-text'>{post.body}</p>
+                
+
 
                 
             </div>
             <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
                 Toggle Sidebar
             </div>
-    {/* // */}
-            <a onClick={handleAddToCart} className='Add-to-cart'>
-            <ShoppingCartOutlined className='Add-to-cart1'/>Add to Cart
-            </a>
-    {/* // */}
+
+            <div className='price-Addtocart'>
+                <p>price: {p === "undefined" ? "N/A" : `${post.price}`}</p>
+
+                {post.price === "undefined" ? "": <a onClick={handleAddToCart} className='Add-to-cart'>
+                <ShoppingCartOutlined className='Add-to-cart1'/>Add to Cart</a>}
+            </div>
+            
+   
             
         </li>
     )

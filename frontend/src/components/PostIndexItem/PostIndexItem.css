@@ -67,3 +67,9 @@
     cursor: pointer;
     /* color: black */
 }
+
+.price-Addtocart {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}

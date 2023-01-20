@@ -8,10 +8,15 @@ author: {
 },
 reciepeName: {
     type: String,
+    required: false
 },
 body: {
     type: String,
     required: true
+},
+price: {
+    type: String,
+    required: false
 },
 imageUrls: {
     type: [String],
