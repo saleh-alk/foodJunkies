@@ -49,7 +49,7 @@ function Profile() {
     }
 
     return (
-    <div>
+    <div id="outer">
         <h1 id="ProfileUsername">{currentProfileUser?.username}</h1>
         <div id='user-button-group'>
             <div id='user-button-group-button-left' className='user-button-group-button' onClick={()=>setContentState('posts')}>Posts</div>

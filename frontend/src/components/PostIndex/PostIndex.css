@@ -7,6 +7,9 @@
     width: 70%;
 }
 
+#post-item-list{
+    margin-top: 110px;
+}
 #post-index-sidebar-active {
     width: 300px;
     padding-left: 20px;

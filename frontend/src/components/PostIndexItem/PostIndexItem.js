@@ -1,19 +1,9 @@
 import './PostIndexItem.css';
-
-
 import { deletePost} from '../../store/post';
 import { NavLink } from "react-router-dom";
-
-
-
-
-
-
 import {ShoppingCartOutlined} from "@ant-design/icons"
 import _ from "lodash"
-
 import {Badge} from "antd"
-
 
 
 
@@ -21,8 +11,6 @@ import { Link, useHistory } from 'react-router-dom';
 import { addLike, removeLike } from '../../store/post';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-
-
 
 
 const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
@@ -47,6 +35,7 @@ const dispatch = useDispatch();
         
         dispatch(deletePost(post._id, key1))
     }
+
     const editDeleteButton = (post) => {
         if (currentUser._id === post.author._id){
             return(
@@ -87,7 +76,7 @@ const dispatch = useDispatch();
             })
         }
     }
-//
+
 
 
         let p = post.price
@@ -97,14 +86,16 @@ const dispatch = useDispatch();
         <li className='post-container'>
             <div className='post-main-content'>
 
-
-                <span className='post-info-span'>
-                    <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> - {convertDate(post.createdAt)}</span>
-                    <br/>
+                <div id="titleandEdit">
+                    <span className='post-info-span'>
+                        <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> - {convertDate(post.createdAt)}
+                    </span>
+                
+                    {editDeleteButton(post)}
+                </div>
+                
                 <p className='post-body-text'>{post.body}
-                    <br/>
-                    <br/>
-                    <br/>
+
                 </p>
                 <img className='images' src={post.imageUrls[0]}></img>
 
@@ -112,23 +103,29 @@ const dispatch = useDispatch();
             </div>
 
 
-            <button onClick={e => history.push(`review/new/${post._id}`)}>Review</button>
-            <button onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
+            <div id="thumbAndText">
+                
+                <button onClick={e => history.push(`review/new/${post._id}`)}>Review</button>
+                <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
+                    {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i> : <i className="fa-regular fa-thumbs-up"></i> }
+                </button>
+           
 
-            <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
+                <div id="likesNumandText">
+                    <p className='likesNum' >{post.likes.length} </p>
+                    <p>Likes</p>
+                </div>
 
-                {post.likes.map(user => user.user).includes(userId.toString()) ? <i class="fa-regular fa-thumbs-down"></i> : <i class="fa-regular fa-thumbs-up"></i> }
-            </button>
-            <br/>
-            <p className='likesNum' >{post.likes.length}</p>
+            </div>
+
             <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
                 Toggle Sidebar
             </div>
-    {/* // */}
+   
             <a onClick={handleAddToCart} className='Add-to-cart'>
             <ShoppingCartOutlined className='Add-to-cart1'/>Add to Cart
             </a>
-    {/* // */}
+    
 
 
         </li>

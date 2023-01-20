@@ -2,12 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import './cart.css';
 
 
 const Cart = () => {
     const {cart} = useSelector((state)=> ({...state}))
     return (
-        <>
+            <div id ="outer">
         <div>
             <h1>Cart</h1>
         </div>
@@ -22,7 +23,7 @@ const Cart = () => {
             ))}
 
             <button disabled={!cart.length}>Proceed to Checkout</button>
-        </>
+        </div>
     )
 }
 
