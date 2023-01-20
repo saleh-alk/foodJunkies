@@ -1,13 +1,5 @@
 import { Switch } from 'react-router-dom'
-
-
-import { AuthRoute, ProtectedRoute } from './components/Routes/routes';
-
-
-
-
-
-
+import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import PostIndex from './components/PostIndex/PostIndex';
 import MainPage from './components/MainPage/MainPage'
 import LoginForm from './components/SessionForms/LoginForm'
@@ -26,14 +18,12 @@ import { useDispatch } from 'react-redux';
 import Cart from './components/Cart/Cartitem';
 import Checkout from './components/Cart/Checkout';
 
-
-
 function App() {
 
   const [loaded, setLoaded] = useState(false)
 
   const dispatch = useDispatch();
-   
+
 
   useEffect(() => {
     dispatch(fetchCurrentUser()).then(() => setLoaded(true))
@@ -55,7 +45,11 @@ function App() {
       <ProtectedRoute exact path='/:postId/edit' component={EditForm} />
       <ProtectedRoute exact path="/profile/:userId" component={Profile} />
       <ProtectedRoute exact path='/cart' component={Cart} />
+<<<<<<< HEAD
+
+=======
       <ProtectedRoute exact path='/checkout' component={Checkout} />
+>>>>>>> main
 
     </Switch>
     </>

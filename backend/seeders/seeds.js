@@ -22,6 +22,16 @@ users.push(
   })
 )
 
+<<<<<<< HEAD:backend/seeders/seeds.js
+// for (let i = 1; i < NUM_SEED_USERS; i++) {
+//   const firstName = faker.name.firstName();
+//   const lastName = faker.name.lastName();
+//   users.push(
+//     new User ({
+//       username: faker.internet.userName(firstName, lastName),
+//       email: faker.internet.email(firstName, lastName),
+//       hashedPassword: bcrypt.hashSync(faker.internet.password(), 10),
+=======
 for (let i = 1; i < NUM_SEED_USERS; i++) {
   const firstName = faker.name.firstName();
   const lastName = faker.name.lastName();
@@ -31,22 +41,14 @@ for (let i = 1; i < NUM_SEED_USERS; i++) {
       email: faker.internet.email(firstName, lastName),
       hashedPassword: bcrypt.hashSync(faker.internet.password(), 10),
 
+>>>>>>> main:backend/seeders/seed.js
 
-    })
-  )
-}
+
+//     })
+//   )
+// }
 
 // Create posts
-const posts = [];
-
-for (let i = 0; i < NUM_SEED_POSTS; i++) {
-  posts.push(
-    new Post ({
-      body: faker.hacker.phrase(),
-      author: users[Math.floor(Math.random() * NUM_SEED_USERS)]._id
-    })
-  )
-}
 
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -63,7 +65,7 @@ mongoose
     User.collection.drop()
                    .then(() => Post.collection.drop())
                    .then(() => User.insertMany(users))
-                   .then(() => Post.insertMany(posts))
+                  //  .then(() => Post.insertMany(posts))
                    .then(() => {
                      mongoose.disconnect();
                    })
