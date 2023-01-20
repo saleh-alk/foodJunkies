@@ -4,7 +4,20 @@
 }
 
 .button{
-    height: 20px;
+    background-color: #F5CDAC;
+    color: #ba3b0a;
+    padding: 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border:#ba3b0a;
+    border: 1px solid;
+    border-color: #F57114;
+    border-radius: 5px;
+    margin-left: 70%;
+}
+
+.button:hover{
+    background-color: #F5A563;
 }
 
 .cart1{
@@ -12,8 +25,9 @@
     flex-direction: column;
    
     font-size: 40px;
-    margin-top: 30px;
+    /* margin-top: 100px; */
     padding: 20px;
+    padding-top: 100px;
 }
 
 .cart3{
