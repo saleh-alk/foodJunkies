@@ -90,10 +90,12 @@
 .Add-to-cart{
     cursor: pointer;
     /* color: white */
-
+    
 }
 
 .Add-to-cart1{
+    margin-top: 10px;
+    margin-left: 10px;
     cursor: pointer;
     /* color: black */
 
@@ -105,40 +107,30 @@
 }
 
 .likesButton {
-    padding: 0;
+    font-size: 44px;
+    padding-left: 25px;
     border: none;
     background: none;
     box-shadow: none;
+    color: #ba3b09
   }
 
-  
-  @media (min-width: 768px) {
-    .button-65 {
-      padding: 14px 22px;
-      width: 176px;
-    }
-    .likesButton{
-        background-color: #ffbe79;
-        /* box-shadow: 0 2px 4px rgba(255, 26, 26, 0.1), 0 8px 16px rgba(255, 0, 0, 0.1); */
-        box-shadow: 4px 4px 10px .2px #BD3101;
-        border-radius: 10px;
-        font-size: 17px;
-        line-height: 48px;
-        width: 60px;
-        padding: 0 16px;
-        position: relative;
-        text-align: center;
-        margin-left: 25px;
-        margin-bottom: 15px;
-    }
-}
+  .likesButton:hover{
+    color:#e8772f
+  }
+
+  .likesButton:checked{
+    color:red
+  }
+
+
 
 .likesNum{
     margin-left: 115px;
     width: 50px;
     text-decoration: underline;
-    position: relative;
-    top: -35px;
+    font-size: 25px;
+   
 
 }
 
@@ -147,4 +139,16 @@
     justify-content: space-between;
     padding: 5px;
 
+}
+
+#likesNumandText{
+    display: flex;
+    justify-content: left;
+   
+}
+
+#thumbAndText{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
 }
