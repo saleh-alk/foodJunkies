@@ -17,7 +17,7 @@ const emptyCart = () => {
 }
 
     return (
-        <div className="checkout_modal">
+        <div >
             <i className="fa-solid fa-xmark" onClick={emptyCart}></i>
             <div className="checkout_modal_contents">
                 <br /><br />

@@ -57,14 +57,17 @@ const CartInCheckout = ({ p }) => {
     <>
       <img className="images" src={p.post.imageUrls[0]}></img>
       <h1>{p.post.reciepeName.toUpperCase()}</h1>
-      <p>
+      <p>Price: ${p.post.price}</p>
+      {/* <p>
         {p.post.price} x {p.quantity} = {p.post.price * p.quantity}
-        <input
+        </p> */}
+        <p>Quantity:<input
           type="number"
           value={p.quantity}
           onChange={handleQuantityChange}
-        />
-      </p>
+        /></p>
+        
+     
       <p><CloseOutlined onClick={handleRemove}/></p>
     </>
   );
