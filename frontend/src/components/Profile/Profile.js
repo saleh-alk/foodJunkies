@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchUserPosts } from '../../store/post'
 import { fetchUserProfile, getProfile } from '../../store/profile'
-import { getUserReviews } from '../../store/review';
+// import { getUserReviews } from '../../store/review';
 import ProfilePostIndex from '../Profile/ProfilePostIndex';
 import PostIndexItem from '../PostIndexItem/PostIndexItem';
 import './Profile.css';
@@ -19,7 +19,7 @@ function Profile() {
     useEffect(()=> {
         dispatch(fetchUserProfile(userId));
         dispatch(fetchUserPosts(userId));
-        dispatch(getUserReviews(userId));
+        // dispatch(getUserReviews(userId));
     }, [])
 
     let profileContent;

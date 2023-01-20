@@ -65,9 +65,6 @@ const dispatch = useDispatch();
 
 
     // console.log(cart)
-
-    const dispatch = useDispatch();
-
     const handleAddToCart = () => {
         let cart = []
         if (typeof window !== 'undefined') {

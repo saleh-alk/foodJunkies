@@ -205,7 +205,7 @@ const postReducer = (state = initialState, action) => {
             return newState;
         case UPDATE_POST:
         case RECEIVE_NEW_POST:
-            return {...newState, [newState.length+1]: {...action.post}
+            return {...newState, [newState.length+1]: {...action.post}}
         case UPDATE_LIKES:
             return {
                 ...state,
@@ -213,6 +213,7 @@ const postReducer = (state = initialState, action) => {
                  }
         default:
             return state
+                
     }
 }
 
