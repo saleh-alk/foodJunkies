@@ -35,6 +35,19 @@ if (!isProduction) {
     app.use(cors());
 }
 
+//setup csrf token
+app.use(csurf({
+  cookie: {
+      secure: isProduction,
+      sameSite: isProduction && "Lax",
+      httpOnly: true
+  }
+}))
+
+app.use('/api/users', usersRouter);
+app.use('/api/post', postsRouter)
+app.use('/api/csrf', csrfRouter)
+app.use("/api/reviews", reviewsRouter);
 
 if (isProduction) {
     const path = require('path');
@@ -56,22 +69,7 @@ if (isProduction) {
         path.resolve(__dirname, '../frontend', 'build', 'index.html')
       );
     });
-  }
-
-//setup csrf token
-app.use(csurf({
-    cookie: {
-        secure: isProduction,
-        sameSite: isProduction && "Lax",
-        httpOnly: true
-    }
-}))
-
-
-app.use('/api/users', usersRouter);
-app.use('/api/post', postsRouter)
-app.use('/api/csrf', csrfRouter)
-app.use("/api/reviews", reviewsRouter);
+}
 
 app.use((req, res, next) => {
     const err = new Error("not found")
