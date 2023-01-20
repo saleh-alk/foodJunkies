@@ -3,6 +3,7 @@ import './PostIndexItem.css';
 
 
 
+
 import {ShoppingCartOutlined} from "@ant-design/icons"
 import _ from "lodash"
 
@@ -10,6 +11,7 @@ import {Badge} from "antd"
 
 
     
+
 
 
 import { Link, useHistory } from 'react-router-dom';
@@ -27,15 +29,14 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
     const userId = useSelector(state => state.session.user._id)
     
     
-   
-
 
     const convertDate = (date) => {
         const d = new Date(date);
         return d.toDateString();
     }
-//
+
     const {cart} = useSelector((state) => ({...state}));
+
 
     // console.log(cart)
 
@@ -80,9 +81,17 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
 
                 
             </div>
-            <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
-                Toggle Sidebar
-            </div>
+
+            <button onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
+                {post.likes.map(user => user.user).includes(userId.toString()) ? <i class="fa-regular fa-thumbs-down"></i> : <i class="fa-regular fa-thumbs-up"></i> }
+                </button>
+            <p>{post.likes.length}</p>
+           
+            {updateSidebarContent && <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>Toggle Sidebar</div>}
+   
+            
+
+          
 
             <div className='price-Addtocart'>
                 <p>price: {p === "undefined" ? "N/A" : `$${post.price}`}</p>
