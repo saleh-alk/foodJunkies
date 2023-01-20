@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { composePost } from '../../store/post';
+// import "./"
 
 function CreatePost() {
 
