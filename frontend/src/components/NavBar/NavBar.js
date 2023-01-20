@@ -9,17 +9,16 @@ import { Badge } from 'antd';
 
 function NavBar() {
     const loggedIn = useSelector(state => !!state.session.user)
-    //
     const {cart} = useSelector(state => ({...state}))
-    
-    //
     const dispatch = useDispatch()
+
+    const currentUserId = useSelector(state=> state.session.user?._id)
 
     const logoutUser = (e) => {
         e.preventDefault()
         dispatch(logout())
     }
-{/* <i class="fa-solid fa-cart-shopping"></i> */}
+
     let navbar;
 
     if(loggedIn) {
@@ -28,7 +27,7 @@ function NavBar() {
                 <div className='links-nav'>
 
                 <Link to={'/posts'} className="rightNav"><i class="fa-solid fa-images"></i></Link>
-                <Link to={'/profile'} className="rightNav"><i class="fa-sharp fa-solid fa-user"></i></Link>
+                <Link to={`/profile/${currentUserId}`} className="rightNav"><i class="fa-sharp fa-solid fa-user"></i></Link>
                 <Link to={'posts/new'} className="rightNav"><i class="fa-solid fa-camera-retro"></i></Link>
                 {/*  */}
                 <Link to="/cart" className="rightNav">
@@ -58,12 +57,14 @@ function NavBar() {
     
     return (
         <>
-        <div id="navbarOuter">
-            <NavLink exact to="/" id="title">
-                <img src={logo} alt="logo" id="logo"></img>
-            </NavLink>
-            {/* <h1 id="title">FoodJunkies</h1> */}
-            {navbar}
+        <div id="outernavbarouter">
+            <div id="navbarOuter">
+                <NavLink exact to="/" id="title">
+                    <img src={logo} alt="logo" id="logo"></img>
+                </NavLink>
+        
+                {navbar}
+            </div>
         </div>
         </>
     )

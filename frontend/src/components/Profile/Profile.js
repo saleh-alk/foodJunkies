@@ -13,7 +13,7 @@ function Profile() {
     const { userId } = useParams()
     let currentProfileUser = useSelector(state => state?.profile.profile);
     const posts = Object.values(useSelector(state => state?.post));
-    const reviews = Object.values(useSelector(state => state?.reviews));
+    // const reviews = Object.values(useSelector(state => state?.reviews));
     const [contentState,setContentState] = useState('posts');
     
     useEffect(()=> {
@@ -32,13 +32,15 @@ function Profile() {
                 </ul>
             </div>
         )
-    } else if (contentState === 'reviews') {
-        profileContent = (
-            <div>
-                <h1 id="ProfilePostsTitle">{reviews ? "Reviews:" : "This user does not have any reviews."}</h1>
-            </div>
-        )
-    } else {
+    } 
+    // else if (contentState === 'reviews') {
+    //     profileContent = (
+    //         <div>
+    //             <h1 id="ProfilePostsTitle">{reviews ? "Reviews:" : "This user does not have any reviews."}</h1>
+    //         </div>
+    //     )
+    // } 
+    else {
         profileContent = (
             <div>
                 <h1 id="ProfilePostsTitle">Contact:</h1>
@@ -47,7 +49,7 @@ function Profile() {
     }
 
     return (
-    <div>
+    <div id="outer">
         <h1 id="ProfileUsername">{currentProfileUser?.username}</h1>
         <div id='user-button-group'>
             <div id='user-button-group-button-left' className='user-button-group-button' onClick={()=>setContentState('posts')}>Posts</div>

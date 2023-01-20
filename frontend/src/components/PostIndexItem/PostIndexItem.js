@@ -1,16 +1,9 @@
 import './PostIndexItem.css';
-
-
-
-
-
+import { deletePost} from '../../store/post';
+import { NavLink } from "react-router-dom";
 import {ShoppingCartOutlined} from "@ant-design/icons"
 import _ from "lodash"
-
 import {Badge} from "antd"
-
-
-    
 
 
 
@@ -20,28 +13,50 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 
+const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
+const currentUser = useSelector(state => state.session.user);
+const dispatch = useDispatch();
 
 
-const PostIndexItem = ({ post, updateSidebarContent }) => {
-
-
-   
     const userId = useSelector(state => state.session.user._id)
+
+    const history = useHistory()
     
     
+   
+
 
     const convertDate = (date) => {
         const d = new Date(date);
         return d.toDateString();
     }
 
+    const handleClick = (post) => {
+        
+        dispatch(deletePost(post._id, key1))
+    }
+
+    const editDeleteButton = (post) => {
+        if (currentUser._id === post.author._id){
+            return(
+                <>
+                <div>
+                    <NavLink to ={{pathname: `/${post._id}/edit`}}><button className="EditDeleteButton">Edit</button></NavLink>
+                    <button onClick={()=> handleClick(post)} className="EditDeleteButton">Delete</button>
+                </div>
+                </>
+            )
+        }
+    }
+
+   
+
+
     const {cart} = useSelector((state) => ({...state}));
 
 
+
     // console.log(cart)
-
-    const dispatch = useDispatch();
-
     const handleAddToCart = () => {
         let cart = []
         if (typeof window !== 'undefined') {
@@ -61,14 +76,19 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
             })
         }
     }
-//
+
+
 
         let p = post.price
+
+
     return (
     
         <li className='post-container'>
             <div className='post-main-content'>
 
+
+            <div id="titleandEdit">
                 <span className='post-info-span'>
                     <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> 
                     - {convertDate(post.createdAt)}</span>
@@ -77,29 +97,49 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
 
                 <p>Reciepe Name: {post.reciepeName}</p>
                 <p className='post-body-text'>{post.body}</p>
+                {editDeleteButton(post)}
+             </div>
+
+                <div id="titleandEdit">
+                    <span className='post-info-span'>
+                        <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> - {convertDate(post.createdAt)}
+                    </span>
+                
+                    {editDeleteButton(post)}
+                </div>
+
+                
+               
                 
 
 
-                
             </div>
 
-            <button onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
-                {post.likes.map(user => user.user).includes(userId.toString()) ? <i class="fa-regular fa-thumbs-down"></i> : <i class="fa-regular fa-thumbs-up"></i> }
+
+            <div id="thumbAndText">
+                
+                <button onClick={e => history.push(`review/new/${post._id}`)}>Review</button>
+                <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
+                    {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i> : <i className="fa-regular fa-thumbs-up"></i> }
                 </button>
-            <p>{post.likes.length}</p>
            
-            {updateSidebarContent && <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>Toggle Sidebar</div>}
+
+                <div id="likesNumandText">
+                    <p className='likesNum' >{post.likes.length} </p>
+                    <p>Likes</p>
+                </div>
+
+            </div>
+
+            <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
+                Toggle Sidebar
+            </div>
    
-            
+            <a onClick={handleAddToCart} className='Add-to-cart'>
+            <ShoppingCartOutlined className='Add-to-cart1'/>Add to Cart
+            </a>
+    
 
-          
-
-            <div className='price-Addtocart'>
-                <p>price: {p === "undefined" ? "N/A" : `$${post.price}`}</p>
-
-                {post.price === "undefined" ? "": <a onClick={handleAddToCart} className='Add-to-cart'>
-                <ShoppingCartOutlined className='Add-to-cart1'/>Add to Cart</a>}
-            </div> 
 
         </li>
         
