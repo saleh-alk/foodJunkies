@@ -44,6 +44,7 @@ router.get('/user/:userId', (req, res) => {
 router.post('/:postId', requireUser, validateReviewInput, async (req, res, next)=> {
     
     try {
+        console.log(req)
         const newReview = new Review({
             reviewer: req.user.id,
             post: req.params.postId,
@@ -51,8 +52,9 @@ router.post('/:postId', requireUser, validateReviewInput, async (req, res, next)
             body: req.body.body,
             rating: req.body.rating
         });
-
+        
         let review = await newReview.save();
+        
         review = await review.populate("reviewer", "_id username")
         review = await review.populate("post", "_id body")
         
