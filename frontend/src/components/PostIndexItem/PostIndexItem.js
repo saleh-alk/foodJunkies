@@ -1,23 +1,44 @@
 import './PostIndexItem.css';
-//
+
+
+
+
 import {ShoppingCartOutlined} from "@ant-design/icons"
 import _ from "lodash"
-import { useSelector, useDispatch } from 'react-redux';
+
 import {Badge} from "antd"
-//
-import { Link } from 'react-router-dom';
+
+
+    
+
+
+import { Link, useHistory } from 'react-router-dom';
+import { addLike, removeLike } from '../../store/post';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 
 
 
 const PostIndexItem = ({ post, updateSidebarContent }) => {
+
+
+   
+    const userId = useSelector(state => state.session.user._id)
     
+    
+   
+
+
     const convertDate = (date) => {
         const d = new Date(date);
         return d.toDateString();
     }
 //
     const {cart} = useSelector((state) => ({...state}));
+
     // console.log(cart)
+
     const dispatch = useDispatch();
 
     const handleAddToCart = () => {
@@ -40,6 +61,7 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
         }
     }
 //
+
         let p = post.price
     return (
         <li className='post-container'>
@@ -68,8 +90,11 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
                 {post.price === "undefined" ? "": <a onClick={handleAddToCart} className='Add-to-cart'>
                 <ShoppingCartOutlined className='Add-to-cart1'/>Add to Cart</a>}
             </div> 
+
         </li>
     )
 }
 
+
 export default PostIndexItem;
+

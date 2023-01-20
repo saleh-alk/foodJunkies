@@ -5,6 +5,7 @@ export const REMOVE_POST = 'post/REMOVE_POST';
 export const UPDATE_POST = 'post/UPDATE_POST';
 const RECEIVE_NEW_POST = "post/RECEIVE_NEW_POST"
 const RECEIVE_POST_ERRORS = "post/RECEIVE_POST_ERRORS"
+const UPDATE_LIKES = "post/UPDATE_LIKES"
 
 const recievePosts = (posts) => ({
     type: RECEIVE_POSTS,
@@ -65,6 +66,8 @@ export const composePost = (body, images, reciepeName, price) => async dispatch 
        }
    }
 }
+
+
 export const fetchUserPosts = (userId) => async (dispatch) => {
     try {
         const res = await jwtFetch(`/api/post/user/${userId}`);
@@ -80,6 +83,47 @@ export const fetchUserPosts = (userId) => async (dispatch) => {
 }
 
 
+
+export const addLike = (id) => async dispatch => {
+    try{
+        const res = await jwtFetch(`/api/post/like/${id}`,{
+            method: 'PUT'
+
+        })
+        dispatch({
+            type: UPDATE_LIKES,
+            payload: {id, likes: res.data}
+        })
+    } catch (err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            return dispatch(receiveErrors(resBody.errors));
+        }
+    }
+
+}
+
+
+export const removeLike = (id) => async dispatch => {
+    try {
+        const res = await jwtFetch(`/api/post/unlike/${id}`, {
+            method: 'PUT'
+
+        })
+        dispatch({
+            type: UPDATE_LIKES,
+            payload: { id, likes: res.data }
+        })
+    } catch (err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            return dispatch(receiveErrors(resBody.errors));
+        }
+    }
+
+}
+
+
 const initialState = {}
 const postReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -87,6 +131,11 @@ const postReducer = (state = initialState, action) => {
             return {...action.posts};
         case REMOVE_POST:
         case UPDATE_POST:
+        case UPDATE_LIKES:
+            return {
+                ...state,
+                 posts: state.posts.map((post) => post._id === action.payload.id ? {...post, likes: action.payload.likes} :post)
+                 }
         default:
             return state
     }

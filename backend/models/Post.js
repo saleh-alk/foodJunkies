@@ -22,6 +22,14 @@ imageUrls: {
     type: [String],
     required: false
   },
+  likes: [
+    {
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: "User"
+        }
+    }
+  ]
 },{
     timestamps: true
 })
