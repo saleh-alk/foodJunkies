@@ -12,7 +12,6 @@ const PostIndex = () => {
     const [sidebarContent,setSidebarContent] = useState("");
     const location = useLocation();
     const query = location.search;
-    console.log(query);
 
     useEffect(()=>{
         dispatch(fetchPosts({query}));

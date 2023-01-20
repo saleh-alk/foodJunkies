@@ -6,7 +6,7 @@ const SearchBar = () => {
 
     const handleSearch = async (e) => {
         if (e.key === 'Enter') {
-            history.push(`/posts?body=${e.target.value}`);
+            history.push(`/posts?search=${e.target.value}`);
         }
     }
 
