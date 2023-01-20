@@ -83,8 +83,22 @@ const dispatch = useDispatch();
 
 
     return (
+    
         <li className='post-container'>
             <div className='post-main-content'>
+
+
+            <div id="titleandEdit">
+                <span className='post-info-span'>
+                    <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> 
+                    - {convertDate(post.createdAt)}</span>
+                    <img className='images' src={post.imageUrls[0]}></img>
+
+
+                <p>Reciepe Name: {post.reciepeName}</p>
+                <p className='post-body-text'>{post.body}</p>
+                {editDeleteButton(post)}
+             </div>
 
                 <div id="titleandEdit">
                     <span className='post-info-span'>
@@ -93,11 +107,10 @@ const dispatch = useDispatch();
                 
                     {editDeleteButton(post)}
                 </div>
-                
-                <p className='post-body-text'>{post.body}
 
-                </p>
-                <img className='images' src={post.imageUrls[0]}></img>
+                
+               
+                
 
 
             </div>
@@ -129,6 +142,7 @@ const dispatch = useDispatch();
 
 
         </li>
+        
     )
 }
 

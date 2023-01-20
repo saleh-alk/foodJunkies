@@ -2,7 +2,11 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { composePost } from '../../store/post';
+
+// import "./"
+
 import './CreatePost.css';
+
 
 function CreatePost() {
 
