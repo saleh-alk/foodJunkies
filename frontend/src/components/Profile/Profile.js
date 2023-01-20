@@ -1,43 +1,70 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchUserPosts } from '../../store/post'
 import { fetchUserProfile, getProfile } from '../../store/profile'
+import { fetchUsersReview, getUserReviews } from '../../store/review';
 import ProfilePostIndex from '../Profile/ProfilePostIndex';
+import PostIndexItem from '../PostIndexItem/PostIndexItem';
 import './Profile.css';
+import ReviewIndexItem from '../ReviewIndexItem/ReviewIndexItem'
+
 
 
 function Profile() {
     const dispatch = useDispatch()
     const { userId } = useParams()
-    let currentProfileUser;
+    let currentProfileUser = useSelector(state => state?.profile.profile);
+    const posts = Object.values(useSelector(state => state?.post));
+    const reviews = Object.values(useSelector(state => state?.review))
+    const [contentState,setContentState] = useState('posts');
+
+    console.log(reviews)
+
+    
     
     useEffect(()=> {
         dispatch(fetchUserProfile(userId));
         dispatch(fetchUserPosts(userId));
+        dispatch(fetchUsersReview(userId));
     }, [])
-    
-    
-    currentProfileUser = useSelector(state => state?.profile.profile)
-    const posts = Object.values(useSelector(state => state?.post));
 
-    // const currentProfileUser = useSelector(getProfile(userId));
+    let profileContent;
+    if (contentState === 'posts') {
+        profileContent = (
+            <div>
+                <h1 id="ProfilePostsTitle">{posts ? "Posts:" : "This user does not have any posts."}</h1>
+                <ul>
+                    {posts?.map((post, i)=> <PostIndexItem key={i} post= {post} />)}
+                </ul>
+            </div>
+        )
+    } 
+    else if (contentState === 'reviews') {
+        profileContent = (
+            <div>
+                <h1 id="ProfilePostsTitle">{reviews ? "Reviews:" : "This user does not have any reviews."}</h1>
+                {reviews?.map((review, i) => <ReviewIndexItem key={i} review={review} />)}
+            </div>
+        )
+    } 
+    else {
+        profileContent = (
+            <div>
+                <h1 id="ProfilePostsTitle">Contact:</h1>
+            </div>
+        )
+    }
 
-  return (
-    <div>
-
+    return (
+    <div id="outer">
         <h1 id="ProfileUsername">{currentProfileUser?.username}</h1>
-
-        <div>
-            <h1 id="ProfilePostsTitle">{posts? "Posts:" : "This user does not have any posts."}</h1>
-            <ul>
-                {posts?.map((post, i)=> <ProfilePostIndex key={i} post= {post} />)}
-            </ul>
+        <div id='user-button-group'>
+            <div id='user-button-group-button-left' className='user-button-group-button' onClick={()=>setContentState('posts')}>Posts</div>
+            <div className='user-button-group-button' onClick={()=>setContentState('reviews')}>Reviews</div>
+            <div id='user-button-group-button-right' className='user-button-group-button' onClick={()=>setContentState('contact')}>Contact</div>
         </div>
-        
-    
-
-        
+        {profileContent}
     </div>
   )
 }
