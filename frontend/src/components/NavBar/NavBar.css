@@ -4,7 +4,14 @@
     align-items: center;
     background-color: #ffbe79;
     border-bottom: 2px solid #ba3b0a;
+    width: 100%;
+    z-index: 1;
+    position: fixed;
+    margin-bottom: 100px;
+    
 }
+
+
 
 .links-auth{
     /* margin-top: 28px; */

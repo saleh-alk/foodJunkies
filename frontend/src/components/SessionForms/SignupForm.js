@@ -29,6 +29,8 @@ function SignupForm() {
     
 
   return (
+    <div id="outer">
+
     <div className="outerBox">
       <form className='session-form' onSubmit={handleSubmit}>
       <div className="formTitle">Signup</div>
@@ -48,7 +50,7 @@ function SignupForm() {
             value={username}
             placeholder="Username"
             onChange={(e) => setUsername(e.target.value)}
-          />
+            />
       </label>
 
 
@@ -56,9 +58,9 @@ function SignupForm() {
       <label className="custom-field"> 
           <input
           type="password"
-            value={password}
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
+          value={password}
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
           />
       </label>
 
@@ -70,7 +72,7 @@ function SignupForm() {
             value={password2}
             placeholder="Password"
             onChange={(e) => setPassword2(e.target.value)}
-          />
+            />
         </label>
 
         <input 
@@ -80,6 +82,7 @@ function SignupForm() {
           disabled={!email || !username || !password || password !== password2}/>
 
       </form>
+    </div>
     </div>
   )
 }

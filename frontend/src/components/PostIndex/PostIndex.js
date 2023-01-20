@@ -13,6 +13,8 @@ const PostIndex = () => {
     const location = useLocation();
     const query = location.search;
 
+
+
     useEffect(()=>{
         dispatch(fetchPosts({query}));
     },[query])
@@ -26,11 +28,19 @@ const PostIndex = () => {
         if (!sidebarActive) setSideBarActive(true)
     }
 
+
+
     return (
         <div id='post-index-page'>
             <div id='post-index-container'>
                 <ul id='post-item-list'>
-                    {posts && posts.map((post,i)=><PostIndexItem key={i} post={post} updateSidebarContent={updateSidebarContent}/>)}
+
+
+
+                    {posts && posts.map((post,i)=><PostIndexItem key={i} key1={i} post={post} updateSidebarContent={updateSidebarContent}/>)}
+
+                    //{posts && posts.map((post,i)=><PostIndexItem key={i} post={post} updateSidebarContent={updateSidebarContent}/>)}
+                   
                 </ul>
             </div>
             <div id={sidebarActive ? 'post-index-sidebar-active' : 'post-index-sidebar'}>

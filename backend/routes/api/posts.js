@@ -12,6 +12,7 @@ const { multipleFilesUpload, multipleMulterUpload } = require("../../awsS3");
 
 router.get('/', async (req, res) => {
     try {
+
       let posts;
       if (Object.keys(req.query).length === 0) {
         posts = await Post.find()
@@ -24,18 +25,26 @@ router.get('/', async (req, res) => {
       }
       return res.json(posts);
     } catch(err) {
-      return res.json([]);
+
+    //const posts = await Post.find()
+      // .populate("author", "_id, body")
+      // .populate("author", "_id username")
+      //.populate("author", "_id username profileImageUrl ")
+      //.sort({ createdAt: -1 });
+    //return res.json(posts);
     }
+    
+
+     
 });
 
-router.get('/search', async (req,res) => {
-  if (Object.keys(req.query).length === 0) console.log("empty")
-  const posts = await Post.find(req.query)
-    .populate("author", "_id username profileImageUrl")
-  return res.json(posts);
-})
 
-router.patch('/id', requireUser, async(req, res, next)=>{
+
+
+
+
+router.patch('/:id', requireUser, async(req, res, next)=>{
+
   try{
     const posts = await Post.findById(req.params.id)
       if (posts.post.id.toString() !== req.user.id.toString()) {
@@ -98,9 +107,11 @@ router.post('/', multipleMulterUpload("images"), requireUser, validatePostInput,
 
         body: req.body.body,
         imageUrls,
+        reciepeName: req.body.reciepeName,
+        price: req.body.price,
         author: req.user._id
       });
-
+    
       let post = await newPost.save();
 
       // post = await post.populate('author', '_id, username');

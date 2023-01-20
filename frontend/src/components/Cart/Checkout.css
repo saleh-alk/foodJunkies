@@ -1,0 +1,10 @@
+.checkout23{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 40px;
+}
+
+#xmark23{
+    margin-left: 800px;
+}

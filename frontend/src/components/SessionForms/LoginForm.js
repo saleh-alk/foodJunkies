@@ -27,6 +27,8 @@ function LoginForm () {
   }
 
   return (
+    <div id="outer">
+
     <div className="outerBox">
       <form className="session-form" onSubmit={handleSubmit}>
         <h2 className="formTitle">Sign in</h2>
@@ -61,6 +63,7 @@ function LoginForm () {
           />
       </form>
     </div>
+  </div>
   );
 }
 

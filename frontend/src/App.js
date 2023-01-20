@@ -1,33 +1,29 @@
 import { Switch } from 'react-router-dom'
-
-
-import { AuthRoute, ProtectedRoute } from './components/Routes/routes';
-
-
-
-
-
-
+import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import PostIndex from './components/PostIndex/PostIndex';
 import MainPage from './components/MainPage/MainPage'
 import LoginForm from './components/SessionForms/LoginForm'
 import SignupForm from './components/SessionForms/SignupForm'
 import CreatePost from './components/CreatePost/CreatePost';
+
+import CreateReview from './components/CreateReviews/CreateReviews';
+
+import EditForm from './components/EditForm/EditForm';
+
 import NavBar from './components/NavBar/NavBar'
 import Profile from './components/Profile/Profile';
 import { fetchCurrentUser } from './store/session';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Cart from './components/Cart/Cartitem';
-
-
+import Checkout from './components/Cart/Checkout';
 
 function App() {
 
   const [loaded, setLoaded] = useState(false)
 
   const dispatch = useDispatch();
-   
+
 
   useEffect(() => {
     dispatch(fetchCurrentUser()).then(() => setLoaded(true))
@@ -45,9 +41,13 @@ function App() {
       <ProtectedRoute exact path="/posts" component={PostIndex} />
       <ProtectedRoute exact path='/posts/new' component={CreatePost} />
 
+      <ProtectedRoute exact path='/review/new/:postId' component={CreateReview} />
+      <ProtectedRoute exact path='/:postId/edit' component={EditForm} />
       <ProtectedRoute exact path="/profile/:userId" component={Profile} />
       <ProtectedRoute exact path='/cart' component={Cart} />
-      
+
+      <ProtectedRoute exact path='/checkout' component={Checkout} />
+
 
     </Switch>
     </>
