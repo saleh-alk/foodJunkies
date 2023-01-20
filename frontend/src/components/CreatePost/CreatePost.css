@@ -3,6 +3,9 @@
     flex-direction: column;
     margin-left: 35%;
 }
+#outer{
+    padding-top: 110px;
+}
 
 .textinput{
     margin-top: 80px;

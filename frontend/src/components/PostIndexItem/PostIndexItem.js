@@ -92,21 +92,15 @@ const dispatch = useDispatch();
                 <span className='post-info-span'>
                     <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> 
                     - {convertDate(post.createdAt)}</span>
-                    <img className='images' src={post.imageUrls[0]}></img>
 
 
-                <p>Reciepe Name: {post.reciepeName}</p>
-                <p className='post-body-text'>{post.body}</p>
+                <p id ="receiptTitle">Recipe Name: {post.reciepeName}</p>
                 {editDeleteButton(post)}
              </div>
+                <p className='post-body-text'>{post.body}</p>
+                    <img className='images' src={post.imageUrls[0]}></img>
 
-                <div id="titleandEdit">
-                    <span className='post-info-span'>
-                        <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> - {convertDate(post.createdAt)}
-                    </span>
-                
-                    {editDeleteButton(post)}
-                </div>
+              
 
                 
                
@@ -117,11 +111,12 @@ const dispatch = useDispatch();
 
 
             <div id="thumbAndText">
+               
+                    <button onClick={e => history.push(`review/new/${post._id}`)} id="reviewButton">Review</button>
+                    <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
+                        {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i> : <i className="fa-regular fa-thumbs-up"></i> }
+                    </button>
                 
-                <button onClick={e => history.push(`review/new/${post._id}`)}>Review</button>
-                <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
-                    {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i> : <i className="fa-regular fa-thumbs-up"></i> }
-                </button>
            
 
                 <div id="likesNumandText">

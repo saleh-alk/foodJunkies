@@ -12,6 +12,27 @@
 .post-main-content {
     padding: 10px;
 }
+#reviewButton{
+    background-color: #F5CDAC;
+    color: #ba3b0a;
+    padding: 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border:#ba3b0a;
+    border: 1px solid;
+    border-color: #F57114;
+    border-radius: 5px;
+    display: inline-block;
+    height: 10%;
+    margin-top: 15px;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+#reviewButton:hover{
+    background-color: #F5A563;
+}
+
 
 
 #dateButtons {
@@ -85,6 +106,7 @@
     height: auto;
     width: 100%;
     margin-top: 15px;
+    
 }
 
 .Add-to-cart{
@@ -108,11 +130,16 @@
 
 .likesButton {
     font-size: 44px;
-    padding-left: 25px;
+    padding-left: 18%;
     border: none;
     background: none;
     box-shadow: none;
-    color: #ba3b09
+    color: #ba3b09;
+    margin-bottom: 13px;
+    
+  }
+  #receiptTitle{
+    font-size: 30px;
   }
 
   .likesButton:hover{
