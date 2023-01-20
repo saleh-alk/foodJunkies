@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     const posts = await Post.find()
       // .populate("author", "_id, body")
       // .populate("author", "_id username")
-      .populate("author", "_id username profileImageUrl")
+      .populate("author", "_id username profileImageUrl ")
       .sort({ createdAt: -1 });
     return res.json(posts);
     }
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.patch('/id', requireUser, async(req, res, next)=>{
+router.patch('/:id', requireUser, async(req, res, next)=>{
   try{
     const posts = await Post.findById(req.params.id)
       if (posts.post.id.toString() !== req.user.id.toString()) {
@@ -87,9 +87,11 @@ router.post('/', multipleMulterUpload("images"), requireUser, validatePostInput,
 
         body: req.body.body,
         imageUrls,
+        reciepeName: req.body.reciepeName,
+        price: req.body.price,
         author: req.user._id
       });
-
+    
       let post = await newPost.save();
 
       // post = await post.populate('author', '_id, username');

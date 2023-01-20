@@ -13,7 +13,11 @@ import MainPage from './components/MainPage/MainPage'
 import LoginForm from './components/SessionForms/LoginForm'
 import SignupForm from './components/SessionForms/SignupForm'
 import CreatePost from './components/CreatePost/CreatePost';
+
 import CreateReview from './components/CreateReviews/CreateReviews';
+
+import EditForm from './components/EditForm/EditForm';
+
 import NavBar from './components/NavBar/NavBar'
 import Profile from './components/Profile/Profile';
 import { fetchCurrentUser } from './store/session';
@@ -45,8 +49,9 @@ function App() {
 
       <ProtectedRoute exact path="/posts" component={PostIndex} />
       <ProtectedRoute exact path='/posts/new' component={CreatePost} />
-      <ProtectedRoute exact path='/review/new/:postId' component={CreateReview} />
 
+      <ProtectedRoute exact path='/review/new/:postId' component={CreateReview} />
+      <ProtectedRoute exact path='/:postId/edit' component={EditForm} />
       <ProtectedRoute exact path="/profile/:userId" component={Profile} />
       <ProtectedRoute exact path='/cart' component={Cart} />
       

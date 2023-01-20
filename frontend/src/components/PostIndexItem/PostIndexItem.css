@@ -6,14 +6,16 @@
     border-radius: 10px;
     font-family: DejaVu Sans Mono, monospace;
     box-shadow: 4px 4px 10px .2px #BD3101;
-
 }
 
 .post-main-content {
     padding: 10px;
 }
 
-.post-info-span {
+
+#dateButtons {
+    display: flex;
+   justify-content: space-between;
 
 }
 
@@ -58,21 +60,120 @@
 }
 
 
+.EditDeleteButton{
+    background-color: #F5CDAC;
+    color: #ba3b0a;
+    padding: 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border:#ba3b0a;
+    border: 1px solid;
+    border-color: #F57114;
+    border-radius: 5px;
+}
+
+.EditDeleteButton:hover{
+    background-color: #F5A563;
+}
+
+
 .images{
-    margin-left: 300px;
-    border-radius: 20px;
-    width: 550px;
-    height: 550px;
+    border-radius: 10px;
+    height: auto;
+    width: 100%;
 }
 
 .Add-to-cart{
     cursor: pointer;
     /* color: white */
-    
+
 }
 
 .Add-to-cart1{
     cursor: pointer;
     /* color: black */
+
+}
+
+.likesButton {
+    appearance: none;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    border-style: none;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-family: SFProDisplay-Bold, Helvetica, Arial, sans-serif;
+    height: 35px;
+    letter-spacing: normal;
+    line-height: 1.5;
+    overflow: hidden;
+    padding: 0 16px;
+    position: relative;
+    text-decoration: none;
+    transform: translate3d(0, 0, 0);
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    white-space: nowrap;
+  }
+
+  .likesButton:hover {
+    background-color: #ba3b0a;
+    /* box-shadow: 4px 4px 10px .2px #BD3101; */
+    box-shadow: rgba(255, 255, 255, 0.1) 0 3px 6px 0, rgba(0, 0, 0, .1) 0 0 10px 0, rgba(255, 255, 255, 0.1) 0 1px 4px -1px;
+    opacity: 1;
+    transform: translateY(0);
+    transition-duration: .35s;
+  }
+
+  .likesButton:hover:after {
+    opacity: .5;
+  }
+
+  .likesButton:active {
+    box-shadow: rgba(0, 0, 0, .1) 0 3px 6px 0, rgba(0, 0, 0, .1) 0 0 10px 0, rgba(0, 0, 0, .1) 0 1px 4px -1px;
+    transform: translateY(2px);
+    transition-duration: .35s;
+  }
+
+  .likesButton:active:after {
+    opacity: 1;
+  }
+
+  @media (min-width: 768px) {
+    .button-65 {
+      padding: 14px 22px;
+      width: 176px;
+    }
+    .likesButton{
+        background-color: #ffbe79;
+        /* box-shadow: 0 2px 4px rgba(255, 26, 26, 0.1), 0 8px 16px rgba(255, 0, 0, 0.1); */
+        box-shadow: 4px 4px 10px .2px #BD3101;
+        border-radius: 10px;
+        font-size: 17px;
+        line-height: 48px;
+        width: 60px;
+        padding: 0 16px;
+        position: relative;
+        text-align: center;
+        margin-left: 25px;
+        margin-bottom: 15px;
+    }
+}
+
+.likesNum{
+    margin-left: 115px;
+    width: 50px;
+    text-decoration: underline;
+    position: relative;
+    top: -35px;
+
+.price-Addtocart {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
 
 }

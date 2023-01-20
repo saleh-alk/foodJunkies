@@ -1,22 +1,19 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom';
-import { composePost } from '../../store/post';
-import './CreatePost.css';
+import { useParams } from 'react-router-dom';
+import { updatePost } from '../../store/post';
 
-function CreatePost() {
+function EditForm() {
 
-
+    const { postId } = useParams();
     const [body, setBody] = useState("")
     const author = useSelector(state => state.session.user)
     const [images, setImages] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
-    //
-    const [reciepeName, setReciepeName] = useState();
-    const [price, setPrice] = useState();
-    //
-    const dispatch = useDispatch()
-    const history = useHistory()
+    const dispatch = useDispatch();
+
+  
+   
 
     const updateFiles = async e => {
         const files = e.target.files;
@@ -37,17 +34,13 @@ function CreatePost() {
         else setImageUrls([]);
     }
 
+
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(composePost(body, images, reciepeName, price)); //
-        //
-        setReciepeName('')
-        setPrice('')
-        //
+        dispatch(updatePost(body, images, postId)); //
         setImages([]);                        
         setImageUrls([]);                    
         setBody('');
-        history.push('/posts')
     };
 
    
@@ -75,20 +68,7 @@ function CreatePost() {
                       className="photoUpload"
                       />
               </label>
-              
-               <input
-                  value= {reciepeName}
-                  placeholder="Reciepe Name"
-                  onChange={(e) => setReciepeName(e.target.value)} 
-                  className="recipeInput"/>
-                
-                <input
-                  value= {price}
-                  placeholder="Price"
-                  onChange={(e) => setPrice(e.target.value)} 
-                  className="recipeInput"/>
-              
-              
+
               <input type='submit'
                     value="Post"
                     disabled={!body}
@@ -103,4 +83,4 @@ function CreatePost() {
   )
 }
 
-export default CreatePost
+export default EditForm;
