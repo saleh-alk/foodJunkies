@@ -45,11 +45,9 @@ function App() {
       <ProtectedRoute exact path='/:postId/edit' component={EditForm} />
       <ProtectedRoute exact path="/profile/:userId" component={Profile} />
       <ProtectedRoute exact path='/cart' component={Cart} />
-<<<<<<< HEAD
 
-=======
       <ProtectedRoute exact path='/checkout' component={Checkout} />
->>>>>>> main
+
 
     </Switch>
     </>
