@@ -19,8 +19,7 @@ const history = useHistory();
 //import './cart.css';
 
 
-const Cart = () => {
-    const {cart} = useSelector((state)=> ({...state}))
+
     return (
             <div id ="outer">
         <div>
@@ -72,5 +71,6 @@ const Cart = () => {
     </>
   );
 };
+
 
 export default Cart;
