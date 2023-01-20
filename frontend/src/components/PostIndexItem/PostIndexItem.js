@@ -65,15 +65,16 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
 
         let p = post.price
     return (
+    
         <li className='post-container'>
             <div className='post-main-content'>
 
                 <span className='post-info-span'>
                     <Link to={`/profile/${post.author._id}`} id="profileLink">{post.author.username}</Link> 
                     - {convertDate(post.createdAt)}</span>
-                {/* image goes here */}
-                {/*  */}
-                {/*  */}
+                    <img className='images' src={post.imageUrls[0]}></img>
+
+
                 <p>Reciepe Name: {post.reciepeName}</p>
                 <p className='post-body-text'>{post.body}</p>
                 
@@ -101,6 +102,7 @@ const PostIndexItem = ({ post, updateSidebarContent }) => {
             </div> 
 
         </li>
+        
     )
 }
 

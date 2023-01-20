@@ -1,0 +1,8 @@
+.cart{
+    display: flex;
+    align-items: center;
+}
+
+.button{
+    height: 20px;
+}
