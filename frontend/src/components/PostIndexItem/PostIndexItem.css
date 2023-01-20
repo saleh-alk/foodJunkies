@@ -13,9 +13,11 @@
     padding: 10px;
 }
 
+
 #dateButtons {
     display: flex;
    justify-content: space-between;
+
 }
 
 .post-body-text {
@@ -58,6 +60,7 @@
     background-color: #F5A563;
 }
 
+
 .EditDeleteButton{
     background-color: #F5CDAC;
     color: #ba3b0a;
@@ -72,4 +75,29 @@
 
 .EditDeleteButton:hover{
     background-color: #F5A563;
+}
+
+.images{
+    margin-left: 300px;
+    border-radius: 20px;
+    width: 550px;
+    height: 550px;
+}
+
+.Add-to-cart{
+    cursor: pointer;
+    /* color: white */
+    
+}
+
+.Add-to-cart1{
+    cursor: pointer;
+    /* color: black */
+
+}
+
+.price-Addtocart {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
 }

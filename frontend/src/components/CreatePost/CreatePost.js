@@ -11,6 +11,10 @@ function CreatePost() {
     const author = useSelector(state => state.session.user)
     const [images, setImages] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
+    //
+    const [reciepeName, setReciepeName] = useState();
+    const [price, setPrice] = useState();
+    //
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -33,10 +37,13 @@ function CreatePost() {
         else setImageUrls([]);
     }
 
-
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(composePost(body, images)); //
+        dispatch(composePost(body, images, reciepeName, price)); //
+        //
+        setReciepeName('')
+        setPrice('')
+        //
         setImages([]);                        
         setImageUrls([]);                    
         setBody('');
@@ -68,7 +75,18 @@ function CreatePost() {
                       className="photoUpload"
                       />
               </label>
-
+              
+               <input
+                  value= {reciepeName}
+                  placeholder="Reciepe Name"
+                  onChange={(e) => setReciepeName(e.target.value)} />
+                
+                <input
+                  value= {price}
+                  placeholder="Price"
+                  onChange={(e) => setPrice(e.target.value)} />
+              
+              
               <input type='submit'
                     value="Post"
                     disabled={!body}
