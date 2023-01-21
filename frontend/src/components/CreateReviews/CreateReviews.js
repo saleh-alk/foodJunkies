@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { composeReview } from '../../store/review'
+import './CreateReview.css'
 
 function CreateReviews() {
 
@@ -30,8 +31,9 @@ function CreateReviews() {
 
   return (
     <>
+
         <div>Create Review</div>
-        <form onSubmit={handleClick}>
+        <form  className = "review-form" onSubmit={handleClick}>
 
 
             <input
