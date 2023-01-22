@@ -11,7 +11,7 @@ import {Badge} from "antd"
 import { Link, useHistory } from 'react-router-dom';
 import { addLike, removeLike } from '../../store/post';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
@@ -20,10 +20,13 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.user._id)
     const history = useHistory()
+    const [likeCount, setlikeCount] = useState(post.likes.length)
+    
+    
 
+    
 
-
-
+    
 
     const convertDate = (date) => {
         const d = new Date(date);
@@ -53,9 +56,9 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 
     const {cart} = useSelector((state) => ({...state}));
 
+   
     
-    
-
+  
 
     // console.log(cart)
     const handleAddToCart = () => {
@@ -78,6 +81,8 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
         }
     }
 
+        
+ 
 
 
         let p = post.price
@@ -101,13 +106,6 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
                 <p className='post-body-text'>{post.body}</p>
                     <img className='images' src={post.imageUrls[0]}></img>
 
-
-
-
-
-
-
-
             </div>
 
 
@@ -115,10 +113,22 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
             <div id="thumbAndText">
 
                     <button onClick={e => history.push(`review/new/${post._id}`)} id="reviewButton">Review</button>
-                    <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
-                        {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i> : <i className="fa-regular fa-thumbs-up"></i> }
+                    <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? (dispatch(removeLike(post._id))): (dispatch(addLike(post._id)))}>
+                        {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i>  : <i className="fa-regular fa-thumbs-up"></i> }
                     </button>
 
+                    {/* <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
+                        {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i> : <i className="fa-regular fa-thumbs-up"></i>}
+                    </button> */}
+                    
+
+                    
+
+               
+
+               
+
+                
 
 
                 <div id="likesNumandText">

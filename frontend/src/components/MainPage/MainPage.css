@@ -1,0 +1,29 @@
+.login-option{
+    padding-left: 700px;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.login-links{
+    font-size: xx-large;
+    margin-top: 50px;
+    font-family: DejaVu Sans Mono, monospace;
+    color: #ba3b0a;
+    
+}
+
+.project-title{
+
+        font-size:50px;
+        padding-top: 200px;
+        padding-left: 500px;
+        font-family: DejaVu Sans Mono, monospace;
+        color: #ba3b0a;
+
+
+}
+
+
+

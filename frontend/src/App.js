@@ -17,6 +17,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Cart from './components/Cart/Cartitem';
 import Checkout from './components/Cart/Checkout';
+import Footer from './components/Footer/Footer';
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
       <AuthRoute exact path="/signup" component={SignupForm} />
 
 
+
       <ProtectedRoute exact path="/posts" component={PostIndex} />
       <ProtectedRoute exact path='/posts/new' component={CreatePost} />
 
@@ -50,6 +52,7 @@ function App() {
 
 
     </Switch>
+    <Footer />
     </>
   );
 }

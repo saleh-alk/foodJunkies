@@ -1,0 +1,35 @@
+.footer{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 5rem;
+    background-color: #F5A563;
+}
+
+.portfolio-links{
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+    color: #ba3b0a;
+}
+
+.links-to-profile{
+    margin-top: 20px;
+    margin-left: 200px
+}
+a{
+    font-size: 20px;
+    margin-left: 5px;
+    color: #ba3b0a;
+}
+
+.footer-line{
+    height: 1px;
+    border: 0;
+    background: #ba3b0a;
+    margin-bottom: 2px;
+    
+}
+

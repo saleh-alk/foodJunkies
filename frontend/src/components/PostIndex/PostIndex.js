@@ -39,7 +39,7 @@ const PostIndex = () => {
 
                     {posts && posts.map((post,i)=><PostIndexItem key={i} key1={i} post={post} updateSidebarContent={updateSidebarContent}/>)}
 
-                    //{posts && posts.map((post,i)=><PostIndexItem key={i} post={post} updateSidebarContent={updateSidebarContent}/>)}
+                    {/* {posts && posts.map((post,i)=><PostIndexItem key={i} post={post} updateSidebarContent={updateSidebarContent}/>)} */}
                    
                 </ul>
             </div>
