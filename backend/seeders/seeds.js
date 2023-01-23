@@ -22,6 +22,15 @@ users.push(
   })
 )
 
+users.push(
+  new User({
+    username: 'demo-user',
+    email: 'demo@user.io',
+    hashedPassword: bcrypt.hashSync('password', 10),
+    profileImageUrl: DEFAULT_PROFILE_IMAGE_URL
+  })
+)
+
 
 // for (let i = 1; i < NUM_SEED_USERS; i++) {
 //   const firstName = faker.name.firstName();
