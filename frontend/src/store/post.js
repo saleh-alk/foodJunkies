@@ -220,7 +220,7 @@ const postReducer = (state = initialState, action) => {
         case UPDATE_LIKES:
             return {
                 ...state,
-                 posts: state.posts.map((post) => post._id === action.payload.id ? {...post, likes: action.payload.likes} :post)
+                //  posts: state.posts.map((post) => post._id === action.payload.id ? {...post, likes: action.payload.likes} :post)
                  }
         default:
             return state

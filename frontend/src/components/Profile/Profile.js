@@ -19,7 +19,7 @@ function Profile() {
     const reviews = Object.values(useSelector(state => state?.review))
     const [contentState,setContentState] = useState('posts');
 
-    console.log(reviews)
+    
 
     
     

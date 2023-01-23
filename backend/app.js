@@ -15,10 +15,8 @@ require('./models/Cart.js');
 
 const passport = require("passport")
 const usersRouter = require('./routes/api/users');
-
 const reviewsRouter = require("./routes/api/reviews");
 const postsRouter = require('./routes/api/posts')
-
 const csrfRouter = require("./routes/api/csrf")
 
 const app = express();

@@ -2,8 +2,12 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { fetchPosts } from '../../store/post';
+
 import PostIndexItem from '../PostIndexItem/PostIndexItem';
 import './PostIndex.css';
+
+
+
 
 const PostIndex = () => {
     const dispatch = useDispatch();
@@ -13,6 +17,9 @@ const PostIndex = () => {
     const location = useLocation();
     const query = location.search;
 
+
+
+    
 
 
     useEffect(()=>{
@@ -28,7 +35,7 @@ const PostIndex = () => {
         if (!sidebarActive) setSideBarActive(true)
     }
 
-
+    
 
     return (
         <div id='post-index-page'>

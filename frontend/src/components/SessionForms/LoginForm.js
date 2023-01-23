@@ -26,6 +26,11 @@ function LoginForm () {
     dispatch(login({ email, password })); 
   }
 
+  const handleDemo =(e) => {
+    e.preventDefault()
+    dispatch(login({email:"demo@user.io", password: "password"}))
+  }
+
   return (
     <div id="outer">
 
@@ -59,8 +64,10 @@ function LoginForm () {
           className="formButton"
           type="submit"
           value="Log In"
-          disabled={!email || !password}
+          // disabled={!email || !password}
           />
+          <button className='formButton' onClick={handleDemo}>Demo Login</button>
+
       </form>
     </div>
   </div>

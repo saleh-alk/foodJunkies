@@ -1,17 +1,20 @@
 import './PostIndexItem.css';
-import { deletePost} from '../../store/post';
+import { deletePost, fetchPosts} from '../../store/post';
 import { NavLink } from "react-router-dom";
 
 import {ShoppingCartOutlined} from "@ant-design/icons"
-import _ from "lodash"
+import _, { set } from "lodash"
 import {Badge} from "antd"
 
 
-
+import { useLocation } from 'react-router-dom';
 import { Link, useHistory } from 'react-router-dom';
 import { addLike, removeLike } from '../../store/post';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import io from 'socket.io-client'
+
+const socket = io.connect("http://localhost:5000")
 
 
 const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
@@ -21,13 +24,15 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
     const userId = useSelector(state => state.session.user._id)
     const history = useHistory()
     const [likeCount, setlikeCount] = useState(post.likes.length)
+    const location = useLocation();
+    const query = location.search;
+    const [isLiked, setIsLiked] = useState(false)
+   
+   //add websockets
     
     
-
     
-
     
-
     const convertDate = (date) => {
         const d = new Date(date);
         return d.toDateString();
@@ -52,15 +57,23 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
     }
 
 
+    const sendLike = (e) => {
+        e.preventDefault();
+        if (post.likes.map(user => user.user).includes(userId.toString())){
+            dispatch(removeLike(post._id))
+        } else {
+            dispatch(addLike(post._id))
+        }
+        return dispatch(fetchPosts({ query }))
+   
+    }
+
+   
 
 
     const {cart} = useSelector((state) => ({...state}));
 
-   
-    
-  
 
-    // console.log(cart)
     const handleAddToCart = () => {
         let cart = []
         if (typeof window !== 'undefined') {
@@ -113,20 +126,29 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
             <div id="thumbAndText">
 
                     <button onClick={e => history.push(`review/new/${post._id}`)} id="reviewButton">Review</button>
-                    <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? (dispatch(removeLike(post._id))): (dispatch(addLike(post._id)))}>
+                    {/* <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? (dispatch(removeLike(post._id))): (dispatch(addLike(post._id)))}>
                         {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i>  : <i className="fa-regular fa-thumbs-up"></i> }
-                    </button>
-
-                    {/* <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? dispatch(removeLike(post._id)) : dispatch(addLike(post._id))}>
-                        {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i> : <i className="fa-regular fa-thumbs-up"></i>}
                     </button> */}
-                    
+
+
+                <button className='likesButton' onClick={sendLike}>
+                    {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i> : <i className="fa-regular fa-thumbs-up"></i>}
+                </button>
 
                     
 
-               
 
-               
+                {/* <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? (dispatch(removeLike(post._id)))  : console.log("nothing") }>
+                     <i className="fa-regular fa-thumbs-down"></i> 
+                </button>
+
+
+                <button className='likesButton' onClick={e => !(post.likes.map(user => user.user).includes(userId.toString())) ? (dispatch(addLike(post._id))): console.log("no add")}>
+                     <i className="fa-regular fa-thumbs-up"></i>
+                </button> */}
+
+
+            
 
                 
 

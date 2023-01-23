@@ -35,14 +35,7 @@ function SignupForm() {
       <form className='session-form' onSubmit={handleSubmit}>
       <div className="formTitle">Signup</div>
 
-        <div className='errors'>{errors?.email}</div>
-        <label className="custom-field"> 
-          <input
-          value={email}
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-          />
-        </label> 
+
 
       <div className='errors'>{errors?.username}</div>
       <label className="custom-field">
@@ -52,6 +45,15 @@ function SignupForm() {
             onChange={(e) => setUsername(e.target.value)}
             />
       </label>
+
+        <div className='errors'>{errors?.email}</div>
+        <label className="custom-field">
+          <input
+            value={email}
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </label> 
 
 
       <div className='errors'>{errors?.password}</div>
