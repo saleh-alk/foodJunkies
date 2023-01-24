@@ -18,7 +18,7 @@ import { useDispatch } from 'react-redux';
 import Cart from './components/Cart/Cartitem';
 import Checkout from './components/Cart/Checkout';
 import Footer from './components/Footer/Footer';
-import Message from './components/Message/Message';
+// import Message from './components/Message/Message';
 
 function App() {
 
@@ -50,7 +50,7 @@ function App() {
       <ProtectedRoute exact path='/cart' component={Cart} />
 
       <ProtectedRoute exact path='/checkout' component={Checkout} />
-      <ProtectedRoute exact path='/Message' component={Message} />
+      {/* <ProtectedRoute exact path='/Message' component={Message} /> */}
 
 
     </Switch>

@@ -20,11 +20,11 @@ const cors = require("cors")
 
 
 var http = require('http');
-const { Server } = require("socket.io");
+// const { Server } = require("socket.io");
 
 const userSchema = require('../models/User');
 
-app.use(cors())
+// app.use(cors())
 
 /**
  * Get port from environment and store in Express.
@@ -39,21 +39,21 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
-const io = new Server (server, {
-    cors: {
-      origin: "http://localhost:3000",
-      methods: ["GET", "POST"]
-    }
-})
+// const io = new Server (server, {
+//     cors: {
+//       origin: "http://localhost:3000",
+//       methods: ["GET", "POST"]
+//     }
+// })
 
-io.on("connection", (socket)=> {
-  // console.log(`User Conneted ${socket.id} `)
+// io.on("connection", (socket)=> {
+//   // console.log(`User Conneted ${socket.id} `)
 
-  socket.on("send_message", (data) => {
-    socket.broadcast.emit("receive_message", data)
-  })
+//   socket.on("send_message", (data) => {
+//     socket.broadcast.emit("receive_message", data)
+//   })
 
-})
+// })
 
 /**
  * Listen on provided port, on all network interfaces.

@@ -12,9 +12,9 @@ import { Link, useHistory } from 'react-router-dom';
 import { addLike, removeLike } from '../../store/post';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import io from 'socket.io-client'
+// import io from 'socket.io-client'
 
-const socket = io.connect("http://localhost:5000")
+// const socket = io.connect("http://localhost:5000")
 
 
 const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
