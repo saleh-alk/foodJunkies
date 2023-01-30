@@ -25,11 +25,12 @@ const PostIndex = () => {
 
     useEffect(()=>{
         dispatch(fetchPosts({query}));
+        
     },[query])
 
     const toggleSidebar = () => {
-        fetchPostReviews()
         
+
         setSideBarActive(!sidebarActive);
     }
 

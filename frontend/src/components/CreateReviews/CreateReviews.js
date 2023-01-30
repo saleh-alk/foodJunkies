@@ -13,13 +13,13 @@ function CreateReviews() {
     const [body, setBody] = useState('')
     const [rating, setRating] = useState('')
 
-    const {postId} = useParams()
+    const {postId, userId} = useParams()
 
 
     const handleClick = (e) => {
         e.preventDefault()
 
-        dispatch(composeReview(title, body, rating, postId))
+        dispatch(composeReview(title, body, rating, postId, userId))
         setBody("")
         setRating("")
         setTitle("")

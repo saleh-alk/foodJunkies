@@ -44,7 +44,7 @@ function App() {
       <ProtectedRoute exact path="/posts" component={PostIndex} />
       <ProtectedRoute exact path='/posts/new' component={CreatePost} />
 
-      <ProtectedRoute exact path='/review/new/:postId' component={CreateReview} />
+      <ProtectedRoute exact path='/review/new/:postId/:userId' component={CreateReview} />
       <ProtectedRoute exact path='/:postId/edit' component={EditForm} />
       <ProtectedRoute exact path="/profile/:userId" component={Profile} />
       <ProtectedRoute exact path='/cart' component={Cart} />

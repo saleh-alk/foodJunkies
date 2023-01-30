@@ -51,13 +51,17 @@ router.get('/post/:postId', (req, res) => {
 
 
 
+
+
+
 //create review
-router.post('/:postId', requireUser, validateReviewInput, async (req, res, next)=> {
+router.post('/:postId/:userId', requireUser, validateReviewInput, async (req, res, next)=> {
     
     try {
+        // reviewer: req.user.id,
         
         const newReview = new Review({
-            reviewer: req.user.id,
+            reviewer: req.params.userId,
             post: req.params.postId,
             title: req.body.title,
             body: req.body.body,
