@@ -19,20 +19,20 @@ function Footer() {
 
                       <div className='links-to-profile'>
                       <h1>Rex Kho</h1>
-                          <a href="https://github.com/saleh-alk" target="_blank"><i class="fa-brands fa-github"></i></a>
-                          <a href="https://www.linkedin.com/in/saleh-alkaheli-97971815a/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                          <a href="https://github.com/RexKho" target="_blank"><i class="fa-brands fa-github"></i></a>
+                          <a href="https://www.linkedin.com/in/khorex/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                       </div>
 
 
                       <div className='links-to-profile'>
                           <h1>Nestor Vega</h1>
-                          <a href="https://github.com/saleh-alk" target="_blank"><i class="fa-brands fa-github"></i></a>
-                          <a href="https://www.linkedin.com/in/saleh-alkaheli-97971815a/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                          <a href="https://github.com/nvega23" target="_blank"><i class="fa-brands fa-github"></i></a>
+                          <a href="https://www.linkedin.com/in/nestor-vega-233b43238/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                       </div>
 
 
                       <div className='links-to-profile'>
-                          <h1>William </h1>
+                          <h1>William Weihnacht</h1>
                           <a href="https://github.com/saleh-alk" target="_blank"><i class="fa-brands fa-github"></i></a>
                           <a href="https://www.linkedin.com/in/saleh-alkaheli-97971815a/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                       </div>
