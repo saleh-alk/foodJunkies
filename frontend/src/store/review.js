@@ -61,6 +61,16 @@ export const fetchUsersReview = (userId) => async (dispatch) =>  {
 }
 
 
+export const fetchPostReviews = (postId) => async (dispatch) =>{
+    const res = await jwtFetch(`api/reviews/post/${postId}`)
+
+    if(res.ok){
+        const reviews = await res.json()
+        return dispatch(receiveNewReview(reviews))
+    }
+}
+
+
 
 const initialState = {}
 const reviewReducer = (state = initialState, action) => {

@@ -39,6 +39,17 @@ router.get('/user/:userId', (req, res) => {
 });
 
 
+router.get('/post/:postId', (req, res) => {
+    Post.findById(req.params.postId)
+        .then(post => {
+            Review.find({ post: post.id })
+                .then(reviews => {
+                    res.json(formatReviews(reviews));
+                });
+        }).catch(err => res.status(404).json({ nouserfound: 'No post found with that ID' }))
+});
+
+
 
 //create review
 router.post('/:postId', requireUser, validateReviewInput, async (req, res, next)=> {
