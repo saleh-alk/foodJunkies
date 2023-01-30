@@ -160,9 +160,9 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 
             </div>
 
-            {/* <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
+            <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
                 Toggle Sidebar
-            </div> */}
+            </div>
 
 
             {/* <a onClick={handleAddToCart} className='Add-to-cart'>
