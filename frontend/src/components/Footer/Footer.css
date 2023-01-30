@@ -11,13 +11,14 @@
 .portfolio-links{
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
     margin-left: 50px;
     color: #ba3b0a;
 }
 
 .links-to-profile{
     margin-top: 20px;
-    margin-left: 200px
+
 }
 a{
     font-size: 20px;
