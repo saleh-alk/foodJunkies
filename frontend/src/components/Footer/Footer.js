@@ -11,10 +11,11 @@ function Footer() {
             <div className='footer-line'></div> 
             <div className='stuff'>
                 <div className='portfolio-links'>
+
                     <div className='links-to-profile'>
                     <h1>Vikram Singh</h1>
-                    <a href="https://github.com/saleh-alk" target="_blank"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/saleh-alkaheli-97971815a/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/Bikram91" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/bikramjit-singh-153614140/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                     </div>
 
                       <div className='links-to-profile'>
@@ -33,8 +34,8 @@ function Footer() {
 
                       <div className='links-to-profile'>
                           <h1>William Weihnacht</h1>
-                          <a href="https://github.com/saleh-alk" target="_blank"><i class="fa-brands fa-github"></i></a>
-                          <a href="https://www.linkedin.com/in/saleh-alkaheli-97971815a/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                          <a href="https://github.com/WilliamWeihnacht" target="_blank"><i class="fa-brands fa-github"></i></a>
+                          <a href="https://www.linkedin.com/in/william-weihnacht/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                       </div>
 
                       <div className='links-to-profile'>
