@@ -26,12 +26,8 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
     const [likeCount, setlikeCount] = useState(post.likes.length)
     const location = useLocation();
     const query = location.search;
-    const [isLiked, setIsLiked] = useState(false)
-   
-   //add websockets
-    
-    
-    
+    const [isLiked, setIsLiked] = useState(post.likes.map(like => like.user).includes(userId.toString()) || true)
+    const {cart} = useSelector((state) => ({...state}));
     
     const convertDate = (date) => {
         const d = new Date(date);
@@ -39,7 +35,6 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
     }
 
     const handleClick = (post) => {
-
         dispatch(deletePost(post._id, key1))
     }
 
@@ -56,22 +51,18 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
         }
     }
 
-
     const sendLike = (e) => {
         e.preventDefault();
-        if (post.likes.map(user => user.user).includes(userId.toString())){
+        // if (post.likes.map(like => like.user).includes(userId.toString())){
+        if (isLiked) {
+            setIsLiked(false)
             dispatch(removeLike(post._id))
         } else {
+            setIsLiked(true)
             dispatch(addLike(post._id))
         }
-        return dispatch(fetchPosts({ query }))
-   
+        dispatch(fetchPosts({ query }))
     }
-
-   
-
-
-    const {cart} = useSelector((state) => ({...state}));
 
 
     const handleAddToCart = () => {
