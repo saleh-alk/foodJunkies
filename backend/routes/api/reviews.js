@@ -15,6 +15,7 @@ function formatReview(review) {
         rating: review.rating,
         reviewer: review.reviewer._id,
         post: review.post,
+        body: review.body,
         username: review.reviewer.username,
         id: review.id
     }
@@ -39,14 +40,29 @@ router.get('/user/:userId', (req, res) => {
 });
 
 
+router.get('/post/:postId', (req, res) => {
+    Post.findById(req.params.postId)
+        .then(post => {
+            Review.find({ post: post.id })
+                .then(reviews => {
+                    res.json(formatReviews(reviews));
+                });
+        }).catch(err => res.status(404).json({ nouserfound: 'No post found with that ID' }))
+});
+
+
+
+
+
 
 //create review
-router.post('/:postId', requireUser, validateReviewInput, async (req, res, next)=> {
+router.post('/:postId/:userId', requireUser, validateReviewInput, async (req, res, next)=> {
     
     try {
+        // reviewer: req.user.id,
         
         const newReview = new Review({
-            reviewer: req.user.id,
+            reviewer: req.params.userId,
             post: req.params.postId,
             title: req.body.title,
             body: req.body.body,
