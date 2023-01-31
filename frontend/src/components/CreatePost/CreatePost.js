@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom';
-import { composePost } from '../../store/post';
+import { useHistory, useLocation } from 'react-router-dom';
+import { composePost, fetchPosts } from '../../store/post';
 
 // import "./"
 
@@ -21,6 +21,9 @@ function CreatePost() {
     //
     const dispatch = useDispatch()
     const history = useHistory()
+
+    const location = useLocation();
+    const query = location.search;
 
     const updateFiles = async e => {
         const files = e.target.files;
@@ -43,7 +46,7 @@ function CreatePost() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(composePost(body, images, reciepeName, price)); //
+        dispatch(composePost(body, images, reciepeName, price, query)); //
         //
         setReciepeName('')
         setPrice('')
@@ -51,6 +54,7 @@ function CreatePost() {
         setImages([]);                        
         setImageUrls([]);                    
         setBody('');
+        setTimeout('', 2000);
         history.push('/posts')
     };
 

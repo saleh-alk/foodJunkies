@@ -24,6 +24,7 @@ const PostIndex = () => {
 
 
     useEffect(()=>{
+        // setTimeout('', 3000);
         dispatch(fetchPosts({query}));
         
     },[query])
