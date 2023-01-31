@@ -15,10 +15,8 @@ function CreatePost() {
     const author = useSelector(state => state.session.user)
     const [images, setImages] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
-    //
     const [reciepeName, setReciepeName] = useState();
     const [price, setPrice] = useState();
-    //
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -47,14 +45,11 @@ function CreatePost() {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(composePost(body, images, reciepeName, price, query)); //
-        //
         setReciepeName('')
         setPrice('')
-        //
         setImages([]);                        
         setImageUrls([]);                    
         setBody('');
-        // setTimeout('', 2000);
         history.push('/posts')
     };
 
@@ -65,13 +60,14 @@ function CreatePost() {
     <div id="outer">
     
         <form onSubmit={handleSubmit} className="form">
-            <textarea
+            <input
             value= {body}
             placeholder="Body"
             onChange={(e) => setBody(e.target.value)} 
             rows="5" 
             cols="33"
-            className="textinput"/>
+            className="review-style-inputs"/>
+            <label>Body</label>
 
               <label className="entireUpload">
                   Images to Upload &nbsp;
@@ -88,13 +84,16 @@ function CreatePost() {
                   value= {reciepeName}
                   placeholder="Reciepe Name"
                   onChange={(e) => setReciepeName(e.target.value)} 
-                  className="recipeInput"/>
+                  className="review-style-inputs"/>
+                  <label>Reciepe Name</label>
                 
                 <input
+                  type='text'
                   value= {price}
                   placeholder="Price"
                   onChange={(e) => setPrice(e.target.value)} 
-                  className="recipeInput"/>
+                  className="review-style-inputs"/>
+                  <label>Price</label>
               
               
               <input type='submit'

@@ -52,20 +52,17 @@ function CreateReviews() {
                       <label> Title </label>
                   </div>
         
-
-
                 
-                <textarea
+                <input
                     className='review-style-inputs'
                     type="text"
                     value={body}
                     onChange={(e)=> setBody(e.target.value)}
                     placeholder="body"
+                    id='review-body'
                 />
                   <label> Body </label>
-            
-
-
+          
                 
                 <input
                     type="text"
