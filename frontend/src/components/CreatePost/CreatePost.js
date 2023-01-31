@@ -54,7 +54,7 @@ function CreatePost() {
         setImages([]);                        
         setImageUrls([]);                    
         setBody('');
-        setTimeout('', 2000);
+        // setTimeout('', 2000);
         history.push('/posts')
     };
 
