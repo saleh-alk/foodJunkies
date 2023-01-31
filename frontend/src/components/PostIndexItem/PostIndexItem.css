@@ -133,7 +133,7 @@
     box-shadow: none;
     color: #ba3b09;
     margin-bottom: 13px;
-
+    margin-right: -700px;
   }
   #receiptTitle{
     font-size: 30px;
@@ -154,7 +154,7 @@
     width: 50px;
     text-decoration: underline;
     font-size: 25px;
-
+    margin-top: 41px;
 }
 
 .price-Addtocart {
@@ -167,11 +167,15 @@
 #likesNumandText{
     display: flex;
     justify-content: left;
-
+    margin-top: 50px;
 }
 
 #thumbAndText{
     display: flex;
     justify-content: space-between;
     margin-right: 20px;
+}
+
+.likesText{
+    margin-top: 50px;
 }

@@ -155,14 +155,14 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 
                 <div id="likesNumandText">
                     <p className='likesNum' >{post.likes.length} </p>
-                    <p>Likes</p>
+                    <p className='likesText'>Likes</p>
                 </div>
 
             </div>
 
-            <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
+            {/* <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
                 Toggle Sidebar
-            </div>
+            </div> */}
 
 
             {/* <a onClick={handleAddToCart} className='Add-to-cart'>
