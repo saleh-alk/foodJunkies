@@ -1,4 +1,22 @@
 .footer{
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 0;
+        width: 200px;
+        height: 2rem;
+        border-radius: 8px;
+        transition-property: all;
+       
+        
+        transition-duration: 1s;
+        transition-timing-function: ease-in;    
+        background-color: #F5A563;
+        container-type: inline-size;
+        
+}
+
+.footer:hover {
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -6,14 +24,36 @@
     width: 100%;
     height: 5rem;
     background-color: #F5A563;
+    text-indent: 0px;
+
 }
 
+
+
 .portfolio-links{
-    display: flex;
+    display: none;
     flex-direction: row;
     justify-content: space-evenly;
     margin-left: 50px;
     color: #ba3b0a;
+
+}
+
+.about-us{
+    font-size: 30px;
+
+}
+
+
+@container (min-width: 500px) {
+
+    .portfolio-links {
+        display: flex;
+    }
+
+    .about-us {
+        display: none
+    }
 }
 
 .links-to-profile{

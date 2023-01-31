@@ -8,6 +8,7 @@ function Footer() {
 
             
         <div className='footer'>
+            <div className='about-us'>Portfolios</div>
             <div className='footer-line'></div> 
             <div className='stuff'>
                 <div className='portfolio-links'>
