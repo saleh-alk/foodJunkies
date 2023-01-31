@@ -26,8 +26,10 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
     const [likeCount, setlikeCount] = useState(post.likes.length)
     const location = useLocation();
     const query = location.search;
+
     const [isLiked, setIsLiked] = useState(post.likes.map(like => like.user).includes(userId.toString()) || true)
     const {cart} = useSelector((state) => ({...state}));
+
     
     const convertDate = (date) => {
         const d = new Date(date);
@@ -116,7 +118,7 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 
             <div id="thumbAndText">
 
-                    <button onClick={e => history.push(`review/new/${post._id}`)} id="reviewButton">Review</button>
+                    <button onClick={e => history.push(`review/new/${post._id}/${post.author._id}`)} id="reviewButton">Review</button>
                     {/* <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? (dispatch(removeLike(post._id))): (dispatch(addLike(post._id)))}>
                         {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i>  : <i className="fa-regular fa-thumbs-up"></i> }
                     </button> */}

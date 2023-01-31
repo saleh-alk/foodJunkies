@@ -15,20 +15,19 @@ function ReviewIndexItem({review}) {
     }
 
 
+
   return (
 
-      <li className='post-container'>
+      <div className='post-container'>
           <div className='post-main-content'>
 
 
               <span className='post-info-span'>
                   {convertDate(review.postedAt)}</span>
               <br />
-              <p className='post-body-text'>{review.title}
-                  <br />
-                  <br />
-                  <br />
-              </p>
+              <h1 className='review-title'>{review.title}</h1>
+              <div className='review-body'>Comment:{review.body}</div>
+              <div className='review-rating'>Rating: {review.rating}</div>
             
 
           </div>
@@ -39,7 +38,7 @@ function ReviewIndexItem({review}) {
         
 
 
-      </li>
+      </div>
   )
 }
 

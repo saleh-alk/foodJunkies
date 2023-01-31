@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { fetchPosts } from '../../store/post';
+import { fetchPostReviews } from '../../store/review';
 
 import PostIndexItem from '../PostIndexItem/PostIndexItem';
 import './PostIndex.css';
@@ -24,9 +25,12 @@ const PostIndex = () => {
 
     useEffect(()=>{
         dispatch(fetchPosts({query}));
+        
     },[query])
 
     const toggleSidebar = () => {
+        
+
         setSideBarActive(!sidebarActive);
     }
 
