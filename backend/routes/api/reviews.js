@@ -15,6 +15,7 @@ function formatReview(review) {
         rating: review.rating,
         reviewer: review.reviewer._id,
         post: review.post,
+        body: review.body,
         username: review.reviewer.username,
         id: review.id
     }

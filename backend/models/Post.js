@@ -18,10 +18,6 @@ price: {
     type: String,
     required: false
 },
-reviews: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Review'
-}],
 imageUrls: {
     type: [String],
     required: false

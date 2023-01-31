@@ -191,9 +191,7 @@ router.put("/unlike/:id", requireUser, async (req, res) => {
 })
 
 
-// router.put("/reviews/:id", requireUser, async (req, res) => {
 
-// })
 
 
 
