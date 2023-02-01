@@ -37,7 +37,7 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 
 
     const [isLiked, setIsLiked] = useState(post.likes.map(like => like.user).includes(userId.toString()) || true)
-    const {cart} = useSelector((state) => ({...state}));
+   // const {cart} = useSelector((state) => ({...state}));
 
     
 
