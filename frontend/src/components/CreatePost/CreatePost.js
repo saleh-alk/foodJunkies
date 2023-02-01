@@ -70,7 +70,7 @@ function CreatePost() {
             <label>Body</label>
 
               <label className="entireUpload">
-                  Images to Upload &nbsp;
+                  Click here to Upload Image &nbsp;
                   <input
                       type="file"
                       accept=".jpg, .jpeg, .png"
@@ -84,7 +84,9 @@ function CreatePost() {
                   value= {reciepeName}
                   placeholder="Reciepe Name"
                   onChange={(e) => setReciepeName(e.target.value)} 
-                  className="review-style-inputs"/>
+                  className="review-style-inputs"
+                  id='recipie-name'
+                  />
                   <label>Reciepe Name</label>
                 
                 <input
