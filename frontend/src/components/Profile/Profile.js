@@ -16,7 +16,7 @@ function Profile() {
     const { userId } = useParams()
     let currentProfileUser = useSelector(state => state?.profile.profile);
     const posts = Object.values(useSelector(state => state?.post));
-    const reviews = Object.values(useSelector(state => state?.review))
+    const reviews = Object.values(useSelector(state => state.review))
     const [contentState,setContentState] = useState('posts');
 
     
@@ -27,7 +27,7 @@ function Profile() {
         dispatch(fetchUserProfile(userId));
         dispatch(fetchUserPosts(userId));
         dispatch(fetchUsersReview(userId));
-    }, [])
+    }, [dispatch])
 
     let profileContent;
     if (contentState === 'posts') {

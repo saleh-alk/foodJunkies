@@ -11,6 +11,11 @@ const ReviewSchema = new Schema({
         ref: 'User',
         index: true
     },
+    reviewee:{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        index: true
+    },
     post:{
         type: Schema.Types.ObjectId,
         ref: 'Post',
