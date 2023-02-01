@@ -2,7 +2,7 @@
     padding-bottom: 10px;
     margin: 40px;
     width: 900px;
-    
+    list-style: none;
     border: 2px solid #ba3b0a;
     background-color: #ffbe79;
     border-radius: 10px;
@@ -13,6 +13,7 @@
 .post-main-content {
     padding: 10px;
 }
+
 #reviewButton{
     background-color: #F5CDAC;
     color: #ba3b0a;
@@ -33,8 +34,6 @@
 #reviewButton:hover{
     background-color: #F5A563;
 }
-
-
 
 #dateButtons {
     display: flex;
