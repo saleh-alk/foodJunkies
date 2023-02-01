@@ -108,7 +108,6 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 
 
 
-
         let p = post.price
 
 

@@ -13,6 +13,7 @@ function formatReview(review) {
         title: review.title,
         postedAt: review.createdAt,
         rating: review.rating,
+        reviewee: review.reviewee._id,
         reviewer: review.reviewer._id,
         post: review.post,
         body: review.body,
@@ -32,7 +33,7 @@ function formatReviews(reviews) {
 router.get('/user/:userId', (req, res) => {
     User.findById(req.params.userId)
     .then(user => {
-        Review.find({ reviewer: user.id})
+        Review.find({ reviewee: user.id})
         .then(reviews => {
             res.json(formatReviews(reviews));
         });
@@ -62,7 +63,8 @@ router.post('/:postId/:userId', requireUser, validateReviewInput, async (req, re
         // reviewer: req.user.id,
         
         const newReview = new Review({
-            reviewer: req.params.userId,
+            reviewee: req.params.userId,
+            reviewer: req.user.id,
             post: req.params.postId,
             title: req.body.title,
             body: req.body.body,
