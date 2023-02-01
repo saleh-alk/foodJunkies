@@ -3,11 +3,10 @@
 }
 
 .review-inputs{
+    margin-left: 50px;
     display: flex;
     flex-direction: column;
 }
-
-
 
 input.review-style-inputs,
 label,
@@ -72,3 +71,10 @@ input.review-style-inputs:focus,
 input.review-style-inputs:valid {
     padding-top: 35px;
 }
+
+
+#review-body {
+    resize: none;
+    height: fit-content;
+}
+

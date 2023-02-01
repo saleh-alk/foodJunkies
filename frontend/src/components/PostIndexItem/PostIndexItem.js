@@ -27,10 +27,20 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
     const location = useLocation();
     const query = location.search;
 
+    //const [isLiked, setIsLiked] = useState(false)
+
+   //add websockets
+
+
+
+
+
+
     const [isLiked, setIsLiked] = useState(post.likes.map(like => like.user).includes(userId.toString()) || true)
-    const {cart} = useSelector((state) => ({...state}));
+   // const {cart} = useSelector((state) => ({...state}));
 
     
+
     const convertDate = (date) => {
         const d = new Date(date);
         return d.toDateString();
@@ -63,8 +73,16 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
             setIsLiked(true)
             dispatch(addLike(post._id))
         }
-        dispatch(fetchPosts({ query }))
+
+        return dispatch(fetchPosts({ query }))
+
     }
+
+
+
+
+    const {cart} = useSelector((state) => ({...state}));
+
 
 
     const handleAddToCart = () => {
@@ -87,10 +105,7 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
         }
     }
 
-   
 
-        
- 
 
 
         let p = post.price
@@ -112,7 +127,7 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
                 {editDeleteButton(post)}
              </div>
                 <p className='post-body-text'>{post.body}</p>
-                    <img className='images' src={post.imageUrls[0]}></img>
+                    <img className='images' loading='lazy' src={post.imageUrls[0]}></img>
 
             </div>
 
@@ -120,21 +135,21 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 
             <div id="thumbAndText">
 
-                    <button onClick={e => history.push(`review/new/${post._id}/${post.author._id}`)} id="reviewButton">Review</button>
+                    <button onClick={e => history.push(`/review/new/${post._id}/${post.author._id}`)} id="reviewButton">Review</button>
                     {/* <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? (dispatch(removeLike(post._id))): (dispatch(addLike(post._id)))}>
                         {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i>  : <i className="fa-regular fa-thumbs-up"></i> }
                     </button> */}
 
 
                 <button className='likesButton' onClick={sendLike}>
-                    {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i> : <i className="fa-regular fa-thumbs-up"></i>}
+                    {post.likes.map(user => user.user).includes(userId.toString()) ? <div id="liked"><i className="fa-regular fa-thumbs-up"></i></div> : <i className="fa-regular fa-thumbs-up"></i>}
                 </button>
 
-                    
+
 
 
                 {/* <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? (dispatch(removeLike(post._id)))  : console.log("nothing") }>
-                     <i className="fa-regular fa-thumbs-down"></i> 
+                     <i className="fa-regular fa-thumbs-down"></i>
                 </button>
 
 
@@ -143,23 +158,23 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
                 </button> */}
 
 
-            
 
-                
+
+
 
 
                 <div id="likesNumandText">
                     <p className='likesNum' >{post.likes.length} </p>
-                    <p>Likes</p>
+                    <p className='likesText'>Likes</p>
                 </div>
 
             </div>
 
-            <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
+            {/* <div className='sidebar-toggle' onClick={()=>updateSidebarContent(post.body)}>
                 Toggle Sidebar
-            </div>
+            </div> */}
 
-   
+
             {/* <a onClick={handleAddToCart} className='Add-to-cart'>
             <ShoppingCartOutlined className='Add-to-cart1'/>Add to Cart
             </a> */}
@@ -168,8 +183,8 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 
                 {post.price === "undefined" ? "": <a onClick={handleAddToCart} className='Add-to-cart'>
                 <ShoppingCartOutlined className='Add-to-cart1'/>Add to Cart</a>}
-            </div> 
-    
+            </div>
+
 
 
 
