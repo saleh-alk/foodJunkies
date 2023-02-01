@@ -72,7 +72,9 @@ input.review-style-inputs:valid {
     padding-top: 35px;
 }
 
+
 #review-body {
     resize: none;
     height: fit-content;
 }
+
