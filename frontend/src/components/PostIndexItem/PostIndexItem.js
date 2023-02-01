@@ -125,7 +125,7 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 
 
                 <button className='likesButton' onClick={sendLike}>
-                    {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i> : <i className="fa-regular fa-thumbs-up"></i>}
+                    {post.likes.map(user => user.user).includes(userId.toString()) ? <div id="liked"><i className="fa-regular fa-thumbs-up"></i></div> : <i className="fa-regular fa-thumbs-up"></i>}
                 </button>
 
                     
