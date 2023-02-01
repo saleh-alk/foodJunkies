@@ -71,8 +71,9 @@ export const updatePost = (body, images, postId) => async (dispatch) => {
     
         
         const post = await res.json();
-        console.log(post)
+     
         dispatch(receiveNewPost(post));
+        
     // } catch(err){
     //     const resBody = await err.json();
     //     if (resBody.statusCode === 400) {
@@ -123,7 +124,7 @@ export const searchPosts = () => async (dispatch) => {
     }
 }
 
-export const composePost = (body, images, reciepeName, price) => async dispatch => {
+export const composePost = (body, images, reciepeName, price, query) => async dispatch => {
 
     const formData = new FormData();
     formData.append("body", body);
@@ -138,8 +139,8 @@ export const composePost = (body, images, reciepeName, price) => async dispatch 
            body: formData
        });
        const post = await res.json();
-      
-       dispatch(receiveNewPost(post));
+        dispatch(fetchPosts({query}));
+    //    dispatch(receiveNewPost(post));
    } catch(err){
        const resBody = await err.json();
        if (resBody.statusCode === 400) {

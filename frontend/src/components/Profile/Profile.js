@@ -34,9 +34,9 @@ function Profile() {
         profileContent = (
             <div>
                 <h1 id="ProfilePostsTitle">{posts ? "Posts:" : "This user does not have any posts."}</h1>
-                <ul>
+                <div>
                     {posts?.map((post, i)=> <PostIndexItem key={i} post= {post} />)}
-                </ul>
+                </div>
             </div>
         )
     } 

@@ -26,12 +26,20 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
     const [likeCount, setlikeCount] = useState(post.likes.length)
     const location = useLocation();
     const query = location.search;
-    const [isLiked, setIsLiked] = useState(false)
+
+    //const [isLiked, setIsLiked] = useState(false)
 
    //add websockets
 
 
 
+
+
+
+    const [isLiked, setIsLiked] = useState(post.likes.map(like => like.user).includes(userId.toString()) || true)
+    const {cart} = useSelector((state) => ({...state}));
+
+    
 
     const convertDate = (date) => {
         const d = new Date(date);
@@ -39,7 +47,6 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
     }
 
     const handleClick = (post) => {
-
         dispatch(deletePost(post._id, key1))
     }
 
@@ -56,14 +63,17 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
         }
     }
 
-
     const sendLike = (e) => {
         e.preventDefault();
-        if (post.likes.map(user => user.user).includes(userId.toString())){
+        // if (post.likes.map(like => like.user).includes(userId.toString())){
+        if (isLiked) {
+            setIsLiked(false)
             dispatch(removeLike(post._id))
         } else {
+            setIsLiked(true)
             dispatch(addLike(post._id))
         }
+
         return dispatch(fetchPosts({ query }))
 
     }
@@ -72,6 +82,7 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 
 
     const {cart} = useSelector((state) => ({...state}));
+
 
 
     const handleAddToCart = () => {
@@ -125,14 +136,14 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 
             <div id="thumbAndText">
 
-                    <button onClick={e => history.push(`review/new/${post._id}`)} id="reviewButton">Review</button>
+                    <button onClick={e => history.push(`/review/new/${post._id}/${post.author._id}`)} id="reviewButton">Review</button>
                     {/* <button className='likesButton' onClick={e => post.likes.map(user => user.user).includes(userId.toString()) ? (dispatch(removeLike(post._id))): (dispatch(addLike(post._id)))}>
                         {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i>  : <i className="fa-regular fa-thumbs-up"></i> }
                     </button> */}
 
 
                 <button className='likesButton' onClick={sendLike}>
-                    {post.likes.map(user => user.user).includes(userId.toString()) ? <i className="fa-regular fa-thumbs-down"></i> : <i className="fa-regular fa-thumbs-up"></i>}
+                    {post.likes.map(user => user.user).includes(userId.toString()) ? <div id="liked"><i className="fa-regular fa-thumbs-up"></i></div> : <i className="fa-regular fa-thumbs-up"></i>}
                 </button>
 
 

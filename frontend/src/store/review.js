@@ -23,7 +23,7 @@ const receiveNewReview = (reviews) => ({
 
 
 
-export const composeReview = (title, body, rating, postId) => async dispatch => {
+export const composeReview = (title, body, rating, postId, userId) => async dispatch => {
 
     const formData = new FormData();
     formData.append("title", title);
@@ -32,12 +32,13 @@ export const composeReview = (title, body, rating, postId) => async dispatch => 
 
 
     try {
-        const res = await jwtFetch(`/api/reviews/${postId}`, {
+        const res = await jwtFetch(`/api/reviews/${postId}/${userId}`, {
             method: 'POST',
             body: JSON.stringify({
                 title: title,
                 body: body,
-                rating: rating
+                rating: rating,
+                
             })
         });
         const reviews = await res.json();
@@ -59,6 +60,18 @@ export const fetchUsersReview = (userId) => async (dispatch) =>  {
     }
 
 }
+
+
+export const fetchPostReviews = (postId) => async (dispatch) =>{
+    const res = await jwtFetch(`api/reviews/post/${postId}`)
+
+    if(res.ok){
+        const reviews = await res.json()
+        return dispatch(receiveNewReview(reviews))
+    }
+}
+
+
 
 
 

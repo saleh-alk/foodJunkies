@@ -13,13 +13,13 @@ function CreateReviews() {
     const [body, setBody] = useState('')
     const [rating, setRating] = useState('')
 
-    const {postId} = useParams()
+    const {postId, userId} = useParams()
 
 
     const handleClick = (e) => {
         e.preventDefault()
 
-        dispatch(composeReview(title, body, rating, postId))
+        dispatch(composeReview(title, body, rating, postId, userId))
         setBody("")
         setRating("")
         setTitle("")
@@ -52,20 +52,17 @@ function CreateReviews() {
                       <label> Title </label>
                   </div>
         
-
-
                 
-                <textarea
+                <input
                     className='review-style-inputs'
                     type="text"
                     value={body}
                     onChange={(e)=> setBody(e.target.value)}
                     placeholder="body"
+                    id='review-body'
                 />
                   <label> Body </label>
-            
-
-
+          
                 
                 <input
                     type="text"

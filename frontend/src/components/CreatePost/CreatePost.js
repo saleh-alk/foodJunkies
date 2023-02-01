@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom';
-import { composePost } from '../../store/post';
+import { useHistory, useLocation } from 'react-router-dom';
+import { composePost, fetchPosts } from '../../store/post';
 
 // import "./"
 
@@ -15,12 +15,13 @@ function CreatePost() {
     const author = useSelector(state => state.session.user)
     const [images, setImages] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
-    //
     const [reciepeName, setReciepeName] = useState();
     const [price, setPrice] = useState();
-    //
     const dispatch = useDispatch()
     const history = useHistory()
+
+    const location = useLocation();
+    const query = location.search;
 
     const updateFiles = async e => {
         const files = e.target.files;
@@ -43,11 +44,9 @@ function CreatePost() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(composePost(body, images, reciepeName, price)); //
-        //
+        dispatch(composePost(body, images, reciepeName, price, query)); //
         setReciepeName('')
         setPrice('')
-        //
         setImages([]);                        
         setImageUrls([]);                    
         setBody('');
@@ -61,16 +60,17 @@ function CreatePost() {
     <div id="outer">
     
         <form onSubmit={handleSubmit} className="form">
-            <textarea
+            <input
             value= {body}
             placeholder="Body"
             onChange={(e) => setBody(e.target.value)} 
             rows="5" 
             cols="33"
-            className="textinput"/>
+            className="review-style-inputs"/>
+            <label>Body</label>
 
               <label className="entireUpload">
-                  Images to Upload &nbsp;
+                  Click here to Upload Image &nbsp;
                   <input
                       type="file"
                       accept=".jpg, .jpeg, .png"
@@ -84,13 +84,18 @@ function CreatePost() {
                   value= {reciepeName}
                   placeholder="Reciepe Name"
                   onChange={(e) => setReciepeName(e.target.value)} 
-                  className="recipeInput"/>
+                  className="review-style-inputs"
+                  id='recipie-name'
+                  />
+                  <label>Reciepe Name</label>
                 
                 <input
+                  type='text'
                   value= {price}
                   placeholder="Price"
                   onChange={(e) => setPrice(e.target.value)} 
-                  className="recipeInput"/>
+                  className="review-style-inputs"/>
+                  <label>Price</label>
               
               
               <input type='submit'
