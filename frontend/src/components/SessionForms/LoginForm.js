@@ -10,6 +10,8 @@ function LoginForm () {
   const errors = useSelector(state => state.errors.session);
   const dispatch = useDispatch();
 
+ 
+
   useEffect(() => {
     return () => {
       dispatch(clearSessionErrors());

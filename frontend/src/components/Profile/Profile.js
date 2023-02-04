@@ -26,7 +26,7 @@ function Profile() {
     useEffect(()=> {
         dispatch(fetchUserProfile(userId));
         dispatch(fetchUserPosts(userId));
-        dispatch(fetchUsersReview(userId));
+       dispatch(fetchUsersReview(userId));
     }, [dispatch])
 
     let profileContent;
@@ -48,13 +48,13 @@ function Profile() {
             </div>
         )
     } 
-    else {
-        profileContent = (
-            <div>
-                <h1 id="ProfilePostsTitle">Contact:</h1>
-            </div>
-        )
-    }
+    // else {
+    //     profileContent = (
+    //         <div>
+    //             <h1 id="ProfilePostsTitle">Contact:</h1>
+    //         </div>
+    //     )
+    // }
 
     return (
     <div id="outer">
@@ -62,7 +62,7 @@ function Profile() {
         <div id='user-button-group'>
             <div id='user-button-group-button-left' className='user-button-group-button' onClick={()=>setContentState('posts')}>Posts</div>
             <div className='user-button-group-button' onClick={()=>setContentState('reviews')}>Reviews</div>
-            <div id='user-button-group-button-right' className='user-button-group-button' onClick={()=>setContentState('contact')}>Contact</div>
+            {/* <div id='user-button-group-button-right' className='user-button-group-button' onClick={()=>setContentState('contact')}>Contact</div> */}
         </div>
         {profileContent}
     </div>

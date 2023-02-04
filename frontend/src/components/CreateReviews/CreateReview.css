@@ -73,8 +73,14 @@ input.review-style-inputs:valid {
 }
 
 
+
+
 #review-body {
     resize: none;
     height: fit-content;
 }
 
+
+.errors{
+    margin-top: 30px;
+}

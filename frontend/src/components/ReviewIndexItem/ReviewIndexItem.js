@@ -1,31 +1,48 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { deleteReview } from '../../store/review';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { deleteReview, fetchUsersReview } from '../../store/review';
 
-function ReviewIndexItem({review}) {
+
+
+
+
+function ReviewIndexItem({review, key}) {
     
     const currentUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
-    const userId = useSelector(state => state.session.user._id)
+    //const userId = useSelector(state => state.session.user._id)
     const history = useHistory()
     const reviewer = useSelector(state => Object.values(state.review))
+    const { userId } = useParams()
+    const location = useLocation()
 
-   
-
+  
 
     const convertDate = (date) => {
         const d = new Date(date);
         return d.toDateString();
     }
 
-    
+   
+ 
 
 
     const handleDelete = (e) => {
         e.preventDefault()
-        dispatch(deleteReview(review.id))
+        dispatch(deleteReview(review.id, userId))
+
     }
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        history.push(`/review/update/${review.id}/${userId}`)
+    }
+
+    // useEffect(()=> {
+    //     dispatch(fetchUsersReview(userId))
+    // }, [dispatch])
+
 
 
 
@@ -42,7 +59,9 @@ function ReviewIndexItem({review}) {
               <div className='review-body'>Comment:{review.body}</div>
               <div className='review-rating'>Rating: {review.rating}</div>
 
-              {review.reviewer == userId ?  <button onClick={handleDelete}>Delete</button> : <div></div> }
+              {review.reviewer == currentUser._id ?  <button  className='reviewButton' onClick={handleDelete}>Delete</button> : <div></div> }
+
+              <button onClick={handleClick}>edit</button>
               {/* <button onClick={handleDelete}>Delete</button> */}
             
 

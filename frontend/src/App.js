@@ -18,6 +18,8 @@ import { useDispatch } from 'react-redux';
 import Cart from './components/Cart/Cartitem';
 import Checkout from './components/Cart/Checkout';
 import Footer from './components/Footer/Footer';
+import ReviewIndexItem from './components/ReviewIndexItem/ReviewIndexItem';
+import ReviewUpdate from './components/ReviewUpdate/ReviewUpdate';
 // import Message from './components/Message/Message';
 
 function App() {
@@ -47,6 +49,9 @@ function App() {
       <ProtectedRoute exact path='/review/new/:postId/:userId' component={CreateReview} />
       <ProtectedRoute exact path='/:postId/edit' component={EditForm} />
       <ProtectedRoute exact path="/profile/:userId" component={Profile} />
+      <ProtectedRoute exact path="/profile/:userId" component={ReviewIndexItem} />
+
+      <ProtectedRoute exact path='/review/update/:reviewId/:userId' component={ReviewUpdate} />
       <ProtectedRoute exact path='/cart' component={Cart} />
 
       <ProtectedRoute exact path='/checkout' component={Checkout} />
