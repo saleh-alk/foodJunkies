@@ -24,6 +24,8 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
     const userId = useSelector(state => state.session.user._id)
     const history = useHistory()
     const [likeCount, setlikeCount] = useState(post.likes.length)
+
+    
     const location = useLocation();
     const query = location.search;
 
@@ -86,15 +88,34 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
 
 
     const handleAddToCart = () => {
+        let quantityChange = false
         let cart = []
         if (typeof window !== 'undefined') {
             if (localStorage.getItem('cart')){
                 cart = JSON.parse(localStorage.getItem('cart'))
             }
-            cart.push({
-                post,
-                quantity: 1
+
+            const postNew = post 
+            cart.forEach(food => {
+                
+                if (food.post._id == post._id){
+                    quantityChange = true
+                    console.log(quantityChange)
+                    food.quantity += 1
+                }
+                
             });
+            // debugger
+            // const quantity = quantityChange
+            
+            if(!quantityChange){
+
+                cart.push({
+                    post,
+                    quantity: 1
+                });
+                
+            }
             // let unique = _.uniqWith(cart, _.isEqual)
             localStorage.setItem('cart', JSON.stringify(cart));
 
@@ -104,6 +125,8 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
             })
         }
     }
+
+
 
 
 
