@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { fetchReview, updateReview } from '../../store/review'
+import { useHistory, useParams } from 'react-router-dom'
+import { clearReviewErrors, deleteReview, fetchReview, updateReview } from '../../store/review'
 
 import './ReviewUpdate.css'
-
 
 
 
@@ -17,26 +16,39 @@ function ReviewUpdate() {
     const [title, setTitle] = useState(review.title)
     const [body, setBody] = useState(review.body)
     const [rating, setRating] = useState(review.rating)
+    const errors = useSelector(state => state.errors.review);
     const dispatch = useDispatch()
     
+  
+    const history = useHistory()
 
-    console.log(review.title)
 
+
+    
+  
 
   const handleClick = (e) => {
     e.preventDefault()
 
     dispatch(updateReview(title, body, rating, reviewId))
-  
 
-    //history.push('/posts')
+    if(!errors){
+      history.push(`/profile/${userId}`)
+    }
 
   }
+
 
 
     useEffect( () => {
       dispatch(fetchReview(reviewId))
     }, [])
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearReviewErrors());
+    };
+  }, [dispatch]);
 
   return (
     
@@ -47,36 +59,37 @@ function ReviewUpdate() {
 
 
           <div className='inner-div'>
-            {/* <div className="errors">{errors?.title}</div> */}
+            <div className="errors">{errors?.title}</div>
             <input
               className='review-style-inputs'
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder={title}
+              placeholder={review.title}
             />
+        
             <label> Title </label>
           </div>
 
-          {/* <div className="errors">{errors?.body}</div> */}
+          <div className="errors">{errors?.body}</div>
           <input
             className='review-style-inputs'
             type="text"
             value={body}
             onChange={(e) => setBody(e.target.value)}
-            placeholder={body}
+            placeholder={review.body}
             id='review-body'
           />
           <label> Body </label>
 
 
-          {/* <div className="errors">{errors?.rating}</div> */}
+          <div className="errors">{errors?.rating}</div>
           <input
             type="text"
             className='review-style-inputs'
             value={rating}
             onChange={(e) => setRating(e.target.value)}
-            placeholder={rating}
+            placeholder={review.rating}
             required
           />
           <label> Rating </label>
@@ -91,7 +104,7 @@ function ReviewUpdate() {
         </div>
 
       </form>
-        
+     
 
       </div>
   

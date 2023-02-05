@@ -17,7 +17,7 @@ function Profile() {
     let currentProfileUser = useSelector(state => state?.profile.profile);
     const posts = Object.values(useSelector(state => state?.post));
     const reviews = Object.values(useSelector(state => state.review))
-    const [contentState,setContentState] = useState('posts');
+    const [contentState,setContentState] = useState('reviews');
 
     
 
@@ -44,7 +44,7 @@ function Profile() {
         profileContent = (
             <div>
                 <h1 id="ProfilePostsTitle">{reviews ? "Reviews:" : "This user does not have any reviews."}</h1>
-                {reviews?.map((review, i) => <ReviewIndexItem key={i} review={review} />)}
+                {reviews?.map((review, i) => review.rating ? <ReviewIndexItem key={i} review={review} /> : <></>)}
             </div>
         )
     } 
@@ -60,8 +60,8 @@ function Profile() {
     <div id="outer">
         <h1 id="ProfileUsername">{currentProfileUser?.username}</h1>
         <div id='user-button-group'>
-            <div id='user-button-group-button-left' className='user-button-group-button' onClick={()=>setContentState('posts')}>Posts</div>
-            <div className='user-button-group-button' onClick={()=>setContentState('reviews')}>Reviews</div>
+            <div id='user-button-group-button-left' className='user-button-group-button' onClick={()=>setContentState('reviews')}>Reviews</div>
+            <div className='user-button-group-button' onClick={()=>setContentState('posts')}>Posts</div>
             {/* <div id='user-button-group-button-right' className='user-button-group-button' onClick={()=>setContentState('contact')}>Contact</div> */}
         </div>
         {profileContent}

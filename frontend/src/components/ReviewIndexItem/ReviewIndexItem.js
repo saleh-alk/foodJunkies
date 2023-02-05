@@ -30,7 +30,7 @@ function ReviewIndexItem({review, key}) {
 
     const handleDelete = (e) => {
         e.preventDefault()
-        dispatch(deleteReview(review.id, userId))
+        dispatch(deleteReview(review.id, userId, userId))
 
     }
 
@@ -43,7 +43,7 @@ function ReviewIndexItem({review, key}) {
     //     dispatch(fetchUsersReview(userId))
     // }, [dispatch])
 
-
+    
 
 
   return (
@@ -55,13 +55,15 @@ function ReviewIndexItem({review, key}) {
               <span className='post-info-span'>
                   {convertDate(review.postedAt)}</span>
               <br />
+
+              
               <h1 className='review-title'>{review.title}</h1>
               <div className='review-body'>Comment:{review.body}</div>
               <div className='review-rating'>Rating: {review.rating}</div>
 
               {review.reviewer == currentUser._id ?  <button  className='reviewButton' onClick={handleDelete}>Delete</button> : <div></div> }
 
-              <button onClick={handleClick}>edit</button>
+              {review.reviewer == currentUser._id ? <button onClick={handleClick} className="reviewButton" >edit</button> : <></>}
               {/* <button onClick={handleDelete}>Delete</button> */}
             
 

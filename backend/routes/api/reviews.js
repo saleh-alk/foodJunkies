@@ -99,9 +99,10 @@ router.post('/:postId/:userId', requireUser, validateReviewInput, async (req, re
     }
 })
 
-router.patch('/:id', requireUser, async(req, res, next)=>{
+router.patch('/:id', requireUser, validateReviewInput, async(req, res, next)=>{
     try{
-        let review = Review.findById(req.params.id)
+        let review = await Review.findById(req.params.id)
+    
         
     //     if (review.reviewer.toString() !== req.user.id.toString()) {
     //         res.status().json({ notowned: 'Current user does not own this review' })
@@ -109,8 +110,10 @@ router.patch('/:id', requireUser, async(req, res, next)=>{
         review.title = req.body.title;
         review.body = req.body.body;
         review.rating = req.body.rating;
-        let newreview = await review.save();
-        return res.json(newreview);
+        review.save()
+        //let newreview = await review.save();
+        
+        // return res.json(newreview);
     //}
     }
     catch (err){

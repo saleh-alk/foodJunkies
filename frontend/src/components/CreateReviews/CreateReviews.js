@@ -18,25 +18,28 @@ function CreateReviews() {
 
     const {postId, userId} = useParams()
 
-     
+
 
     const handleClick = (e) => {
         e.preventDefault()
-
-        dispatch(composeReview(title, body, rating, postId, userId))
-        setBody("")
-        setRating("")
-        setTitle("")
         
-        //history.push('/posts')
+        dispatch(composeReview(title, body, rating, postId, userId))
+        
+        if(!errors){
+          // setBody("")
+          // setRating("")
+          // setTitle("")
+          console.log("none")
+          // history.push('/posts')
+        }
 
     }
     
 
   useEffect(() => {
-    return () => {
+    // return () => {
       dispatch(clearReviewErrors());
-    };
+    //};
   }, [dispatch]);
 
 
