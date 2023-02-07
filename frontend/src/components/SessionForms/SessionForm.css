@@ -83,3 +83,8 @@
     --field-padding: 12px;
     border-top: 20px solid transparent;
   } */
+
+
+  .formButton{
+    cursor: pointer;
+  }

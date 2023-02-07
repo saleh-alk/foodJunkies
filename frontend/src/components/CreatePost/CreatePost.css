@@ -55,3 +55,7 @@
 #recipie-name {
     padding-top: 0px;
 }
+
+.submitButton{
+    cursor: pointer;
+}
