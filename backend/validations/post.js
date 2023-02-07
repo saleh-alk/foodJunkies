@@ -9,6 +9,12 @@ const validatePostInput = [
     .exists({ checkFalsy: true })
     .isLength({ max: 140 })
     .withMessage('Post must be equal or less than 140 characters'),
+
+  check('price')
+    .exists({ checkFalsy: true })
+    .withMessage("Price field should not be empty")
+    .isFloat()
+    .withMessage('Price needs to be a number'),
   handleValidationErrors
 ];
 

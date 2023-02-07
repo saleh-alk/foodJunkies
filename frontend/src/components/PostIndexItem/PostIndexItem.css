@@ -182,3 +182,7 @@
 .likesText{
     margin-top: 50px;
 }
+
+.likesButton{
+    cursor: pointer;
+}

@@ -4,7 +4,7 @@ import jwtFetch from './jwt'
 const RECEIVE_NEW_REVIEW = "review/RECEIVE_NEW_REVIEW"
 const RECEIVE_REVIEW_ERRORS = 'review/RECEIVE_REVIEW_ERRORS'
 export const REMOVE_REVIEW = 'review/REMOVE_REVIEW';
-const CLEAR_REVIEW_ERRORS = 'session/CLEAR_REVIEW_ERRORS'
+const CLEAR_REVIEW_ERRORS = 'review/CLEAR_REVIEW_ERRORS'
 const RECEIVE_USERS_REVIEW = "RECEIVE_USERS_REVIEW"
 
 
@@ -105,6 +105,7 @@ export const composeReview = (title, body, rating, postId, userId) => async disp
         const reviews = await res.json();
         dispatch(receiveNewReview(reviews));
         dispatch(clearReviewErrors())
+        
 
         window.location.href = '/posts';
     } catch (err) {
@@ -194,3 +195,4 @@ export const reviewErrorReducer = (state = nullErrors, action) => {
             break;
     }
 }
+

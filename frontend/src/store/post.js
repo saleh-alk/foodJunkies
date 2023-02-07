@@ -6,6 +6,7 @@ export const UPDATE_POST = 'post/UPDATE_POST';
 const RECEIVE_NEW_POST = "post/RECEIVE_NEW_POST"
 const RECEIVE_POST_ERRORS = "post/RECEIVE_POST_ERRORS"
 const UPDATE_LIKES = "post/UPDATE_LIKES"
+const CLEAR_POST_ERRORS = 'post/CLEAR_POST_ERRORS'
 
 const recievePosts = (posts) => ({
     type: RECEIVE_POSTS,
@@ -25,6 +26,10 @@ const receiveErrors = errors => ({
     type: RECEIVE_POST_ERRORS,
     errors
 });
+
+export const clearPostErrors = () => ({
+    type: CLEAR_POST_ERRORS
+})
 
 const receiveNewPost = post => ({
     type: RECEIVE_NEW_POST,
@@ -140,11 +145,14 @@ export const composePost = (body, images, reciepeName, price, query) => async di
        });
        const post = await res.json();
         dispatch(fetchPosts({query}));
+       dispatch(clearPostErrors())
+       window.location.href = '/posts';
     //    dispatch(receiveNewPost(post));
    } catch(err){
-       const resBody = await err.json();
-       if (resBody.statusCode === 400) {
-           return dispatch(receiveErrors(resBody.errors));
+       const res = await err.json()
+
+       if (res.statusCode === 400) {
+           return dispatch(receiveErrors(res.errors))
        }
    }
 }
@@ -230,3 +238,20 @@ const postReducer = (state = initialState, action) => {
 }
 
 export default postReducer;
+
+
+const nullErrors = null;
+
+export const postErrorReducer = (state = nullErrors, action) => {
+    switch (action.type) {
+        case RECEIVE_POST_ERRORS:
+            return action.errors
+            break;
+        case CLEAR_POST_ERRORS:
+            return nullErrors
+            break;
+        default:
+            return state;
+            break;
+    }
+}

@@ -57,7 +57,7 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
             return(
                 <>
                 <div>
-                    <NavLink to ={{pathname: `/${post._id}/edit`}}><button className="EditDeleteButton">Edit</button></NavLink>
+                    {/* <NavLink to ={{pathname: `/${post._id}/edit`}}><button className="EditDeleteButton">Edit</button></NavLink> */}
                     <button onClick={()=> handleClick(post)} className="EditDeleteButton">Delete</button>
                 </div>
                 </>
