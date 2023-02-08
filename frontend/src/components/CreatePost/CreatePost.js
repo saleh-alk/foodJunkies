@@ -24,7 +24,7 @@ function CreatePost() {
     const errors = useSelector(state => state.errors.post)
 
 
-    console.log(errors)
+   
 
     const updateFiles = async e => {
         const files = e.target.files;

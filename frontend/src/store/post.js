@@ -59,19 +59,16 @@ export const updatePost = (body, images, postId) => async (dispatch) => {
     
     Array.from(images).forEach(image => formData.append("images", image));
 
-    console.log("1st log");
-    
-   console.log(body);
-   console.log(postId);
+   
     const res = await jwtFetch(`/api/post/${postId}`, {
         method: 'PATCH',
         body: formData
     });
  
         if(res.ok){
-            console.log("works")
+           
         } else{
-            console.log("not working")
+            
         }
     
         
@@ -123,9 +120,9 @@ export const searchPosts = () => async (dispatch) => {
     try {
         const res = await jwtFetch(`/api/post/search`);
         const results = await res.json();
-        console.log(results);
+       
     } catch (err) {
-        console.log(err)
+        //console.log(err)
     }
 }
 
@@ -144,6 +141,8 @@ export const composePost = (body, images, reciepeName, price, query) => async di
            body: formData
        });
        const post = await res.json();
+       
+       
         dispatch(fetchPosts({query}));
        dispatch(clearPostErrors())
        window.location.href = '/posts';

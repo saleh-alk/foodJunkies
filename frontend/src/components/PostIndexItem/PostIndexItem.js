@@ -100,7 +100,7 @@ const PostIndexItem = ({ post, key1, updateSidebarContent }) => {
                 
                 if (food.post._id == post._id){
                     quantityChange = true
-                    console.log(quantityChange)
+                    
                     food.quantity += 1
                 }
                 

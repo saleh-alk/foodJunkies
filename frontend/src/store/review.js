@@ -70,7 +70,7 @@ export const updateReview = (title, body, rating, reviewId) => async dispatch =>
                 rating: rating
             })
         })
-        console.log(res)
+       
        // const review = await res.json()
     } catch (err) {
         const res = await err.json()
@@ -153,7 +153,7 @@ export const fetchReview = (reviewId) => async (dispatch) => {
         const review = await res.json()
         return dispatch(receiveNewReview(review))
     } else{
-        console.log("no")
+        //console.log("no")
     }
 }
 
