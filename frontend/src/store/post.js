@@ -134,13 +134,15 @@ export const composePost = (body, images, reciepeName, price, query) => async di
     formData.append("price", price);
     Array.from(images).forEach(image => formData.append("images", image))
    
+    console.log(formData)
+    
 
    try{
        const res = await jwtFetch('/api/post/', {
            method: 'POST',
            body: formData
        });
-       
+
       
        const post = await res.json();
        console.log(post)
