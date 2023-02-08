@@ -53,15 +53,15 @@ function CreatePost() {
     };
 
 
-
     useEffect(() => {
         // return () => {
         dispatch(clearPostErrors());
         //};
     }, [dispatch]);
 
-   
-    
+
+    let imgUploadTxt = "Click here to Upload Image";
+    if (images.length > 0) imgUploadTxt = images[0].name;
 
   return (
     <div id="outer">
@@ -77,7 +77,7 @@ function CreatePost() {
             <label>Body</label>
 
               <label className="entireUpload">
-                  Click here to Upload Image &nbsp;
+                  {imgUploadTxt} &nbsp;
                   <input
                       type="file"
                       accept=".jpg, .jpeg, .png"

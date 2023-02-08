@@ -43,8 +43,12 @@
     margin-left: 0;
     font-family: DejaVu Sans Mono, monospace;
     border: 2px dashed #ba3b0a;
-    background-color: #F5A563;
+    background-color: #F5CDAC;
     text-align: center;
+}
+
+.entireUpload:hover {
+    background-color: #F5A563;
 }
 
 .recipeInput{
