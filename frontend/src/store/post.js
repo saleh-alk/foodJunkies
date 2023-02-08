@@ -140,8 +140,10 @@ export const composePost = (body, images, reciepeName, price, query) => async di
            method: 'POST',
            body: formData
        });
-       const post = await res.json();
        
+      
+       const post = await res.json();
+       console.log(post)
        
         dispatch(fetchPosts({query}));
        dispatch(clearPostErrors())
