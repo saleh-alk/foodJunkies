@@ -145,7 +145,7 @@ export const composePost = (body, images, reciepeName, price, query) => async di
        
         dispatch(fetchPosts({query}));
        dispatch(clearPostErrors())
-    //    window.location.href = '/posts';
+       window.location.href = '/posts';
     //    dispatch(receiveNewPost(post));
    } catch(err){
        const res = await err.json()

@@ -48,7 +48,7 @@ function CreatePost() {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(composePost(body, images, reciepeName, price, query)); //
-        history.push('/posts')
+        // history.push('/posts')
     };
 
 
