@@ -8,6 +8,13 @@
     flex-direction: column;
 }
 
+.style-buttons {
+
+    border: solid;
+
+
+}
+
 input.review-style-inputs,
 label,
 textarea.review-style-inputs {
@@ -72,7 +79,19 @@ input.review-style-inputs:valid {
     padding-top: 35px;
 }
 
+
+
+
 #review-body {
     resize: none;
     height: fit-content;
+}
+
+
+.errors{
+    margin-top: 30px;
+}
+
+.review-style-inputs{
+    cursor: pointer;
 }

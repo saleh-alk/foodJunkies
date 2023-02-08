@@ -1,32 +1,46 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
-import { composeReview } from '../../store/review'
+import { clearReviewErrors, composeReview } from '../../store/review'
 import './CreateReview.css'
 
 function CreateReviews() {
 
+
+  
 
     const history = useHistory()
     const dispatch = useDispatch()
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [rating, setRating] = useState('')
+    const errors = useSelector(state => state.errors.review);
 
     const {postId, userId} = useParams()
 
 
+
     const handleClick = (e) => {
         e.preventDefault()
-
+        
         dispatch(composeReview(title, body, rating, postId, userId))
-        setBody("")
-        setRating("")
-        setTitle("")
-
-        history.push('/posts')
+        
+        if(!errors){
+          // setBody("")
+          // setRating("")
+          // setTitle("")
+          console.log("none")
+          // history.push('/posts')
+        }
 
     }
+    
+
+  useEffect(() => {
+    // return () => {
+      dispatch(clearReviewErrors());
+    //};
+  }, [dispatch]);
 
 
   return (
@@ -41,7 +55,7 @@ function CreateReviews() {
 
 
                 <div className='inner-div'>
-                
+                <div className="errors">{errors?.title}</div>
                 <input
                 className='review-style-inputs'
                 type="text"
@@ -52,7 +66,7 @@ function CreateReviews() {
                       <label> Title </label>
                   </div>
         
-                
+                <div className="errors">{errors?.body}</div>
                 <input
                     className='review-style-inputs'
                     type="text"
@@ -63,13 +77,15 @@ function CreateReviews() {
                 />
                   <label> Body </label>
           
-                
+          
+                 <div className="errors">{errors?.rating}</div>
                 <input
                     type="text"
                     className='review-style-inputs'
                     value={rating}
                     onChange={(e)=> setRating(e.target.value)}
                     placeholder="rating"
+                    required
                 />
                   <label> Rating </label>
             

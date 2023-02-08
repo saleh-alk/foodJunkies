@@ -60,6 +60,7 @@
     background-color: #FFEAD9;
     color: #ba3b0a;
     font-size: 25px;
+    cursor: pointer;
 }
 
 #logoutButton:hover {

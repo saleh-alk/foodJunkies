@@ -93,3 +93,8 @@
 .user-button-group-button:hover {
    background: #F5CDAC;
 }
+
+
+.reviewButton:hover{
+    cursor: pointer;
+}

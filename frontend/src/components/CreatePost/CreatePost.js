@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom';
-import { composePost, fetchPosts } from '../../store/post';
+import { clearPostErrors, composePost, fetchPosts } from '../../store/post';
 
 // import "./"
 
@@ -19,9 +19,12 @@ function CreatePost() {
     const [price, setPrice] = useState();
     const dispatch = useDispatch()
     const history = useHistory()
-
     const location = useLocation();
     const query = location.search;
+    const errors = useSelector(state => state.errors.post)
+
+
+    console.log(errors)
 
     const updateFiles = async e => {
         const files = e.target.files;
@@ -45,13 +48,17 @@ function CreatePost() {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(composePost(body, images, reciepeName, price, query)); //
-        setReciepeName('')
-        setPrice('')
-        setImages([]);                        
-        setImageUrls([]);                    
-        setBody('');
-        history.push('/posts')
+    
+
     };
+
+
+    useEffect(() => {
+        // return () => {
+        dispatch(clearPostErrors());
+        //};
+    }, [dispatch]);
+
 
     let imgUploadTxt = "Click here to Upload Image";
     if (images.length > 0) imgUploadTxt = images[0].name;
@@ -88,7 +95,7 @@ function CreatePost() {
                   id='recipie-name'
                   />
                   <label>Reciepe Name</label>
-                
+              <div className="errors">{errors?.price}</div>
                 <input
                   type='text'
                   value= {price}

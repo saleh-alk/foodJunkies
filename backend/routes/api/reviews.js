@@ -8,11 +8,13 @@ const validateReviewInput = require('../../validations/reviews');
 const Review = require('../../models/Review');
 const User = require('../../models/User');
 
+
 function formatReview(review) {
     return {
         title: review.title,
         postedAt: review.createdAt,
         rating: review.rating,
+        reviewee: review.reviewee._id,
         reviewer: review.reviewer._id,
         post: review.post,
         body: review.body,
@@ -29,10 +31,13 @@ function formatReviews(reviews) {
     return returnData;
 }
 
+
+
+
 router.get('/user/:userId', (req, res) => {
     User.findById(req.params.userId)
     .then(user => {
-        Review.find({ reviewer: user.id})
+        Review.find({ reviewee: user.id})
         .then(reviews => {
             res.json(formatReviews(reviews));
         });
@@ -51,6 +56,15 @@ router.get('/post/:postId', (req, res) => {
 });
 
 
+router.get('/review/:reviewId', (req, res) => {
+
+    Review.findById(req.params.reviewId)
+        .then(review => {
+            res.json(formatReview(review))
+        }).catch(err => res.status(404).json({ noreviewfound: 'no review found with that ID' }))
+})
+
+
 
 
 
@@ -62,7 +76,8 @@ router.post('/:postId/:userId', requireUser, validateReviewInput, async (req, re
         // reviewer: req.user.id,
         
         const newReview = new Review({
-            reviewer: req.params.userId,
+            reviewee: req.params.userId,
+            reviewer: req.user.id,
             post: req.params.postId,
             title: req.body.title,
             body: req.body.body,
@@ -84,17 +99,23 @@ router.post('/:postId/:userId', requireUser, validateReviewInput, async (req, re
     }
 })
 
-router.patch('/:id', requireUser, async(req, res, next)=>{
+router.patch('/:id', requireUser, validateReviewInput, async(req, res, next)=>{
     try{
-        let review = Review.findById(req.params.id)
-        if (review.reviewerId.toString() !== req.user.id.toString()) {
-            res.status().json({ notowned: 'Current user does not own this review' })
-    } else {
+        let review = await Review.findById(req.params.id)
+    
+        
+    //     if (review.reviewer.toString() !== req.user.id.toString()) {
+    //         res.status().json({ notowned: 'Current user does not own this review' })
+    // } else {
+        review.title = req.body.title;
         review.body = req.body.body;
         review.rating = req.body.rating;
-        let newreview = await review.save();
-        return res.json(newreview);
-    }}
+        review.save()
+        //let newreview = await review.save();
+        
+        // return res.json(newreview);
+    //}
+    }
     catch (err){
         const error = new Error("Something went wrong");
         error.statusCode = 404;
