@@ -5,12 +5,12 @@ import './MainPage.css'
 function MainPage() {
     return (
         <>
-            <h1 className='project-title'>Welcome to FoodJunkies</h1>
             <div className='login-option'>
                 
+                <h1 className='project-title'>Welcome to FoodJunkies</h1>
                 
-                <Link to="/login" className='login-links'> Log In</Link>
-                <Link to= "/signup" className='login-links'>Sign Up</Link>
+                <div className='login-something'>  <Link to="/login" className='login-links'> Log In</Link></div> 
+                <div className='login-something'><Link to="/signup" className='login-links'>Sign Up</Link></div> 
             
             </div>
         </>
