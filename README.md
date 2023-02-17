@@ -10,6 +10,9 @@ foodJunkies was built using MongoDB as the database management system, Express.j
 ## Features
 Users will need to log in to access the full functionality of the page. Once logged in, users can view other posts that people have made. Not only can they view the posts, they can interact by liking, reviewing, or adding the item to the cart. Once a user has items in their cart, they can check out and purchase the items. A user can also make their own food post. 
 
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/61297172/219813902-a0e71f66-ef8b-40a1-a2a2-f3aa3678098c.gif)
+
+
 ### Post CRUD
 
 
