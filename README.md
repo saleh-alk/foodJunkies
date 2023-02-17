@@ -15,6 +15,44 @@ Users will need to log in to access the full functionality of the page. Once log
 
 ### Post CRUD
 
+![ezgif com-video-to-gif (1)](https://user-images.githubusercontent.com/61297172/219814527-02289d99-bdc3-4643-ad07-3354f5a4da83.gif)
 
 ### Adding to Cart
+
+![ezgif com-video-to-gif (2)](https://user-images.githubusercontent.com/61297172/219814833-06997c86-bc3b-4c40-94b4-30c56970ef4d.gif)
+
+
+## Code Snippets
+### Search Bar
+```javascript
+    const handleSearch = async (e) => {
+        if (e.key === 'Enter') {
+            history.push(`/posts?search=${e.target.value}`);
+        }
+    }
+
+```
+### AWS function
+
+```javascript
+const singleFileUpload = async ({ file, public = false }) => {
+    const { originalname, buffer } = file;
+    const path = require("path");
+
+    // Set the name of the file in your S3 bucket to the date in ms plus the
+    // extension name.
+    const Key = new Date().getTime().toString() + path.extname(originalname);
+    const uploadParams = {
+      Bucket: NAME_OF_BUCKET,
+      Key: public ? `public/${Key}` : Key,
+      Body: buffer
+    };
+    const result = await s3.upload(uploadParams).promise();
+
+    // Return the link if public. If private, return the name of the file in your
+    // S3 bucket as the key in your database for subsequent retrieval.
+    return public ? result.Location : result.Key;
+  };
+
+```
 
